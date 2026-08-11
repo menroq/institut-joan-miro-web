@@ -1,0 +1,7 @@
+[build]
+  # Genera el site amb Eleventy (llegeix src/, escriu _site/) abans
+  # de publicar-lo. Netlify executa aquesta ordre automàticament a
+  # cada desplegament (via Git) — no cal fer-ho manualment.
+  command = "npx eleventy"
+  publish = "_site"
+  functions = "netlify/functions"

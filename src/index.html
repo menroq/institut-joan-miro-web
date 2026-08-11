@@ -1,0 +1,191 @@
+---
+layout: base.njk
+title: Institut Joan Miró — Cornellà de Llobregat
+pageStyles: |
+
+    /* ============ PÀGINA PRINCIPAL ============ */
+
+    /* --- Secció 1: Carrusel d'imatges --- */
+    .hero-carousel{
+      position: relative;
+      width: 100%;
+      height: 360px;
+      overflow: hidden;
+      background: var(--color-blue);
+    }
+    .hero-carousel__slide{
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+      pointer-events: none;
+    }
+    .hero-carousel__slide.is-active{
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .hero-carousel__slide img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+    }
+
+    .hero-carousel__box{
+      position: absolute;
+      left: clamp(16px, 5vw, 64px);
+      bottom: clamp(28px, 6vw, 52px);
+      background: rgba(255, 255, 255, 0.70);
+      backdrop-filter: blur(3px);
+      color: var(--color-blue);
+      padding: 22px 32px;
+      border-radius: 4px;
+      max-width: 560px;
+      box-shadow: 0 14px 34px rgba(15, 8, 90, 0.22);
+    }
+    .hero-carousel__box h1{
+      margin: 0;
+      font-size: clamp(22px, 3.4vw, 32px);
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--color-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-carousel__arrow{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.85);
+      color: var(--color-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 5;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .hero-carousel__arrow:hover,
+    .hero-carousel__arrow:focus-visible{
+      background: var(--color-blue);
+      color: #fff;
+    }
+    .hero-carousel__arrow svg{ width: 20px; height: 20px; }
+    .hero-carousel__arrow--prev{ left: clamp(10px, 2vw, 24px); }
+    .hero-carousel__arrow--next{ right: clamp(10px, 2vw, 24px); }
+
+    .hero-carousel__dots{
+      position: absolute;
+      right: clamp(16px, 5vw, 64px);
+      bottom: 18px;
+      display: flex;
+      gap: 9px;
+      z-index: 5;
+    }
+    .hero-carousel__dot{
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.55);
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+    .hero-carousel__dot.is-active{
+      background: #fff;
+      transform: scale(1.25);
+    }
+
+    /* --- Secció 4: Contacta amb el centre --- */
+    .home-cta{
+      background: #FAFAFD;
+      border-top: 1px solid var(--color-border);
+      padding: 56px clamp(16px, 4vw, 48px);
+      text-align: center;
+    }
+    .home-cta h2{
+      margin: 0 0 22px;
+      font-size: 22px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--color-blue);
+    }
+    .home-cta__button{
+      display: inline-block;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #fff;
+      background: var(--color-blue);
+      border: none;
+      border-radius: 6px;
+      padding: 14px 38px;
+      cursor: pointer;
+      transition: background 0.18s ease;
+    }
+    .home-cta__button:hover,
+    .home-cta__button:focus-visible{
+      background: var(--color-orange);
+    }
+
+    @media (max-width: 640px){
+      .hero-carousel{ height: 260px; }
+      .hero-carousel__box{ padding: 18px 22px; max-width: calc(100% - 32px); bottom: 54px; }
+      .hero-carousel__arrow{ width: 36px; height: 36px; }
+      .home-cta h2{ font-size: 18px; }
+    }
+---
+
+
+  <!-- ============ SECCIÓ 1: CARRUSEL D'IMATGES ============ -->
+  <section class="hero-carousel" id="heroCarousel" aria-label="Imatges destacades de l'institut">
+
+    <div class="hero-carousel__slide is-active">
+      <img src="https://images.unsplash.com/photo-1763098844157-d0fffcc966a1?fm=jpg&q=80&w=2200&auto=format&fit=crop" alt="" role="presentation">
+      <div class="hero-carousel__box">
+        <h1>Benvinguts a l'Institut Joan Miró</h1>
+      </div>
+    </div>
+
+    <div class="hero-carousel__slide">
+      <img src="https://images.unsplash.com/photo-1741699427799-3fbb70fce948?fm=jpg&q=80&w=2200&auto=format&fit=crop" alt="" role="presentation">
+    </div>
+
+    <div class="hero-carousel__slide">
+      <img src="https://images.unsplash.com/photo-1556168308-629ef2891e9d?fm=jpg&q=80&w=2200&auto=format&fit=crop" alt="" role="presentation">
+    </div>
+
+    <button class="hero-carousel__arrow hero-carousel__arrow--prev" id="carouselPrev" aria-label="Imatge anterior">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="hero-carousel__arrow hero-carousel__arrow--next" id="carouselNext" aria-label="Imatge següent">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+
+    <div class="hero-carousel__dots" id="carouselDots">
+      <button class="hero-carousel__dot is-active" aria-label="Imatge 1"></button>
+      <button class="hero-carousel__dot" aria-label="Imatge 2"></button>
+      <button class="hero-carousel__dot" aria-label="Imatge 3"></button>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓ 2: ACTUALITAT — pendent de dissenyar ============ -->
+
+  <!-- ============ SECCIÓ 3: NOTÍCIES — pendent de dissenyar ============ -->
+
+  <!-- ============ SECCIÓ 4: CONTACTA AMB EL CENTRE ============ -->
+  <section class="home-cta">
+    <h2>Contacta amb el centre</h2>
+    <a href="contacte.html" class="home-cta__button">Contacta</a>
+  </section>
+
+
