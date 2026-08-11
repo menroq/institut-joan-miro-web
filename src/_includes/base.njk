@@ -385,21 +385,83 @@
     color: var(--color-orange);
   }
   .dropdown-panel__group{
+    position: relative;
     margin: 4px 0;
     padding-top: 6px;
     border-top: 1px solid var(--color-border);
   }
-  .dropdown-panel__group-label{
-    display: block;
-    padding: 6px 12px 2px;
-    font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--color-text-muted);
+  .dropdown-panel__group-trigger{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 9px 12px;
+    border-radius: 5px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--color-blue);
+    transition: background 0.15s ease, color 0.15s ease;
   }
-  .dropdown-panel__group a{
-    padding-left: 22px;
+  .dropdown-panel__group-trigger svg{
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
+    transform: rotate(-90deg);
+    color: var(--color-text-muted);
+    transition: color 0.15s ease;
+  }
+  .dropdown-panel__group:hover .dropdown-panel__group-trigger,
+  .dropdown-panel__group.is-open .dropdown-panel__group-trigger{
+    background: rgba(28,12,188,0.06);
+    color: var(--color-orange);
+  }
+  .dropdown-panel__group:hover .dropdown-panel__group-trigger svg,
+  .dropdown-panel__group.is-open .dropdown-panel__group-trigger svg{
+    color: var(--color-orange);
+  }
+
+  /* --- Flyout del tercer nivell: només visible amb el ratolí a sobre --- */
+  .dropdown-panel__flyout{
+    position: absolute;
+    top: -10px;
+    left: 100%;
+    margin-left: 6px;
+    min-width: 200px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 0 16px 34px rgba(28,12,188,0.12);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-6px);
+    transition: opacity 0.16s ease, transform 0.16s ease;
+    z-index: 25;
+  }
+  .dropdown-panel__group:hover .dropdown-panel__flyout{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+  .dropdown-panel__flyout a{
+    display: block;
+    padding: 9px 12px;
+    border-radius: 5px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--color-blue);
+    white-space: nowrap;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .dropdown-panel__flyout a:hover,
+  .dropdown-panel__flyout a:focus-visible{
+    background: rgba(28,12,188,0.06);
+    color: var(--color-orange);
   }
 
   /* --- Mòbil: el menú es col·lapsa dins un desplegable --- */
@@ -632,10 +694,15 @@
                 <a href="#">Projecte Educatiu</a>
                 <a href="#">Instal·lacions</a>
                 <div class="dropdown-panel__group">
-                  <span class="dropdown-panel__group-label">Qui Som</span>
-                  <a href="#">Equip Directiu</a>
-                  <a href="#">Coordinacions</a>
-                  <a href="#">Tutories</a>
+                  <span class="dropdown-panel__group-trigger">
+                    Qui Som
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                  </span>
+                  <div class="dropdown-panel__flyout">
+                    <a href="#">Equip Directiu</a>
+                    <a href="#">Coordinacions</a>
+                    <a href="#">Tutories</a>
+                  </div>
                 </div>
                 <a href="contacte.html#mapa">On Trobar-nos</a>
               </div>
