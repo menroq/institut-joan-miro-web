@@ -1,0 +1,465 @@
+---
+layout: base.njk
+title: Contacte — Institut Joan Miró
+permalink: "contacte.html"
+pageStyles: |
+
+    /* ============ PÀGINA DE CONTACTE ============ */
+
+    /* --- Capçalera amb imatge + caixa semitransparent --- */
+    .contact-hero{
+      position: relative;
+      width: 100%;
+      height: 260px;
+      overflow: hidden;
+      background: var(--color-blue);
+    }
+    .contact-hero img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.88);
+    }
+    .contact-hero__box{
+      position: absolute;
+      left: clamp(16px, 4vw, 48px);
+      bottom: 42px;
+      background: rgba(255, 255, 255, 0.70);
+      backdrop-filter: blur(3px);
+      color: var(--color-blue);
+      padding: 22px 30px;
+      border-radius: 4px;
+      max-width: 460px;
+      box-shadow: 0 14px 34px rgba(15, 8, 90, 0.22);
+      will-change: transform;
+    }
+    .contact-hero__box .hero-title{
+      display: block;
+      margin: 0 0 6px;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-blue);
+    }
+    .contact-hero__box .hero-subtitle{
+      margin: 0;
+      font-size: 12.5px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--color-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .contact-wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 56px clamp(16px, 4vw, 48px) 60px;
+    }
+
+    /* --- 4 blocs d'informació --- */
+    .contact-info-grid{
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+      margin-bottom: 56px;
+    }
+    .info-card{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .info-card__icon{
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(28,12,188,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-blue);
+      flex-shrink: 0;
+    }
+    .info-card__icon svg{ width: 22px; height: 22px; }
+    .info-card h3{
+      margin: 4px 0 0;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-blue);
+    }
+    .info-card__body{
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--color-text-muted);
+    }
+    .info-card__body a{
+      display: block;
+      color: var(--color-blue);
+      font-weight: 600;
+      transition: color 0.18s ease;
+    }
+    .info-card__body a:hover,
+    .info-card__body a:focus-visible{
+      color: var(--color-orange);
+    }
+    .info-card__body .email-label{
+      display: block;
+      color: var(--color-text-muted);
+      font-weight: 400;
+      margin-top: 8px;
+    }
+    .info-card__body .email-label:first-child{ margin-top: 0; }
+    .info-card__map-link{
+      margin-top: 4px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--color-blue);
+      width: fit-content;
+      transition: color 0.18s ease;
+    }
+    .info-card__map-link:hover,
+    .info-card__map-link:focus-visible{
+      color: var(--color-orange);
+    }
+
+    /* --- Formulari de contacte --- */
+    .contact-form-section h2{
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-blue);
+      margin: 0 0 22px;
+    }
+    .contact-form{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 24px;
+      max-width: 760px;
+    }
+    .form-field{
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-field.full{ grid-column: 1 / -1; }
+    .form-field label{
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--color-blue);
+    }
+    .form-field input,
+    .form-field select,
+    .form-field textarea{
+      font-family: inherit;
+      font-size: 14px;
+      color: var(--color-blue);
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      background: #fff;
+      transition: border-color 0.18s ease;
+    }
+    .form-field textarea{ resize: vertical; min-height: 120px; }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus{
+      outline: none;
+      border-color: var(--color-blue);
+    }
+    .form-submit{
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 6px;
+    }
+    .form-submit button{
+      font-family: inherit;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #fff;
+      background: var(--color-blue);
+      border: none;
+      border-radius: 6px;
+      padding: 13px 30px;
+      cursor: pointer;
+      transition: background 0.18s ease;
+    }
+    .form-submit button:hover,
+    .form-submit button:focus-visible{
+      background: var(--color-orange);
+    }
+    .form-confirm{
+      font-size: 13px;
+      font-weight: 600;
+      color: #1a8f4c;
+      display: none;
+    }
+    .form-confirm.is-visible{ display: inline; }
+    .form-error{
+      font-size: 13px;
+      font-weight: 600;
+      color: #c0392b;
+      display: none;
+    }
+    .form-error.is-visible{ display: inline; }
+
+    /* --- Mapa --- */
+    .contact-map-section{
+      margin-top: 56px;
+    }
+    .contact-map-section h2{
+      font-size: 18px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-blue);
+      margin: 0 0 18px;
+    }
+    .contact-map-frame{
+      width: 100%;
+      height: 380px;
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .contact-map-frame iframe{
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    @media (max-width: 900px){
+      .contact-info-grid{ grid-template-columns: repeat(2, 1fr); }
+      .contact-form{ grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px){
+      .contact-hero{ height: 200px; }
+      .contact-hero__box{ padding: 16px 20px; max-width: calc(100% - 32px); bottom: 24px; }
+      .contact-hero__box h1{ font-size: 17px; }
+    }
+    @media (max-width: 520px){
+      .contact-info-grid{ grid-template-columns: 1fr; }
+    }
+pageScript: |
+
+    // ============ CAPÇALERA: petit moviment vertical de la caixa en fer scroll ============
+    (function(){
+      var hero = document.getElementById('contactHero');
+      var box = document.getElementById('heroBox');
+      if (!hero || !box) return;
+      var ticking = false;
+
+      function updateParallax(){
+        var rect = hero.getBoundingClientRect();
+        // com més amunt surt la capçalera de la finestra, més es desplaça la caixa
+        var offset = Math.max(-18, Math.min(18, -rect.top * 0.12));
+        box.style.transform = 'translateY(' + offset + 'px)';
+        ticking = false;
+      }
+      window.addEventListener('scroll', function(){
+        if (!ticking){
+          window.requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }, {passive:true});
+      updateParallax();
+    })();
+
+    // ============ FORMULARI DE CONTACTE ============
+    // Envia les dades en JSON a la Netlify Function indicada a
+    // data-endpoint (/.netlify/functions/procesa-contacte), que és
+    // la que genera i envia el correu real (vegeu
+    // netlify/functions/procesa-contacte.js).
+    (function(){
+      var form = document.getElementById('contactForm');
+      var confirmMsg = document.getElementById('formConfirm');
+      var errorMsg = document.getElementById('formError');
+      if (!form) return;
+      var endpoint = form.getAttribute('data-endpoint');
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        confirmMsg.classList.remove('is-visible');
+        errorMsg.classList.remove('is-visible');
+
+        var payload = {
+          nom: form.nom.value,
+          correu: form.correu.value,
+          motiu: form.motiu.value,
+          missatge: form.missatge.value
+        };
+
+        fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(function(response){
+            return response.json().then(function(data){
+              return { ok: response.ok, data: data };
+            });
+          })
+          .then(function(result){
+            if (result.ok && result.data && result.data.ok){
+              confirmMsg.classList.add('is-visible');
+              form.reset();
+            } else {
+              console.error('Error del formulari de contacte:', result.data);
+              errorMsg.classList.add('is-visible');
+            }
+          })
+          .catch(function(err){
+            // Error real de xarxa/connexió amb la funció (per exemple, 404
+            // perquè encara no s'ha desplegat, o problema de CORS).
+            console.error('Error de connexió amb la funció:', err);
+            errorMsg.classList.add('is-visible');
+          });
+      });
+    })();
+---
+
+
+  <!-- ============ CAPÇALERA AMB IMATGE ============ -->
+  <div class="contact-hero" id="contactHero">
+    <img src="https://images.unsplash.com/photo-1556168308-629ef2891e9d?fm=jpg&q=80&w=2200&auto=format&fit=crop" alt="" role="presentation">
+    <div class="contact-hero__box" id="heroBox">
+      <h1 class="hero-title">Contacte</h1>
+      <p class="hero-subtitle">Posa't en contacte amb nosaltres</p>
+    </div>
+  </div>
+
+  <div class="contact-wrap">
+
+    <!-- ============ 4 BLOCS D'INFORMACIÓ ============ -->
+    <section class="contact-info-grid" aria-label="Informació de contacte">
+
+      <!-- Horari -->
+      <div class="info-card">
+        <span class="info-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        </span>
+        <h3>Horari</h3>
+        <div class="info-card__body">
+          Dilluns a divendres: de 8:00 a 14:30 hores<br>
+          Dilluns i dimecres: de 15:30 a 17:30 hores
+          <br><br>
+          Horari juny, juliol i setembre:<br>de 8:00 a 14:30 hores
+        </div>
+      </div>
+
+      <!-- Correu -->
+      <div class="info-card">
+        <span class="info-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </span>
+        <h3>Correu</h3>
+        <div class="info-card__body">
+          <span class="email-label">Tràmits administratius:</span>
+          <a href="mailto:secretaria@institutjoanmiro.cat">secretaria@institutjoanmiro.cat</a>
+          <span class="email-label">Informació / consultes:</span>
+          <a href="mailto:info@institutjoanmiro.cat">info@institutjoanmiro.cat</a>
+          <span class="email-label">Faltes d'assistència:</span>
+          <a href="mailto:absencies@institutjoanmiro.cat">absencies@institutjoanmiro.cat</a>
+          <span class="email-label">Incidències Clickedu:</span>
+          <a href="mailto:clickedu.joanmiro@institutjoanmiro.cat">clickedu.joanmiro@institutjoanmiro.cat</a>
+          <span class="email-label">Incidències portàtils PEDC:</span>
+          <a href="mailto:informatica@institutjoanmiro.cat">informatica@institutjoanmiro.cat</a>
+          <span class="email-label">AFA:</span>
+          <a href="mailto:afa@institutjoanmiro.cat">afa@institutjoanmiro.cat</a>
+        </div>
+      </div>
+
+      <!-- Telèfon -->
+      <div class="info-card">
+        <span class="info-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h4l2 5-2.5 1.5a12 12 0 0 0 6 6L15 14l5 2v4a1 1 0 0 1-1 1C10.5 21 3 13.5 3 5a1 1 0 0 1 1-1z"/></svg>
+        </span>
+        <h3>Telèfon</h3>
+        <div class="info-card__body">
+          <a href="tel:+34933775166">93 377 51 66</a>
+        </div>
+      </div>
+
+      <!-- Adreça -->
+      <div class="info-card">
+        <span class="info-card__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.5 7-11.5A7 7 0 0 0 5 9.5C5 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
+        </span>
+        <h3>Adreça</h3>
+        <div class="info-card__body">
+          Av. Verge de Montserrat, 53<br>
+          08940 · Cornellà de Llobregat
+          <br>
+          <a class="info-card__map-link" href="#mapa">Veure-ho al mapa ↓</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============ FORMULARI ============ -->
+    <section class="contact-form-section">
+      <h2>Envia'ns un missatge</h2>
+      <!--
+        Aquest formulari envia les dades a una Netlify Function
+        (/.netlify/functions/procesa-contacte) que genera el correu
+        amb remitent info@institutjoanmiro.cat. Vegeu el fitxer
+        netlify/functions/procesa-contacte.js. Si el site s'allotja
+        en un hosting tradicional amb PHP en lloc de Netlify, es pot
+        fer servir en el seu lloc procesa-contacte.php (canviant la
+        crida "fetch" del bloc de JavaScript de més avall).
+      -->
+      <form class="contact-form" id="contactForm" data-endpoint="/.netlify/functions/procesa-contacte">
+        <div class="form-field">
+          <label for="cf-nom">Nom i cognoms</label>
+          <input type="text" id="cf-nom" name="nom" required>
+        </div>
+        <div class="form-field">
+          <label for="cf-correu">Correu electrònic</label>
+          <input type="email" id="cf-correu" name="correu" required>
+        </div>
+        <div class="form-field full">
+          <label for="cf-motiu">Motiu</label>
+          <select id="cf-motiu" name="motiu">
+            <option>Tràmits administratius</option>
+            <option>Informació / consultes</option>
+            <option>Faltes d'assistència</option>
+            <option>Incidències Clickedu</option>
+            <option>Incidències portàtils PEDC</option>
+            <option>AFA</option>
+            <option>Altres</option>
+          </select>
+        </div>
+        <div class="form-field full">
+          <label for="cf-missatge">Missatge</label>
+          <textarea id="cf-missatge" name="missatge" required></textarea>
+        </div>
+        <div class="form-submit">
+          <button type="submit">Enviar</button>
+          <span class="form-confirm" id="formConfirm">Missatge enviat correctament.</span>
+          <span class="form-error" id="formError">Hi ha hagut un problema en enviar el missatge. Torna-ho a provar d'aquí una estona.</span>
+        </div>
+      </form>
+    </section>
+
+    <!-- ============ MAPA ============ -->
+    <section class="contact-map-section" id="mapa">
+      <h2>Com arribar-hi</h2>
+      <div class="contact-map-frame">
+        <iframe
+          src="https://www.google.com/maps?q=41.3485064,2.0704273&hl=ca&z=16&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicació de l'Institut Joan Miró"></iframe>
+      </div>
+    </section>
+
+  </div>
