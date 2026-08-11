@@ -292,6 +292,116 @@
 
   .main-nav.is-hidden{ display: none; }
 
+  /* --- Desplegable "El Centre" (escriptori) --- */
+  .has-dropdown{
+    position: relative;
+  }
+  .dropdown-trigger{
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font: inherit;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 15.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-blue);
+    padding: 8px 2px;
+    position: relative;
+    transition: color 0.18s ease;
+  }
+  .dropdown-trigger::after{
+    content: "";
+    position: absolute;
+    left: 0; right: 100%;
+    bottom: 2px;
+    height: 2px;
+    background: var(--color-orange);
+    transition: right 0.22s ease;
+    border-radius: 2px;
+  }
+  .dropdown-trigger:hover,
+  .dropdown-trigger:focus-visible,
+  .has-dropdown.is-open .dropdown-trigger{
+    color: var(--color-orange);
+  }
+  .dropdown-trigger:hover::after,
+  .dropdown-trigger:focus-visible::after,
+  .has-dropdown.is-open .dropdown-trigger::after{
+    right: 0;
+  }
+  .dropdown-trigger svg{
+    width: 13px;
+    height: 13px;
+    transition: transform 0.18s ease;
+  }
+  .has-dropdown.is-open .dropdown-trigger svg{
+    transform: rotate(180deg);
+  }
+
+  .dropdown-panel{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 6px);
+    min-width: 240px;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 0 16px 34px rgba(28,12,188,0.12);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.16s ease, transform 0.16s ease;
+    z-index: 20;
+  }
+  .has-dropdown:hover .dropdown-panel,
+  .has-dropdown.is-open .dropdown-panel{
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+  }
+  .dropdown-panel a{
+    display: block;
+    padding: 9px 12px;
+    border-radius: 5px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--color-blue);
+    white-space: nowrap;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .dropdown-panel a:hover,
+  .dropdown-panel a:focus-visible{
+    background: rgba(28,12,188,0.06);
+    color: var(--color-orange);
+  }
+  .dropdown-panel__group{
+    margin: 4px 0;
+    padding-top: 6px;
+    border-top: 1px solid var(--color-border);
+  }
+  .dropdown-panel__group-label{
+    display: block;
+    padding: 6px 12px 2px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+  }
+  .dropdown-panel__group a{
+    padding-left: 22px;
+  }
+
   /* --- Mòbil: el menú es col·lapsa dins un desplegable --- */
   .menu-toggle{ display: none; }
   .mobile-nav-panel{
@@ -392,6 +502,63 @@
     .mobile-nav-panel a:focus-visible{
       color: var(--color-orange);
     }
+
+    /* --- Acordió "El Centre" (mòbil) --- */
+    .mobile-nav-item.has-submenu > .mobile-nav-item__trigger{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: none;
+      border: none;
+      border-bottom: 1px solid var(--color-border);
+      font: inherit;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-blue);
+      padding: 11px 2px;
+      cursor: pointer;
+    }
+    .mobile-nav-item__trigger svg{
+      width: 16px;
+      height: 16px;
+      transition: transform 0.18s ease;
+      flex-shrink: 0;
+    }
+    .mobile-nav-item.is-open .mobile-nav-item__trigger svg{
+      transform: rotate(180deg);
+    }
+    .mobile-submenu{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.24s ease;
+    }
+    .mobile-nav-item.is-open .mobile-submenu{
+      max-height: 360px;
+    }
+    .mobile-submenu a{
+      display: block;
+      padding: 10px 2px 10px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-blue);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .mobile-submenu a.mobile-submenu__sub{
+      padding-left: 32px;
+    }
+    .mobile-submenu__group-label{
+      padding: 10px 2px 4px 16px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+      border-bottom: 1px solid var(--color-border);
+    }
     .search-box{ max-width: none; }
   }
   @media (max-width: 640px){
@@ -455,7 +622,24 @@
       <div class="nav-center">
         <nav class="main-nav" id="mainNav" aria-label="Menú principal">
           <ul>
-            <li><a href="#">El Centre</a></li>
+            <li class="has-dropdown" id="elCentreDropdown">
+              <button class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                El Centre
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown-panel">
+                <a href="#">Història</a>
+                <a href="#">Projecte Educatiu</a>
+                <a href="#">Instal·lacions</a>
+                <div class="dropdown-panel__group">
+                  <span class="dropdown-panel__group-label">Qui Som</span>
+                  <a href="#">Equip Directiu</a>
+                  <a href="#">Coordinacions</a>
+                  <a href="#">Tutories</a>
+                </div>
+                <a href="contacte.html#mapa">On Trobar-nos</a>
+              </div>
+            </li>
             <li><a href="#">Estudis</a></li>
             <li><a href="#">Projectes</a></li>
             <li><a href="#">Serveis</a></li>
@@ -488,7 +672,22 @@
     <!-- Desplegable de menú per a mòbil -->
     <div class="mobile-nav-panel" id="mobileNavPanel">
       <ul>
-        <li><a href="#">El Centre</a></li>
+        <li class="mobile-nav-item has-submenu" id="elCentreMobileItem">
+          <button class="mobile-nav-item__trigger" aria-expanded="false">
+            El Centre
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <ul class="mobile-submenu">
+            <li><a href="#">Història</a></li>
+            <li><a href="#">Projecte Educatiu</a></li>
+            <li><a href="#">Instal·lacions</a></li>
+            <li class="mobile-submenu__group-label">Qui Som</li>
+            <li><a href="#" class="mobile-submenu__sub">Equip Directiu</a></li>
+            <li><a href="#" class="mobile-submenu__sub">Coordinacions</a></li>
+            <li><a href="#" class="mobile-submenu__sub">Tutories</a></li>
+            <li><a href="contacte.html#mapa">On Trobar-nos</a></li>
+          </ul>
+        </li>
         <li><a href="#">Estudis</a></li>
         <li><a href="#">Projectes</a></li>
         <li><a href="#">Serveis</a></li>
@@ -584,6 +783,43 @@
     menuToggle.addEventListener('click', function(){
       var isOpen = mobilePanel.classList.toggle('is-open');
       menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  })();
+
+  // ============ DESPLEGABLE "EL CENTRE" (escriptori: clic + hover) ============
+  (function(){
+    var item = document.getElementById('elCentreDropdown');
+    if (!item) return;
+    var trigger = item.querySelector('.dropdown-trigger');
+
+    function closeDropdown(){
+      item.classList.remove('is-open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+
+    trigger.addEventListener('click', function(e){
+      e.preventDefault();
+      var isOpen = item.classList.toggle('is-open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.addEventListener('click', function(e){
+      if (!item.contains(e.target)) closeDropdown();
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') closeDropdown();
+    });
+  })();
+
+  // ============ ACORDIÓ "EL CENTRE" (mòbil) ============
+  (function(){
+    var item = document.getElementById('elCentreMobileItem');
+    if (!item) return;
+    var trigger = item.querySelector('.mobile-nav-item__trigger');
+
+    trigger.addEventListener('click', function(){
+      var isOpen = item.classList.toggle('is-open');
+      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   })();
 
