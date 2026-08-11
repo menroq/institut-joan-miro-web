@@ -6,7 +6,84 @@ pageStyles: |
 
     /* ============ PÀGINA DE CONTACTE ============ */
 
-    /* --- Capçalera amb imatge + caixa semitransparent --- */
+    /* 
+pageScript: |
+
+    // ============ CAPÇALERA: petit moviment vertical de la caixa en fer scroll ============
+    (function(){
+      var hero = document.getElementById('contactHero');
+      var box = document.getElementById('heroBox');
+      if (!hero || !box) return;
+      var ticking = false;
+
+      function updateParallax(){
+        var rect = hero.getBoundingClientRect();
+        // com més amunt surt la capçalera de la finestra, més es desplaça la caixa
+        var offset = Math.max(-18, Math.min(18, -rect.top * 0.12));
+        box.style.transform = 'translateY(' + offset + 'px)';
+        ticking = false;
+      }
+      window.addEventListener('scroll', function(){
+        if (!ticking){
+          window.requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }, {passive:true});
+      updateParallax();
+    })();
+
+    // ============ FORMULARI DE CONTACTE ============
+    // Envia les dades en JSON a la Netlify Function indicada a
+    // data-endpoint (/.netlify/functions/procesa-contacte), que és
+    // la que genera i envia el correu real (vegeu
+    // netlify/functions/procesa-contacte.js).
+    (function(){
+      var form = document.getElementById('contactForm');
+      var confirmMsg = document.getElementById('formConfirm');
+      var errorMsg = document.getElementById('formError');
+      if (!form) return;
+      var endpoint = form.getAttribute('data-endpoint');
+
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        confirmMsg.classList.remove('is-visible');
+        errorMsg.classList.remove('is-visible');
+
+        var payload = {
+          nom: form.nom.value,
+          correu: form.correu.value,
+          motiu: form.motiu.value,
+          missatge: form.missatge.value
+        };
+
+        fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(function(response){
+            return response.json().then(function(data){
+              return { ok: response.ok, data: data };
+            });
+          })
+          .then(function(result){
+            if (result.ok && result.data && result.data.ok){
+              confirmMsg.classList.add('is-visible');
+              form.reset();
+            } else {
+              console.error('Error del formulari de contacte:', result.data);
+              errorMsg.classList.add('is-visible');
+            }
+          })
+          .catch(function(err){
+            // Error real de xarxa/connexió amb la funció (per exemple, 404
+            // perquè encara no s'ha desplegat, o problema de CORS).
+            console.error('Error de connexió amb la funció:', err);
+            errorMsg.classList.add('is-visible');
+          });
+      });
+    })();
+--- Capçalera amb imatge + caixa semitransparent --- */
     .contact-hero{
       position: relative;
       width: 100%;
@@ -387,5 +464,3 @@ pageStyles: |
     </section>
 
   </div>
-
-
