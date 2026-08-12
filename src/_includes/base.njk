@@ -273,6 +273,7 @@
     max-width: 480px;
     border-bottom: 2px solid var(--color-blue);
     gap: 8px;
+    position: relative;
   }
   .search-box[hidden]{ display: none; }
   .search-box input{
@@ -288,6 +289,45 @@
   .search-box input::placeholder{
     color: var(--color-text-muted);
     font-weight: 400;
+  }
+
+  /* --- Resultats de cerca --- */
+  .search-results{
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    background: #fff;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 0 16px 34px rgba(28,12,188,0.12);
+    padding: 8px;
+    display: none;
+    flex-direction: column;
+    gap: 1px;
+    max-height: 340px;
+    overflow-y: auto;
+    z-index: 30;
+  }
+  .search-results.is-visible{ display: flex; }
+  .search-results a{
+    display: block;
+    padding: 10px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-blue);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .search-results a:hover,
+  .search-results a:focus-visible{
+    background: rgba(28,12,188,0.06);
+    color: var(--color-orange);
+  }
+  .search-results__empty{
+    padding: 10px 12px;
+    font-size: 13.5px;
+    color: var(--color-text-muted);
   }
 
   .main-nav.is-hidden{ display: none; }
@@ -398,7 +438,7 @@
     padding: 9px 12px;
     border-radius: 5px;
     font-size: 13.5px;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.02em;
     color: var(--color-blue);
@@ -720,10 +760,11 @@
         </nav>
 
         <div class="search-box" id="searchBox" hidden>
-          <input type="text" id="searchInput" placeholder="Cerca al site...">
+          <input type="text" id="searchInput" placeholder="Cerca al site..." autocomplete="off">
           <button class="search-close" id="searchClose" aria-label="Tanca la cerca">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
           </button>
+          <div class="search-results" id="searchResults"></div>
         </div>
       </div>
 
@@ -822,6 +863,7 @@
     var searchToggle = document.getElementById('searchToggle');
     var searchClose = document.getElementById('searchClose');
     var searchInput = document.getElementById('searchInput');
+    var searchResults = document.getElementById('searchResults');
 
     function openSearch(){
       mainNav.classList.add('is-hidden');
@@ -836,11 +878,55 @@
       mainNav.classList.remove('is-hidden');
       searchToggle.style.display = '';
       searchToggle.setAttribute('aria-expanded', 'false');
+      searchResults.classList.remove('is-visible');
+      searchResults.innerHTML = '';
     }
     searchToggle.addEventListener('click', openSearch);
     searchClose.addEventListener('click', closeSearch);
     searchInput.addEventListener('keydown', function(e){
       if (e.key === 'Escape') closeSearch();
+    });
+
+    // --- Índex de cerca: es carrega un sol cop, generat per l'Eleventy a cada build ---
+    var indexPromise = null;
+    function loadIndex(){
+      if (!indexPromise){
+        indexPromise = fetch('/search-index.json').then(function(r){ return r.json(); });
+      }
+      return indexPromise;
+    }
+
+    function renderResults(matches, query){
+      searchResults.innerHTML = '';
+      if (!query){
+        searchResults.classList.remove('is-visible');
+        return;
+      }
+      if (matches.length === 0){
+        var empty = document.createElement('div');
+        empty.className = 'search-results__empty';
+        empty.textContent = 'Cap resultat per a "' + query + '"';
+        searchResults.appendChild(empty);
+      } else {
+        matches.slice(0, 8).forEach(function(item){
+          var a = document.createElement('a');
+          a.href = item.url;
+          a.textContent = item.title;
+          searchResults.appendChild(a);
+        });
+      }
+      searchResults.classList.add('is-visible');
+    }
+
+    searchInput.addEventListener('input', function(){
+      var query = searchInput.value.trim().toLowerCase();
+      if (!query){ renderResults([], ''); return; }
+      loadIndex().then(function(data){
+        var matches = data.filter(function(item){
+          return item.title.toLowerCase().indexOf(query) !== -1;
+        });
+        renderResults(matches, query);
+      });
     });
   })();
 
