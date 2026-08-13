@@ -1,0 +1,357 @@
+---
+layout: base.njk
+title: Institut Joan Miró — Cornellà de Llobregat
+permalink: "en/index.html"
+lang: en
+slug: index.html
+pageStyles: |
+
+  /* ============ PÀGINA PRINCIPAL ============ */
+
+  /* --- Secció 1: Carrusel d'imatges --- */
+  .hero-carousel{
+    position: relative;
+    width: 100%;
+    height: 360px;
+    overflow: hidden;
+    background: var(--color-blue);
+  }
+  .hero-carousel__slide{
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+    pointer-events: none;
+  }
+  .hero-carousel__slide.is-active{
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .hero-carousel__slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.85);
+  }
+
+  .hero-carousel__box{
+    position: absolute;
+    left: clamp(16px, 5vw, 64px);
+    bottom: clamp(28px, 6vw, 52px);
+    background: rgba(255, 255, 255, 0.70);
+    backdrop-filter: blur(3px);
+    color: var(--color-blue);
+    padding: 22px 32px;
+    border-radius: 4px;
+    max-width: 560px;
+    box-shadow: 0 14px 34px rgba(15, 8, 90, 0.22);
+  }
+  .hero-carousel__box h1{
+    margin: 0;
+    font-size: clamp(22px, 3.4vw, 32px);
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--color-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-carousel__arrow{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.85);
+    color: var(--color-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  .hero-carousel__arrow:hover,
+  .hero-carousel__arrow:focus-visible{
+    background: var(--color-blue);
+    color: #fff;
+  }
+  .hero-carousel__arrow svg{ width: 20px; height: 20px; }
+  .hero-carousel__arrow--prev{ left: clamp(10px, 2vw, 24px); }
+  .hero-carousel__arrow--next{ right: clamp(10px, 2vw, 24px); }
+
+  .hero-carousel__dots{
+    position: absolute;
+    right: clamp(16px, 5vw, 64px);
+    bottom: 18px;
+    display: flex;
+    gap: 9px;
+    z-index: 5;
+  }
+  .hero-carousel__dot{
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.55);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.18s ease, transform 0.18s ease;
+  }
+  .hero-carousel__dot.is-active{
+    background: #fff;
+    transform: scale(1.25);
+  }
+
+  /* --- Secció 2: Actualitat --- */
+  .home-actualitat{
+    padding: 64px clamp(16px, 4vw, 48px);
+    max-width: 1220px;
+    margin: 0 auto;
+  }
+  .home-actualitat h2,
+  .home-noticies h2{
+    margin: 0 0 28px;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-blue);
+    text-align: center;
+  }
+  .actualitat-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+  }
+  .actualitat-card{
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
+  }
+  .actualitat-card:hover{
+    box-shadow: 0 10px 26px rgba(28,12,188,0.10);
+    transform: translateY(-2px);
+  }
+  .actualitat-card__img{
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+  }
+  .actualitat-card__body{
+    padding: 26px 28px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    flex: 1;
+  }
+  .actualitat-card__body h3{
+    margin: 0;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--color-blue);
+    line-height: 1.35;
+  }
+  .actualitat-card__btn{
+    align-self: flex-start;
+    margin-top: auto;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #fff;
+    background: var(--color-blue);
+    border: none;
+    border-radius: 6px;
+    padding: 12px 26px;
+    cursor: pointer;
+    transition: background 0.18s ease;
+  }
+  .actualitat-card__btn:hover,
+  .actualitat-card__btn:focus-visible{
+    background: var(--color-orange);
+  }
+
+  /* --- Secció 3: Notícies --- */
+  .home-noticies{
+    padding: 0 clamp(16px, 4vw, 48px) 56px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .home-noticies__placeholder{
+    border: 1px dashed var(--color-border);
+    border-radius: 8px;
+    padding: 46px 20px;
+    color: var(--color-text-muted);
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* --- Secció 4: Contacta amb el centre --- */
+  .home-cta{
+    background: #FAFAFD;
+    border-top: 1px solid var(--color-border);
+    padding: 56px clamp(16px, 4vw, 48px);
+    text-align: center;
+  }
+  .home-cta h2{
+    margin: 0 0 22px;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-blue);
+  }
+  .home-cta__button{
+    display: inline-block;
+    font-size: 13.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #fff;
+    background: var(--color-blue);
+    border: none;
+    border-radius: 6px;
+    padding: 14px 38px;
+    cursor: pointer;
+    transition: background 0.18s ease;
+  }
+  .home-cta__button:hover,
+  .home-cta__button:focus-visible{
+    background: var(--color-orange);
+  }
+
+  @media (max-width: 640px){
+    .hero-carousel{ height: 260px; }
+    .hero-carousel__box{ padding: 18px 22px; max-width: calc(100% - 32px); bottom: 54px; }
+    .hero-carousel__arrow{ width: 36px; height: 36px; }
+    .home-cta h2{ font-size: 18px; }
+    .actualitat-grid{ grid-template-columns: 1fr; }
+  }
+pageScript: |
+
+  // ============ CARRUSEL D'IMATGES (secció 1) ============
+  (function(){
+    var slides = document.querySelectorAll('#heroCarousel .hero-carousel__slide');
+    var dots = document.querySelectorAll('#carouselDots .hero-carousel__dot');
+    var prevBtn = document.getElementById('carouselPrev');
+    var nextBtn = document.getElementById('carouselNext');
+    var carousel = document.getElementById('heroCarousel');
+    if (!slides.length) return;
+
+    var current = 0;
+    var intervalId = null;
+    var AUTOPLAY_MS = 5500;
+
+    function goTo(index){
+      slides[current].classList.remove('is-active');
+      dots[current].classList.remove('is-active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('is-active');
+      dots[current].classList.add('is-active');
+    }
+    function next(){ goTo(current + 1); }
+    function prev(){ goTo(current - 1); }
+
+    function startAutoplay(){
+      stopAutoplay();
+      intervalId = setInterval(next, AUTOPLAY_MS);
+    }
+    function stopAutoplay(){
+      if (intervalId) clearInterval(intervalId);
+    }
+
+    nextBtn.addEventListener('click', function(){ next(); startAutoplay(); });
+    prevBtn.addEventListener('click', function(){ prev(); startAutoplay(); });
+    dots.forEach(function(dot, i){
+      dot.addEventListener('click', function(){ goTo(i); startAutoplay(); });
+    });
+
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+
+    startAutoplay();
+  })();
+---
+
+
+  <!-- ============ SECCIÓ 1: CARRUSEL D'IMATGES ============ -->
+  <section class="hero-carousel" id="heroCarousel" aria-label="Featured images of the school">
+
+    <div class="hero-carousel__slide is-active">
+      <img src="https://images.unsplash.com/photo-1763098844157-d0fffcc966a1?fm=jpg&q=80&w=2200&auto=format&fit=crop" alt="" role="presentation">
+      <div class="hero-carousel__box">
+        <h1>Welcome to Institut Joan Miró</h1>
+      </div>
+    </div>
+
+    <div class="hero-carousel__slide">
+      <img src="https://images.unsplash.com/photo-1741699427799-3fbb70fce948?fm=jpg&q=80&w=2200&auto=format&fit=crop" alt="" role="presentation">
+    </div>
+
+    <div class="hero-carousel__slide">
+      <img src="https://images.unsplash.com/photo-1556168308-629ef2891e9d?fm=jpg&q=80&w=2200&auto=format&fit=crop" alt="" role="presentation">
+    </div>
+
+    <button class="hero-carousel__arrow hero-carousel__arrow--prev" id="carouselPrev" aria-label="Previous image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="hero-carousel__arrow hero-carousel__arrow--next" id="carouselNext" aria-label="Next image">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+
+    <div class="hero-carousel__dots" id="carouselDots">
+      <button class="hero-carousel__dot is-active" aria-label="Image 1"></button>
+      <button class="hero-carousel__dot" aria-label="Image 2"></button>
+      <button class="hero-carousel__dot" aria-label="Image 3"></button>
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓ 2: ACTUALITAT ============ -->
+  <section class="home-actualitat">
+    <h2>News</h2>
+    <div class="actualitat-grid">
+
+      <article class="actualitat-card">
+        <img class="actualitat-card__img" src="https://images.unsplash.com/photo-1632822253110-15a6ea9a293c?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="">
+        <div class="actualitat-card__body">
+          <h3>Start of term information</h3>
+          <a href="#" class="actualitat-card__btn">+INFO</a>
+        </div>
+      </article>
+
+      <article class="actualitat-card">
+        <img class="actualitat-card__img" src="https://images.unsplash.com/photo-1566827886072-417be1953f36?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="">
+        <div class="actualitat-card__body">
+          <h3>Books and materials</h3>
+          <a href="#" class="actualitat-card__btn">+INFO</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ SECCIÓ 3: NOTÍCIES ============ -->
+  <section class="home-noticies">
+    <h2>Newsroom</h2>
+    <div class="home-noticies__placeholder">Under construction</div>
+  </section>
+
+  <!-- ============ SECCIÓ 4: CONTACTA AMB EL CENTRE ============ -->
+  <section class="home-cta">
+    <h2>Contact the school</h2>
+    <a href="/en/contacte.html" class="home-cta__button">Contact us</a>
+  </section>
+
+

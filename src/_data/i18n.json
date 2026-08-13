@@ -1,0 +1,119 @@
+{
+  "ca": {
+    "brandLabel": "Institut Joan Miró — Pàgina d'inici",
+    "mainNavLabel": "Menú principal",
+    "menuToggleLabel": "Obre el menú",
+    "menu": {
+      "elCentre": "El Centre",
+      "historia": "Història",
+      "projecteEducatiu": "Projecte Educatiu",
+      "installacions": "Instal·lacions",
+      "quiSom": "Qui Som",
+      "equipDirectiu": "Equip Directiu",
+      "coordinacions": "Coordinacions",
+      "tutories": "Tutories",
+      "onTrobarNos": "On Trobar-nos",
+      "estudis": "Estudis",
+      "projectes": "Projectes",
+      "serveis": "Serveis",
+      "actualitat": "Actualitat",
+      "secretaria": "Secretaria",
+      "viuElMiro": "Viu El Miró",
+      "contacte": "Contacte"
+    },
+    "topbar": {
+      "intranetLabel": "Accés a la intranet Clickedu",
+      "instagramLabel": "Instagram de l'Institut Joan Miró",
+      "youtubeLabel": "Youtube de l'Institut Joan Miró"
+    },
+    "search": {
+      "placeholder": "Cerca al site...",
+      "toggleLabel": "Cerca al site",
+      "closeLabel": "Tanca la cerca",
+      "noResults": "Cap resultat per a"
+    },
+    "footer": {
+      "avisLegal": "Avís legal",
+      "politicaPrivacitat": "Política de privacitat",
+      "politicaCookies": "Política de cookies"
+    }
+  },
+  "es": {
+    "brandLabel": "Institut Joan Miró — Página de inicio",
+    "mainNavLabel": "Menú principal",
+    "menuToggleLabel": "Abrir el menú",
+    "menu": {
+      "elCentre": "El Centro",
+      "historia": "Historia",
+      "projecteEducatiu": "Proyecto Educativo",
+      "installacions": "Instalaciones",
+      "quiSom": "Quiénes Somos",
+      "equipDirectiu": "Equipo Directivo",
+      "coordinacions": "Coordinaciones",
+      "tutories": "Tutorías",
+      "onTrobarNos": "Cómo Llegar",
+      "estudis": "Estudios",
+      "projectes": "Proyectos",
+      "serveis": "Servicios",
+      "actualitat": "Actualidad",
+      "secretaria": "Secretaría",
+      "viuElMiro": "Viu El Miró",
+      "contacte": "Contacto"
+    },
+    "topbar": {
+      "intranetLabel": "Acceso a la intranet Clickedu",
+      "instagramLabel": "Instagram del Institut Joan Miró",
+      "youtubeLabel": "Youtube del Institut Joan Miró"
+    },
+    "search": {
+      "placeholder": "Buscar en el sitio...",
+      "toggleLabel": "Buscar en el sitio",
+      "closeLabel": "Cerrar la búsqueda",
+      "noResults": "Ningún resultado para"
+    },
+    "footer": {
+      "avisLegal": "Aviso legal",
+      "politicaPrivacitat": "Política de privacidad",
+      "politicaCookies": "Política de cookies"
+    }
+  },
+  "en": {
+    "brandLabel": "Institut Joan Miró — Home page",
+    "mainNavLabel": "Main menu",
+    "menuToggleLabel": "Open menu",
+    "menu": {
+      "elCentre": "The School",
+      "historia": "History",
+      "projecteEducatiu": "Educational Project",
+      "installacions": "Facilities",
+      "quiSom": "Who We Are",
+      "equipDirectiu": "Management Team",
+      "coordinacions": "Coordination Teams",
+      "tutories": "Tutoring",
+      "onTrobarNos": "How to Find Us",
+      "estudis": "Programmes",
+      "projectes": "Projects",
+      "serveis": "Services",
+      "actualitat": "News",
+      "secretaria": "Front Office",
+      "viuElMiro": "Life at Joan Miró",
+      "contacte": "Contact"
+    },
+    "topbar": {
+      "intranetLabel": "Clickedu intranet access",
+      "instagramLabel": "Instagram of Institut Joan Miró",
+      "youtubeLabel": "Youtube of Institut Joan Miró"
+    },
+    "search": {
+      "placeholder": "Search the site...",
+      "toggleLabel": "Search the site",
+      "closeLabel": "Close search",
+      "noResults": "No results for"
+    },
+    "footer": {
+      "avisLegal": "Legal notice",
+      "politicaPrivacitat": "Privacy policy",
+      "politicaCookies": "Cookie policy"
+    }
+  }
+}

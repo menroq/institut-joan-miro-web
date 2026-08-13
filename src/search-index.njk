@@ -7,7 +7,8 @@ eleventyExcludeFromCollections: true
   {%- if p.url != "/search-index.json" -%}
   {
     "title": {{ p.data.title | dump | safe }},
-    "url": {{ p.url | dump | safe }}
+    "url": {{ p.url | dump | safe }},
+    "lang": {{ (p.data.lang | default('ca')) | dump | safe }}
   }{% if not loop.last %},{% endif %}
   {%- endif -%}
 {%- endfor -%}
