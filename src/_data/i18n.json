@@ -21,7 +21,9 @@
       "viuElMiro": "Viu El Miró",
       "contacte": "Contacte",
       "eso": "ESO",
-      "batxillerat": "Batxillerat"
+      "batxillerat": "Batxillerat",
+      "atencioPublic": "Atenció al Públic",
+      "preinscripcioMatricula": "Preinscripció / Matrícula"
     },
     "topbar": {
       "intranetLabel": "Accés a la intranet Clickedu",
@@ -46,11 +48,25 @@
       "level2eso": "2n ESO",
       "level3eso": "3r ESO",
       "level4eso": "4t ESO",
-      "reconeixements": "Reconeixements",
       "level1bat": "1r Batxillerat",
       "level2bat": "2n Batxillerat",
       "underConstructionTitle": "En construcció",
-      "underConstructionText": "Aquesta pàgina encara no té contingut. Torna aviat!"
+      "underConstructionText": "Aquesta pàgina encara no té contingut. Torna aviat!",
+      "ofertaEducativa": "Oferta Educativa",
+      "horariMarc": "Horari Marc"
+    },
+    "secretaria": {
+      "pageTitle": "Atenció al Públic",
+      "scheduleIntro": "L'horari d'atenció al públic és:",
+      "periodSummer": "juny a setembre",
+      "periodWinter": "octubre a maig",
+      "days": "Dilluns a divendres",
+      "hoursSummer": "De les 08:00h a les 15:00h.",
+      "hoursWinter": "De les 08:00h a les 15:30h.",
+      "contactIntro": "Et pots posar en contacte amb nosaltres:",
+      "phoneLabel": "Telèfon",
+      "emailLabel": "Correu Electrònic",
+      "instanciaGeneral": "Instància General"
     }
   },
   "es": {
@@ -75,7 +91,9 @@
       "viuElMiro": "Vive El Miró",
       "contacte": "Contacto",
       "eso": "ESO",
-      "batxillerat": "Bachillerato"
+      "batxillerat": "Bachillerato",
+      "atencioPublic": "Atención al Público",
+      "preinscripcioMatricula": "Preinscripción / Matrícula"
     },
     "topbar": {
       "intranetLabel": "Acceso a la intranet Clickedu",
@@ -100,11 +118,25 @@
       "level2eso": "2º ESO",
       "level3eso": "3º ESO",
       "level4eso": "4º ESO",
-      "reconeixements": "Reconocimientos",
       "level1bat": "1º Bachillerato",
       "level2bat": "2º Bachillerato",
       "underConstructionTitle": "En construcción",
-      "underConstructionText": "Esta página todavía no tiene contenido. ¡Vuelve pronto!"
+      "underConstructionText": "Esta página todavía no tiene contenido. ¡Vuelve pronto!",
+      "ofertaEducativa": "Oferta Educativa",
+      "horariMarc": "Horario Marco"
+    },
+    "secretaria": {
+      "pageTitle": "Atención al Público",
+      "scheduleIntro": "El horario de atención al público es:",
+      "periodSummer": "junio a septiembre",
+      "periodWinter": "octubre a mayo",
+      "days": "Lunes a viernes",
+      "hoursSummer": "De 08:00h a 15:00h.",
+      "hoursWinter": "De 08:00h a 15:30h.",
+      "contactIntro": "Puedes ponerte en contacto con nosotros:",
+      "phoneLabel": "Teléfono",
+      "emailLabel": "Correo Electrónico",
+      "instanciaGeneral": "Instancia General"
     }
   },
   "en": {
@@ -129,7 +161,9 @@
       "viuElMiro": "Life at Joan Miró",
       "contacte": "Contact",
       "eso": "ESO",
-      "batxillerat": "Batxillerat"
+      "batxillerat": "Batxillerat",
+      "atencioPublic": "Public Attention",
+      "preinscripcioMatricula": "Pre-registration / Enrolment"
     },
     "topbar": {
       "intranetLabel": "Clickedu intranet access",
@@ -154,11 +188,25 @@
       "level2eso": "2nd ESO",
       "level3eso": "3rd ESO",
       "level4eso": "4th ESO",
-      "reconeixements": "Recognitions",
       "level1bat": "1st Batxillerat",
       "level2bat": "2nd Batxillerat",
       "underConstructionTitle": "Under construction",
-      "underConstructionText": "This page has no content yet. Check back soon!"
+      "underConstructionText": "This page has no content yet. Check back soon!",
+      "ofertaEducativa": "Educational Offer",
+      "horariMarc": "Timetable Framework"
+    },
+    "secretaria": {
+      "pageTitle": "Public Attention",
+      "scheduleIntro": "Opening hours for the public are:",
+      "periodSummer": "June to September",
+      "periodWinter": "October to May",
+      "days": "Monday to Friday",
+      "hoursSummer": "8:00am to 3:00pm.",
+      "hoursWinter": "8:00am to 3:30pm.",
+      "contactIntro": "You can get in touch with us:",
+      "phoneLabel": "Phone",
+      "emailLabel": "Email",
+      "instanciaGeneral": "General Application Form"
     }
   }
 }

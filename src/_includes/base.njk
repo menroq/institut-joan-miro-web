@@ -762,14 +762,43 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
               </button>
               <div class="dropdown-panel">
-                <a href="/{{ langPrefix }}eso.html">{{ t.menu.eso }}</a>
-                <a href="/{{ langPrefix }}batxillerat.html">{{ t.menu.batxillerat }}</a>
+                <div class="dropdown-panel__group">
+                  <span class="dropdown-panel__group-trigger">
+                    {{ t.menu.eso }}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                  </span>
+                  <div class="dropdown-panel__flyout">
+                    <a href="/{{ langPrefix }}eso-1r.html">{{ t.estudis.level1eso }}</a>
+                    <a href="/{{ langPrefix }}eso-2n.html">{{ t.estudis.level2eso }}</a>
+                    <a href="/{{ langPrefix }}eso-3r.html">{{ t.estudis.level3eso }}</a>
+                    <a href="/{{ langPrefix }}eso-4t.html">{{ t.estudis.level4eso }}</a>
+                  </div>
+                </div>
+                <div class="dropdown-panel__group">
+                  <span class="dropdown-panel__group-trigger">
+                    {{ t.menu.batxillerat }}
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                  </span>
+                  <div class="dropdown-panel__flyout">
+                    <a href="/{{ langPrefix }}batxillerat-1r.html">{{ t.estudis.level1bat }}</a>
+                    <a href="/{{ langPrefix }}batxillerat-2n.html">{{ t.estudis.level2bat }}</a>
+                  </div>
+                </div>
               </div>
             </li>
             <li><a href="#">{{ t.menu.projectes }}</a></li>
             <li><a href="#">{{ t.menu.serveis }}</a></li>
             <li><a href="#">{{ t.menu.actualitat }}</a></li>
-            <li><a href="#">{{ t.menu.secretaria }}</a></li>
+            <li class="has-dropdown">
+              <button class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                {{ t.menu.secretaria }}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown-panel">
+                <a href="/{{ langPrefix }}secretaria-atencio-public.html">{{ t.menu.atencioPublic }}</a>
+                <a href="/{{ langPrefix }}secretaria-preinscripcio-matricula.html">{{ t.menu.preinscripcioMatricula }}</a>
+              </div>
+            </li>
             <li><a href="#">{{ t.menu.viuElMiro }}</a></li>
             <li><a href="/{{ langPrefix }}contacte.html">{{ t.menu.contacte }}</a></li>
           </ul>
@@ -820,14 +849,29 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
           </button>
           <ul class="mobile-submenu">
-            <li><a href="/{{ langPrefix }}eso.html">{{ t.menu.eso }}</a></li>
-            <li><a href="/{{ langPrefix }}batxillerat.html">{{ t.menu.batxillerat }}</a></li>
+            <li class="mobile-submenu__group-label">{{ t.menu.eso }}</li>
+            <li><a href="/{{ langPrefix }}eso-1r.html" class="mobile-submenu__sub">{{ t.estudis.level1eso }}</a></li>
+            <li><a href="/{{ langPrefix }}eso-2n.html" class="mobile-submenu__sub">{{ t.estudis.level2eso }}</a></li>
+            <li><a href="/{{ langPrefix }}eso-3r.html" class="mobile-submenu__sub">{{ t.estudis.level3eso }}</a></li>
+            <li><a href="/{{ langPrefix }}eso-4t.html" class="mobile-submenu__sub">{{ t.estudis.level4eso }}</a></li>
+            <li class="mobile-submenu__group-label">{{ t.menu.batxillerat }}</li>
+            <li><a href="/{{ langPrefix }}batxillerat-1r.html" class="mobile-submenu__sub">{{ t.estudis.level1bat }}</a></li>
+            <li><a href="/{{ langPrefix }}batxillerat-2n.html" class="mobile-submenu__sub">{{ t.estudis.level2bat }}</a></li>
           </ul>
         </li>
         <li><a href="#">{{ t.menu.projectes }}</a></li>
         <li><a href="#">{{ t.menu.serveis }}</a></li>
         <li><a href="#">{{ t.menu.actualitat }}</a></li>
-        <li><a href="#">{{ t.menu.secretaria }}</a></li>
+        <li class="mobile-nav-item has-submenu">
+          <button class="mobile-nav-item__trigger" aria-expanded="false">
+            {{ t.menu.secretaria }}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <ul class="mobile-submenu">
+            <li><a href="/{{ langPrefix }}secretaria-atencio-public.html">{{ t.menu.atencioPublic }}</a></li>
+            <li><a href="/{{ langPrefix }}secretaria-preinscripcio-matricula.html">{{ t.menu.preinscripcioMatricula }}</a></li>
+          </ul>
+        </li>
         <li><a href="#">{{ t.menu.viuElMiro }}</a></li>
         <li><a href="/{{ langPrefix }}contacte.html">{{ t.menu.contacte }}</a></li>
       </ul>
@@ -840,7 +884,7 @@
   <footer class="site-footer">
     <span class="footer-copyright">© 2026 Institut Joan Miró</span>
     <nav class="footer-legal" aria-label="Avisos legals">
-      <a href="#">{{ t.footer.avisLegal }}</a>
+      <a href="/{{ langPrefix }}avis-legal.html">{{ t.footer.avisLegal }}</a>
       <span class="footer-divider" aria-hidden="true">/</span>
       <a href="#">{{ t.footer.politicaPrivacitat }}</a>
       <span class="footer-divider" aria-hidden="true">/</span>
