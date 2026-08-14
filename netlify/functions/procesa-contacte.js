@@ -19,11 +19,15 @@
 //    "variables d'entorn" al tauler de Netlify:
 //        Site settings > Environment variables > Add a variable
 //    Variables a crear:
-//        SMTP_HOST      (p. ex. smtp.institutjoanmiro.cat)
-//        SMTP_PORT      (587 o 465)
-//        SMTP_USER      (roma.mendoza@institutjoanmiro.cat)
-//        SMTP_PASS      (la contrasenya d'aquest compte)
-//        DESTINATARI    (info@institutjoanmiro.cat, o la bústia que rebi els missatges)
+//        SMTP_HOST            (p. ex. smtp.institutjoanmiro.cat)
+//        SMTP_PORT            (587 o 465)
+//        SMTP_USER            (roma.mendoza@institutjoanmiro.cat)
+//        SMTP_PASS            (la contrasenya d'aquest compte)
+//        DESTINATARI          (info@institutjoanmiro.cat, o la bústia que rebi els missatges)
+//        RECAPTCHA_SECRET_KEY (la "Secret key" que dona Google reCAPTCHA —
+//                               vegeu google.com/recaptcha/admin. NOMÉS
+//                               aquesta clau va aquí; la "Site key" pública
+//                               va directament a l'HTML del formulari)
 //
 // 4) Un cop desplegat, la funció queda disponible automàticament a:
 //        https://institutjoanmiro.netlify.app/.netlify/functions/procesa-contacte
@@ -35,6 +39,43 @@
 // -----------------------------------------------------------------
 
 const nodemailer = require('nodemailer');
+const https = require('https');
+
+// Verifica el testimoni de reCAPTCHA contra l'API de Google.
+// Retorna true/false — mai confiem només en el que digui el navegador.
+function verificaRecaptcha(token, secretKey) {
+  return new Promise((resolve) => {
+    if (!token || !secretKey) return resolve(false);
+
+    const postData = `secret=${encodeURIComponent(secretKey)}&response=${encodeURIComponent(token)}`;
+    const req = https.request(
+      {
+        hostname: 'www.google.com',
+        path: '/recaptcha/api/siteverify',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Content-Length': Buffer.byteLength(postData),
+        },
+      },
+      (res) => {
+        let body = '';
+        res.on('data', (chunk) => (body += chunk));
+        res.on('end', () => {
+          try {
+            const parsed = JSON.parse(body);
+            resolve(parsed.success === true);
+          } catch (e) {
+            resolve(false);
+          }
+        });
+      }
+    );
+    req.on('error', () => resolve(false));
+    req.write(postData);
+    req.end();
+  });
+}
 
 exports.handler = async function (event) {
   if (event.httpMethod !== 'POST') {
@@ -52,12 +93,29 @@ exports.handler = async function (event) {
   const correu = (dades.correu || '').trim();
   const motiu = (dades.motiu || '').trim();
   const missatge = (dades.missatge || '').trim();
+  const recaptchaToken = (dades['g-recaptcha-response'] || '').trim();
 
   const correuValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correu);
   if (!nom || !correu || !missatge || !correuValid) {
     return {
       statusCode: 400,
       body: JSON.stringify({ ok: false, error: 'Dades incompletes o correu no vàlid.' }),
+    };
+  }
+
+  if (!process.env.RECAPTCHA_SECRET_KEY) {
+    console.error("Falta la variable d'entorn RECAPTCHA_SECRET_KEY a Netlify.");
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ ok: false, error: "No s'ha pogut enviar el correu." }),
+    };
+  }
+
+  const recaptchaOk = await verificaRecaptcha(recaptchaToken, process.env.RECAPTCHA_SECRET_KEY);
+  if (!recaptchaOk) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ ok: false, error: 'Verificació reCAPTCHA no vàlida.' }),
     };
   }
 

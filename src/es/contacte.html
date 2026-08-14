@@ -198,6 +198,15 @@ pageStyles: |
   .form-submit button:focus-visible{
     background: var(--color-orange);
   }
+  .form-submit button:disabled{
+    background: var(--color-border);
+    color: var(--color-text-muted);
+    cursor: not-allowed;
+  }
+  .form-recaptcha{
+    grid-column: 1 / -1;
+    margin-top: 4px;
+  }
   .form-confirm{
     font-size: 13px;
     font-weight: 600;
@@ -281,10 +290,20 @@ pageScript: |
   // data-endpoint (/.netlify/functions/procesa-contacte), que és
   // la que genera i envia el correu real (vegeu
   // netlify/functions/procesa-contacte.js).
-  (function(){
+  window.onContactRecaptchaSuccess = function(){
+    var btn = document.getElementById('contactSubmitBtn');
+    if (btn) btn.disabled = false;
+  };
+  window.onContactRecaptchaExpired = function(){
+    var btn = document.getElementById('contactSubmitBtn');
+    if (btn) btn.disabled = true;
+  };
+
+      (function(){
     var form = document.getElementById('contactForm');
     var confirmMsg = document.getElementById('formConfirm');
     var errorMsg = document.getElementById('formError');
+    var submitBtn = document.getElementById('contactSubmitBtn');
     if (!form) return;
     var endpoint = form.getAttribute('data-endpoint');
 
@@ -293,11 +312,18 @@ pageScript: |
       confirmMsg.classList.remove('is-visible');
       errorMsg.classList.remove('is-visible');
 
+      var recaptchaToken = (typeof grecaptcha !== 'undefined') ? grecaptcha.getResponse() : '';
+      if (!recaptchaToken) {
+        errorMsg.classList.add('is-visible');
+        return;
+      }
+
       var payload = {
         nom: form.nom.value,
         correu: form.correu.value,
         motiu: form.motiu.value,
-        missatge: form.missatge.value
+        missatge: form.missatge.value,
+        'g-recaptcha-response': recaptchaToken
       };
 
       fetch(endpoint, {
@@ -318,16 +344,19 @@ pageScript: |
             console.error('Error del formulari de contacte:', result.data);
             errorMsg.classList.add('is-visible');
           }
+          if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+          if (submitBtn) submitBtn.disabled = true;
         })
         .catch(function(err){
-          // Error real de xarxa/connexió amb la funció (per exemple, 404
-          // perquè encara no s'ha desplegat, o problema de CORS).
           console.error('Error de connexió amb la funció:', err);
           errorMsg.classList.add('is-visible');
+          if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+          if (submitBtn) submitBtn.disabled = true;
         });
     });
   })();
 ---
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
   <!-- ============ CAPÇALERA AMB IMATGE ============ -->
@@ -444,8 +473,11 @@ pageScript: |
           <label for="cf-missatge">Mensaje</label>
           <textarea id="cf-missatge" name="missatge" required></textarea>
         </div>
+        <div class="form-recaptcha">
+          <div class="g-recaptcha" id="contactRecaptcha" data-sitekey="6LegaIUtAAAAAHtE_IjZSIaOFh_z36qlXfAra20B" data-callback="onContactRecaptchaSuccess" data-expired-callback="onContactRecaptchaExpired" data-error-callback="onContactRecaptchaExpired"></div>
+        </div>
         <div class="form-submit">
-          <button type="submit">Enviar</button>
+          <button type="submit" id="contactSubmitBtn" disabled>Enviar</button>
           <span class="form-confirm" id="formConfirm">Mensaje enviado correctamente.</span>
           <span class="form-error" id="formError">Ha habido un problema al enviar el mensaje. Vuelve a intentarlo dentro de un rato.</span>
         </div>
