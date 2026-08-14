@@ -1,0 +1,106 @@
+---
+layout: base.njk
+title: ESO — Institut Joan Miró
+permalink: "en/eso.html"
+lang: en
+slug: eso.html
+pageStyles: |
+
+  /* ============ PÀGINA D'ESTUDIS (graella de nivells) ============ */
+  .page-title{
+    background: #FAFAFD;
+    border-bottom: 1px solid var(--color-border);
+    padding: 34px clamp(16px, 4vw, 48px) 30px;
+  }
+  .page-title h1{
+    margin: 0;
+    font-size: 26px;
+    color: var(--color-blue);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .level-wrap{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 56px clamp(16px, 4vw, 48px) 70px;
+  }
+  .level-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 28px;
+  }
+  .level-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 34px 20px;
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    text-decoration: none;
+    transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+  }
+  .level-card:hover,
+  .level-card:focus-visible{
+    box-shadow: 0 10px 26px rgba(28,12,188,0.10);
+    transform: translateY(-3px);
+    border-color: var(--color-blue);
+  }
+  .level-card__icon{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(28,12,188,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-blue);
+    font-size: 19px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .level-card__icon svg{ width: 28px; height: 28px; }
+  .level-card__label{
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-blue);
+    text-align: center;
+  }
+---
+<div class="page-title">
+  <h1>ESO</h1>
+</div>
+
+<div class="level-wrap">
+  <div class="level-grid">
+
+      <a class="level-card" href="/en/eso-1r.html">
+        <span class="level-card__icon">1st</span>
+        <span class="level-card__label">1st ESO</span>
+      </a>
+
+      <a class="level-card" href="/en/eso-2n.html">
+        <span class="level-card__icon">2nd</span>
+        <span class="level-card__label">2nd ESO</span>
+      </a>
+
+      <a class="level-card" href="/en/eso-3r.html">
+        <span class="level-card__icon">3rd</span>
+        <span class="level-card__label">3rd ESO</span>
+      </a>
+
+      <a class="level-card" href="/en/eso-4t.html">
+        <span class="level-card__icon">4th</span>
+        <span class="level-card__label">4th ESO</span>
+      </a>
+
+      <a class="level-card" href="/en/eso-reconeixements.html">
+        <span class="level-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.6 5.9 6.4.6-4.8 4.3 1.4 6.3L12 17l-5.6 3.1 1.4-6.3-4.8-4.3 6.4-.6z"/></svg></span>
+        <span class="level-card__label">Recognitions</span>
+      </a>
+
+  </div>
+</div>

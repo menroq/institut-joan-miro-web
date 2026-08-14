@@ -19,7 +19,9 @@
       "actualitat": "Actualitat",
       "secretaria": "Secretaria",
       "viuElMiro": "Viu El Miró",
-      "contacte": "Contacte"
+      "contacte": "Contacte",
+      "eso": "ESO",
+      "batxillerat": "Batxillerat"
     },
     "topbar": {
       "intranetLabel": "Accés a la intranet Clickedu",
@@ -36,6 +38,19 @@
       "avisLegal": "Avís legal",
       "politicaPrivacitat": "Política de privacitat",
       "politicaCookies": "Política de cookies"
+    },
+    "estudis": {
+      "esoTitle": "ESO",
+      "batxilleratTitle": "Batxillerat",
+      "level1eso": "1r ESO",
+      "level2eso": "2n ESO",
+      "level3eso": "3r ESO",
+      "level4eso": "4t ESO",
+      "reconeixements": "Reconeixements",
+      "level1bat": "1r Batxillerat",
+      "level2bat": "2n Batxillerat",
+      "underConstructionTitle": "En construcció",
+      "underConstructionText": "Aquesta pàgina encara no té contingut. Torna aviat!"
     }
   },
   "es": {
@@ -57,8 +72,10 @@
       "serveis": "Servicios",
       "actualitat": "Actualidad",
       "secretaria": "Secretaría",
-      "viuElMiro": "Viu El Miró",
-      "contacte": "Contacto"
+      "viuElMiro": "Vive El Miró",
+      "contacte": "Contacto",
+      "eso": "ESO",
+      "batxillerat": "Bachillerato"
     },
     "topbar": {
       "intranetLabel": "Acceso a la intranet Clickedu",
@@ -75,6 +92,19 @@
       "avisLegal": "Aviso legal",
       "politicaPrivacitat": "Política de privacidad",
       "politicaCookies": "Política de cookies"
+    },
+    "estudis": {
+      "esoTitle": "ESO",
+      "batxilleratTitle": "Bachillerato",
+      "level1eso": "1º ESO",
+      "level2eso": "2º ESO",
+      "level3eso": "3º ESO",
+      "level4eso": "4º ESO",
+      "reconeixements": "Reconocimientos",
+      "level1bat": "1º Bachillerato",
+      "level2bat": "2º Bachillerato",
+      "underConstructionTitle": "En construcción",
+      "underConstructionText": "Esta página todavía no tiene contenido. ¡Vuelve pronto!"
     }
   },
   "en": {
@@ -97,7 +127,9 @@
       "actualitat": "News",
       "secretaria": "Front Office",
       "viuElMiro": "Life at Joan Miró",
-      "contacte": "Contact"
+      "contacte": "Contact",
+      "eso": "ESO",
+      "batxillerat": "Batxillerat"
     },
     "topbar": {
       "intranetLabel": "Clickedu intranet access",
@@ -114,6 +146,19 @@
       "avisLegal": "Legal notice",
       "politicaPrivacitat": "Privacy policy",
       "politicaCookies": "Cookie policy"
+    },
+    "estudis": {
+      "esoTitle": "ESO",
+      "batxilleratTitle": "Batxillerat",
+      "level1eso": "1st ESO",
+      "level2eso": "2nd ESO",
+      "level3eso": "3rd ESO",
+      "level4eso": "4th ESO",
+      "reconeixements": "Recognitions",
+      "level1bat": "1st Batxillerat",
+      "level2bat": "2nd Batxillerat",
+      "underConstructionTitle": "Under construction",
+      "underConstructionText": "This page has no content yet. Check back soon!"
     }
   }
 }

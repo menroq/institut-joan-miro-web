@@ -756,7 +756,16 @@
                 <a href="/{{ langPrefix }}contacte.html#mapa">{{ t.menu.onTrobarNos }}</a>
               </div>
             </li>
-            <li><a href="#">{{ t.menu.estudis }}</a></li>
+            <li class="has-dropdown">
+              <button class="dropdown-trigger" aria-haspopup="true" aria-expanded="false">
+                {{ t.menu.estudis }}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+              <div class="dropdown-panel">
+                <a href="/{{ langPrefix }}eso.html">{{ t.menu.eso }}</a>
+                <a href="/{{ langPrefix }}batxillerat.html">{{ t.menu.batxillerat }}</a>
+              </div>
+            </li>
             <li><a href="#">{{ t.menu.projectes }}</a></li>
             <li><a href="#">{{ t.menu.serveis }}</a></li>
             <li><a href="#">{{ t.menu.actualitat }}</a></li>
@@ -805,7 +814,16 @@
             <li><a href="/{{ langPrefix }}contacte.html#mapa">{{ t.menu.onTrobarNos }}</a></li>
           </ul>
         </li>
-        <li><a href="#">{{ t.menu.estudis }}</a></li>
+        <li class="mobile-nav-item has-submenu">
+          <button class="mobile-nav-item__trigger" aria-expanded="false">
+            {{ t.menu.estudis }}
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <ul class="mobile-submenu">
+            <li><a href="/{{ langPrefix }}eso.html">{{ t.menu.eso }}</a></li>
+            <li><a href="/{{ langPrefix }}batxillerat.html">{{ t.menu.batxillerat }}</a></li>
+          </ul>
+        </li>
         <li><a href="#">{{ t.menu.projectes }}</a></li>
         <li><a href="#">{{ t.menu.serveis }}</a></li>
         <li><a href="#">{{ t.menu.actualitat }}</a></li>
@@ -950,40 +968,58 @@
     });
   })();
 
-  // ============ DESPLEGABLE "EL CENTRE" (escriptori: clic + hover) ============
+  // ============ DESPLEGABLES DEL MENÚ (escriptori: clic + hover) ============
+  // Funciona per a qualsevol <li class="has-dropdown"> — no cal repetir
+  // aquest bloc quan afegim un desplegable nou a un altre apartat.
   (function(){
-    var item = document.getElementById('elCentreDropdown');
-    if (!item) return;
-    var trigger = item.querySelector('.dropdown-trigger');
+    var items = document.querySelectorAll('.has-dropdown');
+    if (!items.length) return;
 
-    function closeDropdown(){
-      item.classList.remove('is-open');
-      trigger.setAttribute('aria-expanded', 'false');
+    function closeAll(except){
+      items.forEach(function(item){
+        if (item === except) return;
+        item.classList.remove('is-open');
+        var trg = item.querySelector('.dropdown-trigger');
+        if (trg) trg.setAttribute('aria-expanded', 'false');
+      });
     }
 
-    trigger.addEventListener('click', function(e){
-      e.preventDefault();
-      var isOpen = item.classList.toggle('is-open');
-      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    items.forEach(function(item){
+      var trigger = item.querySelector('.dropdown-trigger');
+      if (!trigger) return;
+      trigger.addEventListener('click', function(e){
+        e.preventDefault();
+        var isOpen = item.classList.toggle('is-open');
+        trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        if (isOpen) closeAll(item);
+      });
     });
 
     document.addEventListener('click', function(e){
-      if (!item.contains(e.target)) closeDropdown();
+      items.forEach(function(item){
+        if (!item.contains(e.target)) {
+          item.classList.remove('is-open');
+          var trg = item.querySelector('.dropdown-trigger');
+          if (trg) trg.setAttribute('aria-expanded', 'false');
+        }
+      });
     });
     document.addEventListener('keydown', function(e){
-      if (e.key === 'Escape') closeDropdown();
+      if (e.key === 'Escape') closeAll(null);
     });
   })();
 
-  // ============ ACORDIÓ "EL CENTRE" (mòbil) ============
+  // ============ ACORDIONS DEL MENÚ (mòbil) ============
+  // Funciona per a qualsevol <li class="mobile-nav-item has-submenu">.
   (function(){
-    var item = document.getElementById('elCentreMobileItem');
-    if (!item) return;
-    var trigger = item.querySelector('.mobile-nav-item__trigger');
-
-    trigger.addEventListener('click', function(){
-      var isOpen = item.classList.toggle('is-open');
-      trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    var items = document.querySelectorAll('.mobile-nav-item.has-submenu');
+    items.forEach(function(item){
+      var trigger = item.querySelector('.mobile-nav-item__trigger');
+      if (!trigger) return;
+      trigger.addEventListener('click', function(){
+        var isOpen = item.classList.toggle('is-open');
+        trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
     });
   })();
 
