@@ -179,6 +179,19 @@ pageStyles: |
     .actualitat-card__btn:focus-visible{
       background: var(--color-orange);
     }
+    .actualitat-card__body p{
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--color-text-muted);
+    }
+    .avisos-loading-home{
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: 14px;
+      padding: 30px 0;
+    }
 
     /* --- Secció 3: Notícies --- */
     .home-noticies{
@@ -283,6 +296,47 @@ pageScript: |
 
       startAutoplay();
     })();
+
+    // ============ AVISOS (secció 2) — es carreguen des de Sanity ============
+    (function(){
+      var grid = document.getElementById('homeAvisosGrid');
+      if (!grid) return;
+
+      function excerpt(html, maxLen){
+        var text = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+        if (text.length <= maxLen) return text;
+        return text.slice(0, maxLen).trim() + '…';
+      }
+
+      fetch('/avisos-data.json')
+        .then(function(r){ return r.json(); })
+        .then(function(avisos){
+          grid.innerHTML = '';
+          if (!avisos || avisos.length === 0){
+            grid.innerHTML = '<p class="avisos-loading-home">Encara no hi ha cap avís publicat.</p>';
+            return;
+          }
+          avisos.slice(0, 4).forEach(function(avis){
+            var article = document.createElement('article');
+            article.className = 'actualitat-card';
+            var imgHtml = avis.imageUrl
+              ? '<img class="actualitat-card__img" src="' + avis.imageUrl + '" alt="">'
+              : '';
+            article.innerHTML =
+              imgHtml +
+              '<div class="actualitat-card__body">' +
+                '<h3>' + avis.title + '</h3>' +
+                '<p>' + excerpt(avis.bodyHtml || '', 110) + '</p>' +
+                '<a href="avisos.html#' + avis.slug + '" class="actualitat-card__btn">+INFO</a>' +
+              '</div>';
+            grid.appendChild(article);
+          });
+        })
+        .catch(function(err){
+          console.error('Error carregant els avisos:', err);
+          grid.innerHTML = '<p class="avisos-loading-home">No s\'han pogut carregar els avisos ara mateix.</p>';
+        });
+    })();
 ---
 
 
@@ -318,27 +372,11 @@ pageScript: |
     </div>
   </section>
 
-  <!-- ============ SECCIÓ 2: ACTUALITAT ============ -->
+  <!-- ============ SECCIÓ 2: AVISOS ============ -->
   <section class="home-actualitat">
-    <h2>Actualitat</h2>
-    <div class="actualitat-grid">
-
-      <article class="actualitat-card">
-        <img class="actualitat-card__img" src="https://images.unsplash.com/photo-1632822253110-15a6ea9a293c?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="actualitat-card__body">
-          <h3>Informació d'inici de curs</h3>
-          <a href="#" class="actualitat-card__btn">+INFO</a>
-        </div>
-      </article>
-
-      <article class="actualitat-card">
-        <img class="actualitat-card__img" src="https://images.unsplash.com/photo-1566827886072-417be1953f36?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="">
-        <div class="actualitat-card__body">
-          <h3>Llibres i material</h3>
-          <a href="#" class="actualitat-card__btn">+INFO</a>
-        </div>
-      </article>
-
+    <h2>Avisos</h2>
+    <div class="actualitat-grid" id="homeAvisosGrid">
+      <p class="avisos-loading-home">Carregant avisos...</p>
     </div>
   </section>
 

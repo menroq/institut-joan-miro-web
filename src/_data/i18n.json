@@ -16,14 +16,14 @@
       "estudis": "Estudis",
       "projectes": "Projectes",
       "serveis": "Serveis",
-      "actualitat": "Actualitat",
       "secretaria": "Secretaria",
       "viuElMiro": "Viu El Miró",
       "contacte": "Contacte",
       "eso": "ESO",
       "batxillerat": "Batxillerat",
       "atencioPublic": "Atenció al Públic",
-      "preinscripcioMatricula": "Preinscripció / Matrícula"
+      "preinscripcioMatricula": "Preinscripció / Matrícula",
+      "avisos": "Avisos"
     },
     "topbar": {
       "intranetLabel": "Accés a la intranet Clickedu",
@@ -86,14 +86,14 @@
       "estudis": "Estudios",
       "projectes": "Proyectos",
       "serveis": "Servicios",
-      "actualitat": "Actualidad",
       "secretaria": "Secretaría",
       "viuElMiro": "Vive El Miró",
       "contacte": "Contacto",
       "eso": "ESO",
       "batxillerat": "Bachillerato",
       "atencioPublic": "Atención al Público",
-      "preinscripcioMatricula": "Preinscripción / Matrícula"
+      "preinscripcioMatricula": "Preinscripción / Matrícula",
+      "avisos": "Avisos"
     },
     "topbar": {
       "intranetLabel": "Acceso a la intranet Clickedu",
@@ -156,14 +156,14 @@
       "estudis": "Programmes",
       "projectes": "Projects",
       "serveis": "Services",
-      "actualitat": "News",
       "secretaria": "Front Office",
       "viuElMiro": "Life at Joan Miró",
       "contacte": "Contact",
       "eso": "ESO",
       "batxillerat": "Batxillerat",
       "atencioPublic": "Public Attention",
-      "preinscripcioMatricula": "Pre-registration / Enrolment"
+      "preinscripcioMatricula": "Pre-registration / Enrolment",
+      "avisos": "Notices"
     },
     "topbar": {
       "intranetLabel": "Clickedu intranet access",
