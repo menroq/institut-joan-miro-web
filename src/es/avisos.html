@@ -1,0 +1,126 @@
+---
+layout: base.njk
+title: Avisos — Institut Joan Miró
+permalink: "es/avisos.html"
+lang: es
+slug: avisos.html
+pageStyles: |
+
+  /* ============ PÀGINA D'AVISOS ============ */
+  .page-title{
+    background: #FAFAFD;
+    border-bottom: 1px solid var(--color-border);
+    padding: 34px clamp(16px, 4vw, 48px) 30px;
+  }
+  .page-title h1{
+    margin: 0;
+    font-size: 26px;
+    color: var(--color-blue);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .avisos-wrap{
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 48px clamp(16px, 4vw, 48px) 70px;
+  }
+  .avis-item{
+    padding: 32px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .avis-item:first-child{ padding-top: 0; }
+  .avis-item:last-child{ border-bottom: none; }
+  .avis-item__date{
+    font-size: 12.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-orange);
+    margin-bottom: 8px;
+    display: block;
+  }
+  .avis-item__title{
+    margin: 0 0 14px;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--color-blue);
+  }
+  .avis-item__img{
+    width: 100%;
+    max-height: 360px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .avis-item__body{
+    font-size: 14.5px;
+    line-height: 1.75;
+    color: var(--color-blue);
+  }
+  .avis-item__body p{ margin: 0 0 14px; }
+  .avis-item__body ul,
+  .avis-item__body ol{ margin: 0 0 14px; padding-left: 22px; }
+  .avis-item__body a{ color: var(--color-blue); font-weight: 700; }
+  .avis-item__body a:hover{ color: var(--color-orange); }
+  .avisos-empty,
+  .avisos-loading{
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 14px;
+    padding: 40px 0;
+  }
+pageScript: |
+
+    (function(){
+      var container = document.getElementById('avisosFullList');
+      if (!container) return;
+
+      function formatDate(iso){
+        if (!iso) return '';
+        try {
+          var d = new Date(iso);
+          return d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+        } catch(e){ return ''; }
+      }
+
+      fetch('/avisos-data.json')
+        .then(function(r){ return r.json(); })
+        .then(function(avisos){
+          container.innerHTML = '';
+          if (!avisos || avisos.length === 0){
+            container.innerHTML = '<p class="avisos-empty">Todavía no hay ningún aviso publicado.</p>';
+            return;
+          }
+          avisos.forEach(function(avis){
+            var item = document.createElement('article');
+            item.className = 'avis-item';
+            item.id = avis.slug;
+
+            var html = '';
+            html += '<span class="avis-item__date">' + formatDate(avis.publishedAt) + '</span>';
+            html += '<h2 class="avis-item__title">' + avis.title + '</h2>';
+            if (avis.imageUrl) {
+              html += '<img class="avis-item__img" src="' + avis.imageUrl + '" alt="">';
+            }
+            html += '<div class="avis-item__body">' + avis.bodyHtml + '</div>';
+            item.innerHTML = html;
+            container.appendChild(item);
+          });
+        })
+        .catch(function(err){
+          console.error('Error carregant els avisos:', err);
+          container.innerHTML = '<p class="avisos-empty">No se han podido cargar los avisos ahora mismo.</p>';
+        });
+    })();
+---
+<div class="page-title">
+  <h1>Avisos</h1>
+</div>
+
+<div class="avisos-wrap">
+  <div id="avisosFullList">
+    <p class="avisos-loading">Cargando avisos...</p>
+  </div>
+</div>
