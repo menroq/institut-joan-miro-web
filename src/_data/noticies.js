@@ -1,8 +1,8 @@
-// src/_data/avisos.js
+// src/_data/noticies.js
 //
 // Fitxer de dades global de l'Eleventy: es crida automàticament a cada
 // compilació i deixa el resultat disponible a totes les plantilles com
-// a variable "avisos". Aquí no cal cap templating especial — s'executa
+// a variable "noticies". Aquí no cal cap templating especial — s'executa
 // en Node.js pur.
 //
 // Requereix dues variables d'entorn a Netlify (Project configuration →
@@ -21,12 +21,12 @@ module.exports = async function () {
 
   // Si encara no s'han configurat les variables (per exemple, la primera
   // vegada que es compila sense haver-les afegit a Netlify), no fem
-  // petar el build — simplement no hi haurà avisos, i el site es
+  // petar el build — simplement no hi haurà notícies, i el site es
   // publica igualment amb la secció buida.
   if (!projectId) {
     console.warn(
       "Avís: falta la variable d'entorn SANITY_PROJECT_ID. " +
-        "La secció d'Avisos sortirà buida fins que es configuri."
+        "La secció de Notícies sortirà buida fins que es configuri."
     );
     return [];
   }
@@ -44,14 +44,14 @@ module.exports = async function () {
   }
 
   try {
-    const query = `*[_type == "avis"] | order(publishedAt desc){
+    const query = `*[_type == "noticia"] | order(publishedAt desc){
       _id, title, body, publishedAt, image
     }`;
     const results = await client.fetch(query);
 
     return results.map((item) => {
       // Un "slug" senzill a partir de l'identificador intern, per poder
-      // enllaçar-hi (p. ex. avisos.html#un-identificador).
+      // enllaçar-hi (p. ex. noticies.html#un-identificador).
       const slug = (item._id || '').replace(/[^a-zA-Z0-9]+/g, '-').toLowerCase();
 
       return {
@@ -64,9 +64,9 @@ module.exports = async function () {
     });
   } catch (err) {
     // Si Sanity no respon (per exemple, un problema temporal de xarxa),
-    // el build no s'ha de trencar: publiquem el site sense avisos i ho
+    // el build no s'ha de trencar: publiquem el site sense notícies i ho
     // deixem apuntat al log per si cal investigar-ho.
-    console.error('Error carregant els Avisos des de Sanity:', err.message);
+    console.error('Error carregant les Notícies des de Sanity:', err.message);
     return [];
   }
 };

@@ -1,12 +1,12 @@
 ---
 layout: base.njk
-title: Avisos — Institut Joan Miró
-permalink: "avisos.html"
+title: Notícies — Institut Joan Miró
+permalink: "noticies.html"
 lang: ca
-slug: avisos.html
+slug: noticies.html
 pageStyles: |
 
-  /* ============ PÀGINA D'AVISOS ============ */
+  /* ============ PÀGINA DE NOTÍCIES ============ */
   .page-title{
     background: #FAFAFD;
     border-bottom: 1px solid var(--color-border);
@@ -20,18 +20,18 @@ pageStyles: |
     text-transform: uppercase;
     letter-spacing: 0.02em;
   }
-  .avisos-wrap{
+  .noticies-wrap{
     max-width: 800px;
     margin: 0 auto;
     padding: 48px clamp(16px, 4vw, 48px) 70px;
   }
-  .avis-item{
+  .noticia-item{
     padding: 32px 0;
     border-bottom: 1px solid var(--color-border);
   }
-  .avis-item:first-child{ padding-top: 0; }
-  .avis-item:last-child{ border-bottom: none; }
-  .avis-item__date{
+  .noticia-item:first-child{ padding-top: 0; }
+  .noticia-item:last-child{ border-bottom: none; }
+  .noticia-item__date{
     font-size: 12.5px;
     font-weight: 700;
     text-transform: uppercase;
@@ -40,13 +40,13 @@ pageStyles: |
     margin-bottom: 8px;
     display: block;
   }
-  .avis-item__title{
+  .noticia-item__title{
     margin: 0 0 14px;
     font-size: 20px;
     font-weight: 800;
     color: var(--color-blue);
   }
-  .avis-item__img{
+  .noticia-item__img{
     width: 100%;
     max-height: 360px;
     object-fit: cover;
@@ -54,18 +54,18 @@ pageStyles: |
     margin-bottom: 16px;
     display: block;
   }
-  .avis-item__body{
+  .noticia-item__body{
     font-size: 14.5px;
     line-height: 1.75;
     color: var(--color-blue);
   }
-  .avis-item__body p{ margin: 0 0 14px; }
-  .avis-item__body ul,
-  .avis-item__body ol{ margin: 0 0 14px; padding-left: 22px; }
-  .avis-item__body a{ color: var(--color-blue); font-weight: 700; }
-  .avis-item__body a:hover{ color: var(--color-orange); }
-  .avisos-empty,
-  .avisos-loading{
+  .noticia-item__body p{ margin: 0 0 14px; }
+  .noticia-item__body ul,
+  .noticia-item__body ol{ margin: 0 0 14px; padding-left: 22px; }
+  .noticia-item__body a{ color: var(--color-blue); font-weight: 700; }
+  .noticia-item__body a:hover{ color: var(--color-orange); }
+  .noticies-empty,
+  .noticies-loading{
     text-align: center;
     color: var(--color-text-muted);
     font-size: 14px;
@@ -74,7 +74,7 @@ pageStyles: |
 pageScript: |
 
     (function(){
-      var container = document.getElementById('avisosFullList');
+      var container = document.getElementById('noticiesFullList');
       if (!container) return;
 
       function formatDate(iso){
@@ -85,42 +85,42 @@ pageScript: |
         } catch(e){ return ''; }
       }
 
-      fetch('/avisos-data.json')
+      fetch('/noticies-data.json')
         .then(function(r){ return r.json(); })
-        .then(function(avisos){
+        .then(function(noticies){
           container.innerHTML = '';
-          if (!avisos || avisos.length === 0){
-            container.innerHTML = '<p class="avisos-empty">Encara no hi ha cap avís publicat.</p>';
+          if (!noticies || noticies.length === 0){
+            container.innerHTML = '<p class="noticies-empty">Encara no hi ha cap notícia publicada.</p>';
             return;
           }
-          avisos.forEach(function(avis){
+          noticies.forEach(function(n){
             var item = document.createElement('article');
-            item.className = 'avis-item';
-            item.id = avis.slug;
+            item.className = 'noticia-item';
+            item.id = n.slug;
 
             var html = '';
-            html += '<span class="avis-item__date">' + formatDate(avis.publishedAt) + '</span>';
-            html += '<h2 class="avis-item__title">' + avis.title + '</h2>';
-            if (avis.imageUrl) {
-              html += '<img class="avis-item__img" src="' + avis.imageUrl + '" alt="">';
+            html += '<span class="noticia-item__date">' + formatDate(n.publishedAt) + '</span>';
+            html += '<h2 class="noticia-item__title">' + n.title + '</h2>';
+            if (n.imageUrl) {
+              html += '<img class="noticia-item__img" src="' + n.imageUrl + '" alt="">';
             }
-            html += '<div class="avis-item__body">' + avis.bodyHtml + '</div>';
+            html += '<div class="noticia-item__body">' + n.bodyHtml + '</div>';
             item.innerHTML = html;
             container.appendChild(item);
           });
         })
         .catch(function(err){
-          console.error('Error carregant els avisos:', err);
-          container.innerHTML = '<p class="avisos-empty">No s\'han pogut carregar els avisos ara mateix.</p>';
+          console.error('Error carregant les notícies:', err);
+          container.innerHTML = '<p class="noticies-empty">No s\'han pogut carregar les notícies ara mateix.</p>';
         });
     })();
 ---
 <div class="page-title">
-  <h1>Avisos</h1>
+  <h1>Notícies</h1>
 </div>
 
-<div class="avisos-wrap">
-  <div id="avisosFullList">
-    <p class="avisos-loading">Carregant avisos...</p>
+<div class="noticies-wrap">
+  <div id="noticiesFullList">
+    <p class="noticies-loading">Carregant notícies...</p>
   </div>
 </div>

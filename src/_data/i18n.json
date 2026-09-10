@@ -23,7 +23,7 @@
       "batxillerat": "Batxillerat",
       "atencioPublic": "Atenció al Públic",
       "preinscripcioMatricula": "Preinscripció / Matrícula",
-      "avisos": "Avisos"
+      "noticies": "Notícies"
     },
     "topbar": {
       "intranetLabel": "Accés a la intranet Clickedu",
@@ -93,7 +93,7 @@
       "batxillerat": "Bachillerato",
       "atencioPublic": "Atención al Público",
       "preinscripcioMatricula": "Preinscripción / Matrícula",
-      "avisos": "Avisos"
+      "noticies": "Noticias"
     },
     "topbar": {
       "intranetLabel": "Acceso a la intranet Clickedu",
@@ -163,7 +163,7 @@
       "batxillerat": "Batxillerat",
       "atencioPublic": "Public Attention",
       "preinscripcioMatricula": "Pre-registration / Enrolment",
-      "avisos": "Notices"
+      "noticies": "Notices"
     },
     "topbar": {
       "intranetLabel": "Clickedu intranet access",
