@@ -1,6 +1,23 @@
 [
   {
     "ca": {
+      "date": "Setembre 2026",
+      "title": "Calendari inici de curs",
+      "text": "<p>9 de setembre: el centre estarà tancat.</p><p>10 de setembre: jornada de tutoria i classes.</p><ul><li>9:45 — 1r ESO</li><li>10:15 — 2n ESO</li><li>11:45 — 3r, 4t, GR i Batxillerat</li></ul>"
+    },
+    "es": {
+      "date": "Septiembre 2026",
+      "title": "Calendario inicio de curso",
+      "text": "<p>9 de septiembre: el centro permanecerá cerrado.</p><p>10 de septiembre: jornada de tutoría y clases.</p><ul><li>9:45 — 1º ESO</li><li>10:15 — 2º ESO</li><li>11:45 — 3º, 4º, GR y Bachillerato</li></ul>"
+    },
+    "en": {
+      "date": "September 2026",
+      "title": "Start of term calendar",
+      "text": "<p>September 9: the school will be closed.</p><p>September 10: tutoring session and classes.</p><ul><li>9:45 am — 1st ESO</li><li>10:15 am — 2nd ESO</li><li>11:45 am — 3rd, 4th, GR and Batxillerat</li></ul>"
+    }
+  },
+  {
+    "ca": {
       "date": "8 de setembre de 2026",
       "title": "Alerta INUNCAT — El centre estarà tancat dimecres 9 de setembre",
       "text": "<p>Oficialment ens han comunicat que s'ha activat l'alerta INUNCAT davant del risc de fortes pluges per demà dia 9 de setembre, amb afectacions al Baix Llobregat.</p><p>Com a conseqüència d'aquesta alerta, se suspèn l'activitat lectiva a tots els centres educatius de la nostra comarca, i es recomana evitar els desplaçaments que no siguin imprescindibles. Per aquest motiu, demà dia 9 de setembre el nostre centre educatiu estarà tancat.</p><p>Les activitats previstes per demà es realitzaran dijous, mantenint l'horari ja establert d'entrades al centre per a cada nivell.</p>"
