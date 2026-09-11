@@ -347,6 +347,7 @@ pageScript: |
     (function(){
       var grid = document.getElementById('homeDestacatsGrid');
       if (!grid) return;
+      var currentLang = document.documentElement.lang || 'ca';
 
       fetch('/destacats-data.json')
         .then(function(r){ return r.json(); })
@@ -356,7 +357,11 @@ pageScript: |
             grid.innerHTML = '<p class="destacats-empty">Ara mateix no hi ha cap destacat.</p>';
             return;
           }
-          destacats.slice(0, 2).forEach(function(item){
+          destacats.slice(0, 2).forEach(function(entry){
+            // Cada destacat porta els tres idiomes a dins; agafem el de la
+            // pàgina actual, i si falta la traducció, el català com a reserva.
+            var item = entry[currentLang] || entry.ca;
+            if (!item) return;
             var article = document.createElement('article');
             article.className = 'destacat-card';
             article.innerHTML =

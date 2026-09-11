@@ -106,13 +106,13 @@ pageStyles: |
     transform: scale(1.25);
   }
 
-  /* --- Secció 2: Actualitat --- */
-  .home-actualitat{
+  /* --- Secció 2: Destacats --- */
+  .home-destacats{
     padding: 64px clamp(16px, 4vw, 48px);
-    max-width: 1220px;
+    max-width: 900px;
     margin: 0 auto;
   }
-  .home-actualitat h2,
+  .home-destacats h2,
   .home-noticies h2{
     margin: 0 0 28px;
     font-size: 22px;
@@ -122,70 +122,47 @@ pageStyles: |
     color: var(--color-blue);
     text-align: center;
   }
-  .actualitat-grid{
+  .destacats-grid{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 36px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
   }
-  .actualitat-card{
+  .destacat-card{
     border: 1px solid var(--color-border);
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: box-shadow 0.18s ease, transform 0.18s ease;
+    border-radius: 12px;
+    padding: 30px 32px;
+    background: #fff;
+    box-shadow: 0 4px 14px rgba(28,12,188,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .actualitat-card:hover{
-    box-shadow: 0 10px 26px rgba(28,12,188,0.10);
-    transform: translateY(-2px);
+  .destacat-card:hover{
+    transform: translateY(-7px);
+    box-shadow: 0 20px 38px rgba(28,12,188,0.15);
   }
-  .actualitat-card__img{
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
+  .destacat-card__date{
     display: block;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-orange);
+    margin-bottom: 10px;
   }
-  .actualitat-card__body{
-    padding: 26px 28px 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    flex: 1;
-  }
-  .actualitat-card__body h3{
-    margin: 0;
-    font-size: 20px;
+  .destacat-card__title{
+    margin: 0 0 14px;
+    font-size: 18px;
     font-weight: 800;
     color: var(--color-blue);
     line-height: 1.35;
   }
-  .actualitat-card__btn{
-    align-self: flex-start;
-    margin-top: auto;
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    color: #fff;
-    background: var(--color-blue);
-    border: none;
-    border-radius: 6px;
-    padding: 12px 26px;
-    cursor: pointer;
-    transition: background 0.18s ease;
+  .destacat-card__text p{
+    margin: 0 0 12px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-blue);
   }
-  .actualitat-card__btn:hover,
-  .actualitat-card__btn:focus-visible{
-    background: var(--color-orange);
-  }
-  .actualitat-card__body p{
-    margin: 0;
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: var(--color-text-muted);
-  }
-  .avisos-loading-home{
+  .destacat-card__text p:last-child{ margin-bottom: 0; }
+  .destacats-empty{
     grid-column: 1 / -1;
     text-align: center;
     color: var(--color-text-muted);
@@ -196,19 +173,87 @@ pageStyles: |
   /* --- Secció 3: Notícies --- */
   .home-noticies{
     padding: 0 clamp(16px, 4vw, 48px) 56px;
-    max-width: 1100px;
+    max-width: 1220px;
     margin: 0 auto;
-    text-align: center;
   }
-  .home-noticies__placeholder{
-    border: 1px dashed var(--color-border);
+  .noticies-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+  }
+  .noticia-card{
+    border: 1px solid var(--color-border);
     border-radius: 8px;
-    padding: 46px 20px;
-    color: var(--color-text-muted);
-    font-size: 14px;
-    font-weight: 600;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
+  }
+  .noticia-card:hover{
+    box-shadow: 0 10px 26px rgba(28,12,188,0.10);
+    transform: translateY(-2px);
+  }
+  .noticia-card__img{
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    display: block;
+    background: rgba(28,12,188,0.05);
+  }
+  .noticia-card__body{
+    padding: 20px 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+  .noticia-card__date{
+    display: block;
+    font-size: 11.5px;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    color: var(--color-orange);
+  }
+  .noticia-card__body h3{
+    margin: 0;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--color-blue);
+    line-height: 1.35;
+  }
+  .noticia-card__body p{
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+  }
+  .noticia-card__btn{
+    align-self: flex-start;
+    margin-top: auto;
+    display: inline-block;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: #fff;
+    background: var(--color-blue);
+    border: none;
+    border-radius: 6px;
+    padding: 10px 22px;
+    cursor: pointer;
+    transition: background 0.18s ease;
+  }
+  .noticia-card__btn:hover,
+  .noticia-card__btn:focus-visible{
+    background: var(--color-orange);
+  }
+  .noticies-loading-home{
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 14px;
+    padding: 30px 0;
   }
 
   /* --- Secció 4: Contacta amb el centre --- */
@@ -250,7 +295,8 @@ pageStyles: |
     .hero-carousel__box{ padding: 18px 22px; max-width: calc(100% - 32px); bottom: 54px; }
     .hero-carousel__arrow{ width: 36px; height: 36px; }
     .home-cta h2{ font-size: 18px; }
-    .actualitat-grid{ grid-template-columns: 1fr; }
+    .destacats-grid{ grid-template-columns: 1fr; }
+    .noticies-grid{ grid-template-columns: 1fr; }
   }
 pageScript: |
 
@@ -297,9 +343,41 @@ pageScript: |
     startAutoplay();
   })();
 
-  // ============ AVISOS (secció 2) — es carreguen des de Sanity ============
+  // ============ DESTACATS (secció 2) — fitxer local, sense imatge ============
   (function(){
-    var grid = document.getElementById('homeAvisosGrid');
+    var grid = document.getElementById('homeDestacatsGrid');
+    if (!grid) return;
+    var currentLang = document.documentElement.lang || 'ca';
+
+    fetch('/destacats-data.json')
+      .then(function(r){ return r.json(); })
+      .then(function(destacats){
+        grid.innerHTML = '';
+        if (!destacats || destacats.length === 0){
+          grid.innerHTML = '<p class="destacats-empty">There are no highlights right now.</p>';
+          return;
+        }
+        destacats.slice(0, 2).forEach(function(entry){
+          var item = entry[currentLang] || entry.ca;
+          if (!item) return;
+          var article = document.createElement('article');
+          article.className = 'destacat-card';
+          article.innerHTML =
+            '<span class="destacat-card__date">' + item.date + '</span>' +
+            '<h3 class="destacat-card__title">' + item.title + '</h3>' +
+            '<div class="destacat-card__text">' + item.text + '</div>';
+          grid.appendChild(article);
+        });
+      })
+      .catch(function(err){
+        console.error('Error loading highlights:', err);
+        grid.innerHTML = '<p class="destacats-empty">The highlights could not be loaded right now.</p>';
+      });
+  })();
+
+  // ============ NOTÍCIES (secció 3) — es carreguen des de Sanity ============
+  (function(){
+    var grid = document.getElementById('homeNoticiesGrid');
     if (!grid) return;
 
     function excerpt(html, maxLen){
@@ -308,33 +386,42 @@ pageScript: |
       return text.slice(0, maxLen).trim() + '…';
     }
 
-    fetch('/avisos-data.json')
+    function formatDate(iso){
+      if (!iso) return '';
+      try {
+        var d = new Date(iso);
+        return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+      } catch(e){ return ''; }
+    }
+
+    fetch('/noticies-data.json')
       .then(function(r){ return r.json(); })
-      .then(function(avisos){
+      .then(function(noticies){
         grid.innerHTML = '';
-        if (!avisos || avisos.length === 0){
-          grid.innerHTML = '<p class="avisos-loading-home">No notices have been published yet.</p>';
+        if (!noticies || noticies.length === 0){
+          grid.innerHTML = '<p class="noticies-loading-home">No notices have been published yet.</p>';
           return;
         }
-        avisos.slice(0, 4).forEach(function(avis){
+        noticies.slice(0, 4).forEach(function(n){
           var article = document.createElement('article');
-          article.className = 'actualitat-card';
-          var imgHtml = avis.imageUrl
-            ? '<img class="actualitat-card__img" src="' + avis.imageUrl + '" alt="">'
+          article.className = 'noticia-card';
+          var imgHtml = n.imageUrl
+            ? '<img class="noticia-card__img" src="' + n.imageUrl + '" alt="">'
             : '';
           article.innerHTML =
             imgHtml +
-            '<div class="actualitat-card__body">' +
-              '<h3>' + avis.title + '</h3>' +
-              '<p>' + excerpt(avis.bodyHtml || '', 110) + '</p>' +
-              '<a href="avisos.html#' + avis.slug + '" class="actualitat-card__btn">+INFO</a>' +
+            '<div class="noticia-card__body">' +
+              '<span class="noticia-card__date">' + formatDate(n.publishedAt) + '</span>' +
+              '<h3>' + n.title + '</h3>' +
+              '<p>' + excerpt(n.bodyHtml || '', 100) + '</p>' +
+              '<a href="noticies.html#' + n.slug + '" class="noticia-card__btn">+INFO</a>' +
             '</div>';
           grid.appendChild(article);
         });
       })
       .catch(function(err){
         console.error('Error loading notices:', err);
-        grid.innerHTML = '<p class="avisos-loading-home">The notices could not be loaded right now.</p>';
+        grid.innerHTML = '<p class="noticies-loading-home">The notices could not be loaded right now.</p>';
       });
   })();
 ---
@@ -372,18 +459,20 @@ pageScript: |
     </div>
   </section>
 
-  <!-- ============ SECCIÓ 2: AVISOS ============ -->
-  <section class="home-actualitat">
-    <h2>Notices</h2>
-    <div class="actualitat-grid" id="homeAvisosGrid">
-      <p class="avisos-loading-home">Loading notices...</p>
+  <!-- ============ SECCIÓ 2: DESTACATS ============ -->
+  <section class="home-destacats">
+    <h2>Highlights</h2>
+    <div class="destacats-grid" id="homeDestacatsGrid">
+      <p class="destacats-empty">Loading...</p>
     </div>
   </section>
 
   <!-- ============ SECCIÓ 3: NOTÍCIES ============ -->
   <section class="home-noticies">
-    <h2>Newsroom</h2>
-    <div class="home-noticies__placeholder">Under construction</div>
+    <h2>Notices</h2>
+    <div class="noticies-grid" id="homeNoticiesGrid">
+      <p class="noticies-loading-home">Loading notices...</p>
+    </div>
   </section>
 
   <!-- ============ SECCIÓ 4: CONTACTA AMB EL CENTRE ============ -->
