@@ -1,0 +1,209 @@
+---
+layout: base.njk
+title: Photos — Institut Joan Miró
+permalink: "en/fotos-repositori.html"
+lang: en
+slug: fotos-repositori.html
+eleventyExcludeFromCollections: true
+pageStyles: |
+
+  /* ============ PÀGINA DE DETALL D'UN REPOSITORI DE FOTOS ============ */
+  .page-title{
+    background: #FAFAFD;
+    border-bottom: 1px solid var(--color-border);
+    padding: 34px clamp(16px, 4vw, 48px) 30px;
+  }
+  .page-title h1{
+    margin: 0;
+    font-size: 26px;
+    color: var(--color-blue);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .fotos-detail-wrap{
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px clamp(16px, 4vw, 48px) 70px;
+  }
+  .fotos-back{
+    display: inline-block;
+    margin-bottom: 24px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--color-blue);
+    text-decoration: none;
+  }
+  .fotos-back:hover,
+  .fotos-back:focus-visible{ color: var(--color-orange); }
+  .fotos-loading{
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 14px;
+    padding: 40px 0;
+  }
+  .repo-carousel{
+    position: relative;
+    width: 100%;
+    height: min(70vh, 560px);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--color-blue);
+  }
+  .repo-carousel__track{
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  .repo-carousel__slide{
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+  }
+  .repo-carousel__slide.is-active{
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .repo-carousel__slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+    display: block;
+  }
+  .repo-carousel__arrow{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.85);
+    color: var(--color-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  .repo-carousel__arrow:hover,
+  .repo-carousel__arrow:focus-visible{
+    background: var(--color-blue);
+    color: #fff;
+  }
+  .repo-carousel__arrow svg{ width: 22px; height: 22px; }
+  .repo-carousel__arrow--prev{ left: clamp(10px, 2vw, 20px); }
+  .repo-carousel__arrow--next{ right: clamp(10px, 2vw, 20px); }
+  .repo-carousel__counter{
+    position: absolute;
+    right: 16px;
+    bottom: 14px;
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 12.5px;
+    font-weight: 700;
+    padding: 5px 12px;
+    border-radius: 20px;
+    z-index: 5;
+  }
+
+  @media (max-width: 640px){
+    .repo-carousel{ height: 320px; }
+    .repo-carousel__arrow{ width: 36px; height: 36px; }
+  }
+pageScript: |
+
+    (function(){
+      var titleEl = document.getElementById('repoTitle');
+      var carousel = document.getElementById('repoCarousel');
+      var track = document.getElementById('repoCarouselTrack');
+      var messageEl = document.getElementById('repoMessage');
+      var prevBtn = document.getElementById('repoCarouselPrev');
+      var nextBtn = document.getElementById('repoCarouselNext');
+      var counterEl = document.getElementById('repoCarouselCounter');
+      if (!carousel) return;
+
+      var slug = new URLSearchParams(window.location.search).get('r');
+      var slides = [];
+      var current = 0;
+
+      function goTo(index){
+        if (!slides.length) return;
+        slides[current].classList.remove('is-active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('is-active');
+        counterEl.textContent = (current + 1) + ' / ' + slides.length;
+      }
+      function next(){ goTo(current + 1); }
+      function prev(){ goTo(current - 1); }
+
+      prevBtn.addEventListener('click', prev);
+      nextBtn.addEventListener('click', next);
+      document.addEventListener('keydown', function(e){
+        if (carousel.hidden) return;
+        if (e.key === 'ArrowLeft') prev();
+        if (e.key === 'ArrowRight') next();
+      });
+
+      if (!slug){
+        messageEl.textContent = "We couldn't find this photo repository.";
+        return;
+      }
+
+      fetch('/fotos-data.json')
+        .then(function(r){ return r.json(); })
+        .then(function(fotos){
+          var repo = (fotos || []).filter(function(item){ return item.slug === slug; })[0];
+          if (!repo || !repo.images || !repo.images.length){
+            messageEl.textContent = "We couldn't find this photo repository.";
+            return;
+          }
+
+          titleEl.textContent = repo.title;
+          document.title = repo.title + ' — Photos — Institut Joan Miró';
+
+          repo.images.forEach(function(img, i){
+            var slide = document.createElement('div');
+            slide.className = 'repo-carousel__slide' + (i === 0 ? ' is-active' : '');
+            var imgEl = document.createElement('img');
+            imgEl.src = img.url;
+            imgEl.alt = '';
+            slide.appendChild(imgEl);
+            track.appendChild(slide);
+            slides.push(slide);
+          });
+          counterEl.textContent = '1 / ' + slides.length;
+
+          messageEl.hidden = true;
+          carousel.hidden = false;
+        })
+        .catch(function(err){
+          console.error('Error loading photo repository:', err);
+          messageEl.textContent = 'The photos could not be loaded right now.';
+        });
+    })();
+---
+<div class="page-title">
+  <h1 id="repoTitle">Photos</h1>
+</div>
+
+<div class="fotos-detail-wrap">
+  <a href="fotos.html" class="fotos-back">&larr; Back to Photos</a>
+
+  <div class="repo-carousel" id="repoCarousel" hidden>
+    <div class="repo-carousel__track" id="repoCarouselTrack"></div>
+    <button class="repo-carousel__arrow repo-carousel__arrow--prev" id="repoCarouselPrev" aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="repo-carousel__arrow repo-carousel__arrow--next" id="repoCarouselNext" aria-label="Next photo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    <div class="repo-carousel__counter" id="repoCarouselCounter"></div>
+  </div>
+
+  <p class="fotos-loading" id="repoMessage">Loading photos...</p>
+</div>

@@ -18,6 +18,7 @@
       "serveis": "Serveis",
       "secretaria": "Secretaria",
       "viuElMiro": "Viu El Miró",
+      "fotos": "Fotos",
       "contacte": "Contacte",
       "eso": "ESO",
       "batxillerat": "Batxillerat",
@@ -67,6 +68,15 @@
       "phoneLabel": "Telèfon",
       "emailLabel": "Correu Electrònic",
       "instanciaGeneral": "Instància General"
+    },
+    "fotos": {
+      "pageTitle": "Fotos",
+      "empty": "Encara no hi ha cap repositori de fotos.",
+      "loadError": "No s'han pogut carregar els repositoris ara mateix.",
+      "back": "Tornar a Fotos",
+      "notFound": "No hem trobat aquest repositori de fotos.",
+      "prevLabel": "Foto anterior",
+      "nextLabel": "Foto següent"
     }
   },
   "es": {
@@ -88,6 +98,7 @@
       "serveis": "Servicios",
       "secretaria": "Secretaría",
       "viuElMiro": "Vive El Miró",
+      "fotos": "Fotos",
       "contacte": "Contacto",
       "eso": "ESO",
       "batxillerat": "Bachillerato",
@@ -137,6 +148,15 @@
       "phoneLabel": "Teléfono",
       "emailLabel": "Correo Electrónico",
       "instanciaGeneral": "Instancia General"
+    },
+    "fotos": {
+      "pageTitle": "Fotos",
+      "empty": "Todavía no hay ningún repositorio de fotos.",
+      "loadError": "No se han podido cargar los repositorios ahora mismo.",
+      "back": "Volver a Fotos",
+      "notFound": "No hemos encontrado este repositorio de fotos.",
+      "prevLabel": "Foto anterior",
+      "nextLabel": "Foto siguiente"
     }
   },
   "en": {
@@ -158,6 +178,7 @@
       "serveis": "Services",
       "secretaria": "Front Office",
       "viuElMiro": "Life at Joan Miró",
+      "fotos": "Photos",
       "contacte": "Contact",
       "eso": "ESO",
       "batxillerat": "Batxillerat",
@@ -207,6 +228,15 @@
       "phoneLabel": "Phone",
       "emailLabel": "Email",
       "instanciaGeneral": "General Application Form"
+    },
+    "fotos": {
+      "pageTitle": "Photos",
+      "empty": "There are no photo repositories yet.",
+      "loadError": "The repositories could not be loaded right now.",
+      "back": "Back to Photos",
+      "notFound": "We couldn't find this photo repository.",
+      "prevLabel": "Previous photo",
+      "nextLabel": "Next photo"
     }
   }
 }
