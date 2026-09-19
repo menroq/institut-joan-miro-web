@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-labelledby="tav">
+  <title id="tav">Fotografia pendent — placeholder de direcció</title>
+  <circle cx="100" cy="100" r="100" fill="#1C0CBC"/>
+  <circle cx="100" cy="80" r="34" fill="#FAFAFD" opacity="0.9"/>
+  <path d="M40 178 c 6 -46 46 -66 60 -66 c 14 0 54 20 60 66 z" fill="#FAFAFD" opacity="0.9"/>
+  <circle cx="150" cy="60" r="16" fill="#E8600C"/>
+</svg>

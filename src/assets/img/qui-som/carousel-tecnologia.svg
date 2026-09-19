@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="t4">
+  <title id="t4">Il·lustració abstracta — Tecnologia i laboratoris</title>
+  <rect width="800" height="600" fill="#FAFAFD"/>
+  <rect x="210" y="160" width="380" height="240" rx="14" fill="#1C0CBC"/>
+  <rect x="234" y="184" width="332" height="192" rx="6" fill="#FAFAFD"/>
+  <g stroke="#1C0CBC" stroke-width="3" opacity="0.6">
+    <line x1="270" y1="220" x2="530" y2="220"/>
+    <line x1="270" y1="250" x2="470" y2="250"/>
+    <line x1="270" y1="280" x2="500" y2="280"/>
+  </g>
+  <circle cx="500" cy="330" r="24" fill="#E8600C"/>
+  <rect x="360" y="410" width="80" height="18" rx="4" fill="#9096A0" opacity="0.5"/>
+  <g fill="#E8600C" opacity="0.7">
+    <circle cx="130" cy="500" r="7"/>
+    <circle cx="160" cy="500" r="7"/>
+    <circle cx="190" cy="500" r="7"/>
+    <line x1="130" y1="500" x2="190" y2="500" stroke="#E8600C" stroke-width="2"/>
+  </g>
+  <g fill="#9096A0" opacity="0.5">
+    <circle cx="650" cy="480" r="6"/>
+    <circle cx="680" cy="480" r="6"/>
+    <line x1="650" y1="480" x2="680" y2="480" stroke="#9096A0" stroke-width="2"/>
+  </g>
+</svg>

@@ -1,0 +1,342 @@
+---
+layout: base.njk
+title: Who we are — Institut Joan Miró
+permalink: "en/qui-som.html"
+lang: en
+slug: qui-som.html
+pageStyles: |
+
+  /* ============ WHO WE ARE PAGE ============ */
+  .page-title{
+    background: #FAFAFD;
+    border-bottom: 1px solid var(--color-border);
+    padding: 34px clamp(16px, 4vw, 48px) 30px;
+  }
+  .page-title h1{
+    margin: 0;
+    font-size: 26px;
+    color: var(--color-blue);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .qui-som-wrap{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px clamp(16px, 4vw, 48px) 70px;
+  }
+
+  /* --- Block 1: text + carousel --- */
+  .qui-som-intro{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(28px, 5vw, 56px);
+    align-items: center;
+    margin-bottom: 64px;
+  }
+  .qui-som-text p{
+    margin: 0 0 18px;
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--color-blue);
+  }
+  .qui-som-text p:last-child{ margin-bottom: 0; }
+  .qui-som-text .kw{
+    color: var(--color-orange);
+    font-weight: 700;
+  }
+
+  .qsc{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 26px rgba(28,12,188,0.08);
+    background: #FAFAFD;
+  }
+  .qsc__track{ position: relative; width: 100%; height: 100%; }
+  .qsc__slide{
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+  }
+  .qsc__slide.is-active{ opacity: 1; pointer-events: auto; }
+  .qsc__slide img{
+    width: 100%;
+    height: calc(100% - 40px);
+    object-fit: cover;
+    display: block;
+  }
+  .qsc__slide figcaption{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--color-blue);
+    background: #ffffff;
+  }
+  .qsc__arrow{
+    position: absolute;
+    top: calc(50% - 20px);
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.9);
+    color: var(--color-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  .qsc__arrow:hover, .qsc__arrow:focus-visible{ background: var(--color-blue); color: #fff; }
+  .qsc__arrow svg{ width: 20px; height: 20px; }
+  .qsc__arrow--prev{ left: 12px; }
+  .qsc__arrow--next{ right: 12px; }
+  .qsc__dots{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 48px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    z-index: 5;
+  }
+  .qsc__dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(255,255,255,0.65);
+    cursor: pointer;
+  }
+  .qsc__dot.is-active{ background: var(--color-orange); }
+
+  @media (max-width: 880px){
+    .qui-som-intro{ grid-template-columns: 1fr; }
+  }
+
+  /* --- Block 2: tribute to Joan Miró --- */
+  .qui-som-miro{
+    display: flex;
+    align-items: center;
+    gap: clamp(24px, 5vw, 48px);
+    background: #FAFAFD;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: clamp(20px, 4vw, 36px);
+    margin-bottom: 64px;
+  }
+  .qui-som-miro__img{
+    width: clamp(110px, 16vw, 150px);
+    height: clamp(110px, 16vw, 150px);
+    flex: none;
+  }
+  .qui-som-miro__text h2{
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: var(--color-blue);
+    font-weight: 800;
+  }
+  .qui-som-miro__text p{
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--color-blue);
+  }
+  @media (max-width: 640px){
+    .qui-som-miro{ flex-direction: column; text-align: center; }
+  }
+
+  /* --- Block 3: headteacher's quote --- */
+  .qui-som-director{
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(20px, 4vw, 40px);
+  }
+  .qui-som-director__photo{
+    width: clamp(120px, 16vw, 160px);
+    height: clamp(120px, 16vw, 160px);
+    border-radius: 50%;
+    flex: none;
+    box-shadow: 0 10px 26px rgba(28,12,188,0.12);
+  }
+  .qui-som-director__quote{
+    margin: 0 0 14px;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--color-blue);
+    font-weight: 600;
+    font-style: italic;
+  }
+  .qui-som-director__name{
+    margin: 0 0 18px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--color-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .qui-som-director__audio{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .qui-som-director__audio audio{ max-width: 320px; width: 100%; }
+  .qui-som-director__audio-note{
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+  @media (max-width: 640px){
+    .qui-som-director{ flex-direction: column; align-items: center; text-align: center; }
+    .qui-som-director__audio{ justify-content: center; }
+  }
+pageScript: |
+
+    (function(){
+      var track = document.getElementById('quiSomTrack');
+      var carousel = document.getElementById('quiSomCarousel');
+      if (!carousel || !track) return;
+      var slides = Array.prototype.slice.call(track.querySelectorAll('.qsc__slide'));
+      var dots = Array.prototype.slice.call(carousel.querySelectorAll('.qsc__dot'));
+      var prevBtn = document.getElementById('quiSomPrev');
+      var nextBtn = document.getElementById('quiSomNext');
+      var current = 0;
+      var timer = null;
+
+      function goTo(index){
+        if (!slides.length) return;
+        slides[current].classList.remove('is-active');
+        if (dots[current]) dots[current].classList.remove('is-active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('is-active');
+        if (dots[current]) dots[current].classList.add('is-active');
+      }
+      function next(){ goTo(current + 1); }
+      function prev(){ goTo(current - 1); }
+
+      function startAutoplay(){
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) return;
+        stopAutoplay();
+        timer = setInterval(next, 5000);
+      }
+      function stopAutoplay(){ if (timer){ clearInterval(timer); timer = null; } }
+
+      if (prevBtn) prevBtn.addEventListener('click', function(){ prev(); startAutoplay(); });
+      if (nextBtn) nextBtn.addEventListener('click', function(){ next(); startAutoplay(); });
+      dots.forEach(function(dot, i){
+        dot.addEventListener('click', function(){ goTo(i); startAutoplay(); });
+      });
+      carousel.addEventListener('mouseenter', stopAutoplay);
+      carousel.addEventListener('mouseleave', startAutoplay);
+      carousel.addEventListener('focusin', stopAutoplay);
+      carousel.addEventListener('focusout', startAutoplay);
+
+      startAutoplay();
+    })();
+---
+<!--
+  TODO before publishing this page:
+  - The 5 carousel images (src/assets/img/qui-som/carousel-*.svg) are original, free and
+    copyright-free illustrations, meant as placeholders. Replace them with real photos of
+    the school once available.
+  - The headteacher's photo (director-avatar-placeholder.svg) is an abstract placeholder,
+    not a real photo of an actual person. Replace with the real photo.
+  - The quote is example text: write the real quote.
+  - The audio file (directora-cita-placeholder.wav) is a silent one-second file, only so
+    the player doesn't break. Record the real audio and replace the file (keep the same
+    file name or update the <audio> tag's path).
+  - miro-tribute.svg is an original tribute illustration (it does not reproduce any
+    artwork or photograph of Joan Miró, whose rights are still in force).
+-->
+<div class="page-title">
+  <h1>Who we are</h1>
+</div>
+
+<div class="qui-som-wrap">
+
+  <div class="qui-som-intro">
+    <div class="qui-som-text">
+      <p>For <span class="kw">over 30 years</span>, Institut Joan Miró has accompanied students from Cornellà de Llobregat through secondary school and sixth form. We carry the name of one of Catalonia's great artists, and like him, we believe in <span class="kw">forging our own path</span> without ever losing our roots.</p>
+
+      <p>We are a school with a long-serving teaching staff — an average of around <span class="kw">25 years of teaching experience</span> — working as a team, coordinated by form tutors, to give each student <span class="kw">close, personal follow-up</span>, both academically and personally.</p>
+
+      <p>We believe in effort and support. That's why we offer support classes and shape every activity so that everyone who leaves our classrooms does so with a <span class="kw">solid academic and personal foundation</span>.</p>
+    </div>
+
+    <div class="qsc" id="quiSomCarousel">
+      <div class="qsc__track" id="quiSomTrack">
+        <figure class="qsc__slide is-active">
+          <img src="/assets/img/qui-som/carousel-aules.svg" alt="Illustration of classrooms and learning">
+          <figcaption>Classrooms and learning</figcaption>
+        </figure>
+        <figure class="qsc__slide">
+          <img src="/assets/img/qui-som/carousel-biblioteca.svg" alt="Illustration of reading and knowledge">
+          <figcaption>Reading and knowledge</figcaption>
+        </figure>
+        <figure class="qsc__slide">
+          <img src="/assets/img/qui-som/carousel-pati.svg" alt="Illustration of playground life">
+          <figcaption>Playground life</figcaption>
+        </figure>
+        <figure class="qsc__slide">
+          <img src="/assets/img/qui-som/carousel-tecnologia.svg" alt="Illustration of technology and labs">
+          <figcaption>Technology and labs</figcaption>
+        </figure>
+        <figure class="qsc__slide">
+          <img src="/assets/img/qui-som/carousel-comunitat.svg" alt="Illustration of community and team">
+          <figcaption>Community and team</figcaption>
+        </figure>
+      </div>
+      <button class="qsc__arrow qsc__arrow--prev" id="quiSomPrev" aria-label="Previous image">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="qsc__arrow qsc__arrow--next" id="quiSomNext" aria-label="Next image">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="qsc__dots">
+        <button class="qsc__dot is-active" data-index="0" aria-label="Image 1"></button>
+        <button class="qsc__dot" data-index="1" aria-label="Image 2"></button>
+        <button class="qsc__dot" data-index="2" aria-label="Image 3"></button>
+        <button class="qsc__dot" data-index="3" aria-label="Image 4"></button>
+        <button class="qsc__dot" data-index="4" aria-label="Image 5"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="qui-som-miro">
+    <img class="qui-som-miro__img" src="/assets/img/qui-som/miro-tribute.svg" alt="Tribute illustration for Joan Miró">
+    <div class="qui-som-miro__text">
+      <h2>Why Joan Miró?</h2>
+      <p>Our school carries the name of one of Catalonia's most universal artists. Like him, we share a wish to look at the world with curiosity and to grow while staying true to our own roots.</p>
+    </div>
+  </div>
+
+  <div class="qui-som-director">
+    <img class="qui-som-director__photo" src="/assets/img/qui-som/director-avatar-placeholder.svg" alt="Headteacher's photo (pending)">
+    <div class="qui-som-director__content">
+      <blockquote class="qui-som-director__quote">"Write the headteacher's real quote here."</blockquote>
+      <p class="qui-som-director__name">[Full name] · Headteacher, Institut Joan Miró</p>
+      <div class="qui-som-director__audio">
+        <audio controls preload="none" src="/assets/audio/directora-cita-placeholder.wav"></audio>
+        <p class="qui-som-director__audio-note">Audio version of the quote (recording pending).</p>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="tmiro">
+  <title id="tmiro">Il·lustració original d'homenatge a Joan Miró (no és una reproducció d'obra ni fotografia real)</title>
+  <rect width="400" height="400" fill="#FAFAFD"/>
+  <circle cx="200" cy="200" r="150" fill="#1C0CBC" opacity="0.05"/>
+  <!-- bust silhouette -->
+  <path d="M120 340 c 4 -70 34 -108 80 -108 c 46 0 76 38 80 108 z" fill="#1C0CBC"/>
+  <!-- head -->
+  <circle cx="200" cy="150" r="58" fill="#1C0CBC"/>
+  <!-- beret -->
+  <path d="M148 118 a 58 40 0 1 1 104 0 q -52 -22 -104 0 z" fill="#E8600C"/>
+  <circle cx="252" cy="104" r="7" fill="#E8600C"/>
+  <!-- simple face accents (abstract, non-representational) -->
+  <circle cx="182" cy="152" r="4" fill="#FAFAFD"/>
+  <circle cx="220" cy="152" r="4" fill="#FAFAFD"/>
+  <path d="M180 178 q 20 14 40 0" stroke="#FAFAFD" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <!-- Miró-esque stars around the tribute -->
+  <g fill="#E8600C" opacity="0.7">
+    <path d="M80 90 l4 10 10 2 -8 7 2 11 -8 -6 -9 6 2 -11 -8 -7 10 -2 z"/>
+    <path d="M320 260 l3 8 8 2 -6 5 1 8 -6 -4 -7 4 1 -8 -6 -5 8 -2 z"/>
+  </g>
+</svg>

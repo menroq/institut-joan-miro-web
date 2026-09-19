@@ -1,0 +1,342 @@
+---
+layout: base.njk
+title: Quiénes somos — Institut Joan Miró
+permalink: "es/qui-som.html"
+lang: es
+slug: qui-som.html
+pageStyles: |
+
+  /* ============ PÁGINA QUIÉNES SOMOS ============ */
+  .page-title{
+    background: #FAFAFD;
+    border-bottom: 1px solid var(--color-border);
+    padding: 34px clamp(16px, 4vw, 48px) 30px;
+  }
+  .page-title h1{
+    margin: 0;
+    font-size: 26px;
+    color: var(--color-blue);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .qui-som-wrap{
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px clamp(16px, 4vw, 48px) 70px;
+  }
+
+  /* --- Bloque 1: texto + carrusel --- */
+  .qui-som-intro{
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(28px, 5vw, 56px);
+    align-items: center;
+    margin-bottom: 64px;
+  }
+  .qui-som-text p{
+    margin: 0 0 18px;
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--color-blue);
+  }
+  .qui-som-text p:last-child{ margin-bottom: 0; }
+  .qui-som-text .kw{
+    color: var(--color-orange);
+    font-weight: 700;
+  }
+
+  .qsc{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    box-shadow: 0 10px 26px rgba(28,12,188,0.08);
+    background: #FAFAFD;
+  }
+  .qsc__track{ position: relative; width: 100%; height: 100%; }
+  .qsc__slide{
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+  }
+  .qsc__slide.is-active{ opacity: 1; pointer-events: auto; }
+  .qsc__slide img{
+    width: 100%;
+    height: calc(100% - 40px);
+    object-fit: cover;
+    display: block;
+  }
+  .qsc__slide figcaption{
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--color-blue);
+    background: #ffffff;
+  }
+  .qsc__arrow{
+    position: absolute;
+    top: calc(50% - 20px);
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.9);
+    color: var(--color-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  .qsc__arrow:hover, .qsc__arrow:focus-visible{ background: var(--color-blue); color: #fff; }
+  .qsc__arrow svg{ width: 20px; height: 20px; }
+  .qsc__arrow--prev{ left: 12px; }
+  .qsc__arrow--next{ right: 12px; }
+  .qsc__dots{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 48px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    z-index: 5;
+  }
+  .qsc__dot{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background: rgba(255,255,255,0.65);
+    cursor: pointer;
+  }
+  .qsc__dot.is-active{ background: var(--color-orange); }
+
+  @media (max-width: 880px){
+    .qui-som-intro{ grid-template-columns: 1fr; }
+  }
+
+  /* --- Bloque 2: homenaje a Joan Miró --- */
+  .qui-som-miro{
+    display: flex;
+    align-items: center;
+    gap: clamp(24px, 5vw, 48px);
+    background: #FAFAFD;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: clamp(20px, 4vw, 36px);
+    margin-bottom: 64px;
+  }
+  .qui-som-miro__img{
+    width: clamp(110px, 16vw, 150px);
+    height: clamp(110px, 16vw, 150px);
+    flex: none;
+  }
+  .qui-som-miro__text h2{
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: var(--color-blue);
+    font-weight: 800;
+  }
+  .qui-som-miro__text p{
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--color-blue);
+  }
+  @media (max-width: 640px){
+    .qui-som-miro{ flex-direction: column; text-align: center; }
+  }
+
+  /* --- Bloque 3: cita de la dirección --- */
+  .qui-som-director{
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(20px, 4vw, 40px);
+  }
+  .qui-som-director__photo{
+    width: clamp(120px, 16vw, 160px);
+    height: clamp(120px, 16vw, 160px);
+    border-radius: 50%;
+    flex: none;
+    box-shadow: 0 10px 26px rgba(28,12,188,0.12);
+  }
+  .qui-som-director__quote{
+    margin: 0 0 14px;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--color-blue);
+    font-weight: 600;
+    font-style: italic;
+  }
+  .qui-som-director__name{
+    margin: 0 0 18px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--color-orange);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  .qui-som-director__audio{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .qui-som-director__audio audio{ max-width: 320px; width: 100%; }
+  .qui-som-director__audio-note{
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+  @media (max-width: 640px){
+    .qui-som-director{ flex-direction: column; align-items: center; text-align: center; }
+    .qui-som-director__audio{ justify-content: center; }
+  }
+pageScript: |
+
+    (function(){
+      var track = document.getElementById('quiSomTrack');
+      var carousel = document.getElementById('quiSomCarousel');
+      if (!carousel || !track) return;
+      var slides = Array.prototype.slice.call(track.querySelectorAll('.qsc__slide'));
+      var dots = Array.prototype.slice.call(carousel.querySelectorAll('.qsc__dot'));
+      var prevBtn = document.getElementById('quiSomPrev');
+      var nextBtn = document.getElementById('quiSomNext');
+      var current = 0;
+      var timer = null;
+
+      function goTo(index){
+        if (!slides.length) return;
+        slides[current].classList.remove('is-active');
+        if (dots[current]) dots[current].classList.remove('is-active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('is-active');
+        if (dots[current]) dots[current].classList.add('is-active');
+      }
+      function next(){ goTo(current + 1); }
+      function prev(){ goTo(current - 1); }
+
+      function startAutoplay(){
+        var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) return;
+        stopAutoplay();
+        timer = setInterval(next, 5000);
+      }
+      function stopAutoplay(){ if (timer){ clearInterval(timer); timer = null; } }
+
+      if (prevBtn) prevBtn.addEventListener('click', function(){ prev(); startAutoplay(); });
+      if (nextBtn) nextBtn.addEventListener('click', function(){ next(); startAutoplay(); });
+      dots.forEach(function(dot, i){
+        dot.addEventListener('click', function(){ goTo(i); startAutoplay(); });
+      });
+      carousel.addEventListener('mouseenter', stopAutoplay);
+      carousel.addEventListener('mouseleave', startAutoplay);
+      carousel.addEventListener('focusin', stopAutoplay);
+      carousel.addEventListener('focusout', startAutoplay);
+
+      startAutoplay();
+    })();
+---
+<!--
+  TODO (Romà) antes de publicar esta página:
+  - Las 5 imágenes del carrusel (src/assets/img/qui-som/carousel-*.svg) son ilustraciones
+    propias (gratuitas y libres de derechos), pensadas como placeholder. Sustituirlas por
+    fotografías reales del centro cuando estén disponibles.
+  - La foto de la dirección (director-avatar-placeholder.svg) es un placeholder abstracto,
+    no una fotografía real ni de una persona concreta. Sustituir por la foto real.
+  - La cita de la dirección es un texto de ejemplo: hay que escribir la cita real.
+  - El audio (directora-cita-placeholder.wav) es un archivo silencioso de un segundo, solo
+    para no romper el reproductor. Hay que grabar el audio real y sustituir el archivo (se
+    puede mantener el mismo nombre o actualizar la ruta de la etiqueta <audio>).
+  - miro-tribute.svg es una ilustración original de homenaje (no reproduce ninguna obra ni
+    fotografía de Joan Miró, cuyos derechos aún están vigentes).
+-->
+<div class="page-title">
+  <h1>Quiénes somos</h1>
+</div>
+
+<div class="qui-som-wrap">
+
+  <div class="qui-som-intro">
+    <div class="qui-som-text">
+      <p>Hace <span class="kw">más de 30 años</span> que el Institut Joan Miró acompaña al alumnado de Cornellà de Llobregat en la ESO y el Bachillerato. Llevamos el nombre de uno de los grandes artistas catalanes y, como él, creemos en la <span class="kw">libertad de seguir un camino propio</span> sin perder nunca la raíz.</p>
+
+      <p>Somos un centro con un profesorado de larga trayectoria —una media de unos <span class="kw">25 años de experiencia docente</span>— que trabaja en equipo, coordinado por tutores y tutoras, para hacer un <span class="kw">seguimiento cercano</span> de cada alumno, tanto a nivel académico como personal.</p>
+
+      <p>Creemos en el esfuerzo y en el acompañamiento. Por eso ofrecemos clases de refuerzo y orientamos cada actividad para que quien sale de nuestras aulas lo haga con una <span class="kw">preparación sólida, académica y humana</span>.</p>
+    </div>
+
+    <div class="qsc" id="quiSomCarousel">
+      <div class="qsc__track" id="quiSomTrack">
+        <figure class="qsc__slide is-active">
+          <img src="/assets/img/qui-som/carousel-aules.svg" alt="Ilustración de aulas y aprendizaje">
+          <figcaption>Aulas y aprendizaje</figcaption>
+        </figure>
+        <figure class="qsc__slide">
+          <img src="/assets/img/qui-som/carousel-biblioteca.svg" alt="Ilustración de lectura y conocimiento">
+          <figcaption>Lectura y conocimiento</figcaption>
+        </figure>
+        <figure class="qsc__slide">
+          <img src="/assets/img/qui-som/carousel-pati.svg" alt="Ilustración de vida en el patio">
+          <figcaption>Vida en el patio</figcaption>
+        </figure>
+        <figure class="qsc__slide">
+          <img src="/assets/img/qui-som/carousel-tecnologia.svg" alt="Ilustración de tecnología y laboratorios">
+          <figcaption>Tecnología y laboratorios</figcaption>
+        </figure>
+        <figure class="qsc__slide">
+          <img src="/assets/img/qui-som/carousel-comunitat.svg" alt="Ilustración de comunidad y equipo">
+          <figcaption>Comunidad y equipo</figcaption>
+        </figure>
+      </div>
+      <button class="qsc__arrow qsc__arrow--prev" id="quiSomPrev" aria-label="Imagen anterior">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="qsc__arrow qsc__arrow--next" id="quiSomNext" aria-label="Imagen siguiente">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="qsc__dots">
+        <button class="qsc__dot is-active" data-index="0" aria-label="Imagen 1"></button>
+        <button class="qsc__dot" data-index="1" aria-label="Imagen 2"></button>
+        <button class="qsc__dot" data-index="2" aria-label="Imagen 3"></button>
+        <button class="qsc__dot" data-index="3" aria-label="Imagen 4"></button>
+        <button class="qsc__dot" data-index="4" aria-label="Imagen 5"></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="qui-som-miro">
+    <img class="qui-som-miro__img" src="/assets/img/qui-som/miro-tribute.svg" alt="Ilustración de homenaje a Joan Miró">
+    <div class="qui-som-miro__text">
+      <h2>¿Por qué Joan Miró?</h2>
+      <p>Nuestro centro lleva el nombre de uno de los artistas más universales de Cataluña. Con él compartimos la voluntad de mirar el mundo con curiosidad y de crecer sin dejar nunca de ser fieles a nuestras raíces.</p>
+    </div>
+  </div>
+
+  <div class="qui-som-director">
+    <img class="qui-som-director__photo" src="/assets/img/qui-som/director-avatar-placeholder.svg" alt="Fotografía de la dirección (pendiente de publicar)">
+    <div class="qui-som-director__content">
+      <blockquote class="qui-som-director__quote">«Escriba aquí la cita textual de la dirección.»</blockquote>
+      <p class="qui-som-director__name">[Nombre y apellidos] · Dirección del Institut Joan Miró</p>
+      <div class="qui-som-director__audio">
+        <audio controls preload="none" src="/assets/audio/directora-cita-placeholder.wav"></audio>
+        <p class="qui-som-director__audio-note">Versión en audio de la cita (pendiente de grabar).</p>
+      </div>
+    </div>
+  </div>
+
+</div>

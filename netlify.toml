@@ -5,3 +5,20 @@
   command = "npx eleventy"
   publish = "_site"
   functions = "netlify/functions"
+
+# La pàgina "Història" s'ha renombrat a "Qui som" (2026-09-19).
+# Redirects perquè els enllaços/marcadors antics no es trenquin.
+[[redirects]]
+  from = "/historia.html"
+  to = "/qui-som.html"
+  status = 301
+
+[[redirects]]
+  from = "/es/historia.html"
+  to = "/es/qui-som.html"
+  status = 301
+
+[[redirects]]
+  from = "/en/historia.html"
+  to = "/en/qui-som.html"
+  status = 301

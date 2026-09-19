@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-labelledby="t3">
+  <title id="t3">Il·lustració abstracta — Vida al pati</title>
+  <rect width="800" height="600" fill="#FAFAFD"/>
+  <rect x="0" y="420" width="800" height="180" fill="#1C0CBC" opacity="0.05"/>
+  <circle cx="400" cy="220" r="70" fill="#E8600C"/>
+  <path d="M400 150 a70 70 0 0 1 0 140" fill="#ffffff" opacity="0.12"/>
+  <path d="M330 220 h140 M400 150 v140 M352 172 l96 96 M448 172 l-96 96" stroke="#FAFAFD" stroke-width="3" opacity="0.5"/>
+  <g stroke="#1C0CBC" stroke-width="4" fill="none" opacity="0.4">
+    <path d="M180 480 q 40 -60 80 0"/>
+    <path d="M280 480 q 40 -60 80 0"/>
+  </g>
+  <g stroke="#E8600C" stroke-width="4" fill="none" opacity="0.4">
+    <path d="M440 480 q 40 -60 80 0"/>
+    <path d="M540 480 q 40 -60 80 0"/>
+  </g>
+  <circle cx="120" cy="160" r="14" fill="#9096A0" opacity="0.5"/>
+  <circle cx="680" cy="140" r="10" fill="#1C0CBC" opacity="0.4"/>
+  <circle cx="640" cy="300" r="18" fill="#E8600C" opacity="0.25"/>
+</svg>
