@@ -109,7 +109,7 @@ pageStyles: |
     /* --- Secció 2: Destacats --- */
     .home-destacats{
       padding: 64px clamp(16px, 4vw, 48px);
-      max-width: 900px;
+      max-width: 1220px;
       margin: 0 auto;
     }
     .home-destacats h2,
@@ -176,12 +176,18 @@ pageStyles: |
       max-width: 1220px;
       margin: 0 auto;
     }
+    /* Distribuïdes sempre en una sola fila horitzontal (una al costat
+       de l'altra) en pantalles normals; només passen a columna en
+       mòbils molt estrets (vegeu media query més avall). */
     .noticies-grid{
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 28px;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 22px;
+      align-items: stretch;
     }
     .noticia-card{
+      flex: 1 1 0;
+      min-width: 0;
       border: 1px solid var(--color-border);
       border-radius: 8px;
       overflow: hidden;
@@ -290,13 +296,20 @@ pageStyles: |
       background: var(--color-orange);
     }
 
+    @media (max-width: 900px){
+      /* Entre mòbil i escriptori: 2+2 en lloc d'esprémer 4 targetes
+         massa estretes en una sola fila. */
+      .noticies-grid{ flex-wrap: wrap; }
+      .noticies-grid .noticia-card{ flex: 1 1 calc(50% - 11px); min-width: 240px; }
+    }
     @media (max-width: 640px){
       .hero-carousel{ height: 260px; }
       .hero-carousel__box{ padding: 18px 22px; max-width: calc(100% - 32px); bottom: 54px; }
       .hero-carousel__arrow{ width: 36px; height: 36px; }
       .home-cta h2{ font-size: 18px; }
       .destacats-grid{ grid-template-columns: 1fr; }
-      .noticies-grid{ grid-template-columns: 1fr; }
+      .noticies-grid{ flex-direction: column; }
+      .noticies-grid .noticia-card{ flex: 1 1 auto; }
     }
 pageScript: |
 
