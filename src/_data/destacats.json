@@ -18,19 +18,19 @@
   },
   {
     "ca": {
-      "date": "8 de setembre de 2026",
-      "title": "Alerta INUNCAT — El centre estarà tancat dimecres 9 de setembre",
-      "text": "<p>Oficialment ens han comunicat que s'ha activat l'alerta INUNCAT davant del risc de fortes pluges per demà dia 9 de setembre, amb afectacions al Baix Llobregat.</p><p>Com a conseqüència d'aquesta alerta, se suspèn l'activitat lectiva a tots els centres educatius de la nostra comarca, i es recomana evitar els desplaçaments que no siguin imprescindibles. Per aquest motiu, demà dia 9 de setembre el nostre centre educatiu estarà tancat.</p><p>Les activitats previstes per demà es realitzaran dijous, mantenint l'horari ja establert d'entrades al centre per a cada nivell.</p>"
+      "date": "7 d'octubre de 2026",
+      "title": "Reunió de famílies",
+      "text": "<p>Dimecres 7 d'octubre tindran lloc les reunions de famílies, amb el següent horari per curs:</p><ul><li>17:30 — 3r d'ESO, 4t d'ESO, 1r Batxillerat</li><li>18:30 — 1r d'ESO, 2n d'ESO, 2n Batxillerat</li></ul>"
     },
     "es": {
-      "date": "8 de septiembre de 2026",
-      "title": "Alerta INUNCAT — El centro permanecerá cerrado el miércoles 9 de septiembre",
-      "text": "<p>Oficialmente nos han comunicado que se ha activado la alerta INUNCAT ante el riesgo de fuertes lluvias para mañana día 9 de septiembre, con afectaciones en el Baix Llobregat.</p><p>Como consecuencia de esta alerta, se suspende la actividad lectiva en todos los centros educativos de nuestra comarca, recomendando evitar los desplazamientos que no sean imprescindibles. Por ese motivo, mañana día 9 de septiembre nuestro centro educativo estará cerrado.</p><p>Las actividades previstas para mañana se realizarán el jueves, manteniendo el horario ya establecido de entradas en el centro para cada nivel.</p>"
+      "date": "7 de octubre de 2026",
+      "title": "Reunión de familias",
+      "text": "<p>El miércoles 7 de octubre tendrán lugar las reuniones de familias, con el siguiente horario por curso:</p><ul><li>17:30 — 3º ESO, 4º ESO, 1º Bachillerato</li><li>18:30 — 1º ESO, 2º ESO, 2º Bachillerato</li></ul>"
     },
     "en": {
-      "date": "September 8, 2026",
-      "title": "INUNCAT Alert — The center will be closed on Wednesday, September 9",
-      "text": "<p>We have been officially notified that the INUNCAT alert has been activated due to the risk of heavy rainfall tomorrow, September 9, affecting the Baix Llobregat area.</p><p>As a result of this alert, all educational activities at schools in our district are suspended, and it is recommended to avoid non-essential travel. Therefore, our school will be closed tomorrow, September 9.</p><p>Activities scheduled for tomorrow will take place on Thursday, maintaining the established arrival times for each grade level.</p>"
+      "date": "October 7, 2026",
+      "title": "Families meeting",
+      "text": "<p>On Wednesday, October 7, the families' meetings will take place, with the following schedule by year group:</p><ul><li>5:30 pm — 3rd ESO, 4th ESO, 1st Batxillerat</li><li>6:30 pm — 1st ESO, 2nd ESO, 2nd Batxillerat</li></ul>"
     }
   }
 ]
