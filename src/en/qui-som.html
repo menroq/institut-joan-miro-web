@@ -139,10 +139,29 @@ pageStyles: |
     padding: clamp(20px, 4vw, 36px);
     margin-bottom: 64px;
   }
-  .qui-som-miro__img{
-    width: clamp(110px, 16vw, 150px);
-    height: clamp(110px, 16vw, 150px);
+  .qui-som-miro__figure{
     flex: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .qui-som-miro__img{
+    width: clamp(160px, 22vw, 220px);
+    height: auto;
+    aspect-ratio: 546 / 420;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    display: block;
+  }
+  .qui-som-miro__credit{
+    font-size: 11px;
+    color: var(--color-gray-icon);
+    text-align: center;
+    max-width: 220px;
+    line-height: 1.4;
   }
   .qui-som-miro__text h2{
     margin: 0 0 10px;
@@ -258,12 +277,14 @@ pageScript: |
     the school once available.
   - The headteacher's photo (director-avatar-placeholder.svg) is an abstract placeholder,
     not a real photo of an actual person. Replace with the real photo.
-  - The quote is example text: write the real quote.
+  - The quote is example text: write the real quote (the name, Gemma Gamarra, is already
+    in place).
   - The audio file (directora-cita-placeholder.wav) is a silent one-second file, only so
     the player doesn't break. Record the real audio and replace the file (keep the same
     file name or update the <audio> tag's path).
-  - miro-tribute.svg is an original tribute illustration (it does not reproduce any
-    artwork or photograph of Joan Miró, whose rights are still in force).
+  - joan-miro-retrat.jpg: a real photographic portrait of Joan Miró (Carl Van Vechten,
+    Library of Congress), public domain since 1986. Replaces the miro-tribute.svg
+    illustration (kept in the repo in case it's needed again).
 -->
 <div class="page-title">
   <h1>Who we are</h1>
@@ -320,7 +341,10 @@ pageScript: |
   </div>
 
   <div class="qui-som-miro">
-    <img class="qui-som-miro__img" src="/assets/img/qui-som/miro-tribute.svg" alt="Tribute illustration for Joan Miró">
+    <figure class="qui-som-miro__figure">
+      <img class="qui-som-miro__img" src="/assets/img/qui-som/joan-miro-retrat.jpg" alt="Photographic portrait of Joan Miró">
+      <figcaption class="qui-som-miro__credit">Photo: Carl Van Vechten · Library of Congress (public domain)</figcaption>
+    </figure>
     <div class="qui-som-miro__text">
       <h2>Joan Miró, the painter</h2>
       <p>Our school carries the name of one of Catalonia's most universal artists. Like him, we share a wish to look at the world with curiosity and to grow while staying true to our own roots.</p>

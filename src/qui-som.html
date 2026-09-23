@@ -139,10 +139,29 @@ pageStyles: |
     padding: clamp(20px, 4vw, 36px);
     margin-bottom: 64px;
   }
-  .qui-som-miro__img{
-    width: clamp(110px, 16vw, 150px);
-    height: clamp(110px, 16vw, 150px);
+  .qui-som-miro__figure{
     flex: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .qui-som-miro__img{
+    width: clamp(160px, 22vw, 220px);
+    height: auto;
+    aspect-ratio: 546 / 420;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid var(--color-border);
+    display: block;
+  }
+  .qui-som-miro__credit{
+    font-size: 11px;
+    color: var(--color-gray-icon);
+    text-align: center;
+    max-width: 220px;
+    line-height: 1.4;
   }
   .qui-som-miro__text h2{
     margin: 0 0 10px;
@@ -258,12 +277,15 @@ pageScript: |
     fotografies reals del centre quan estiguin disponibles.
   - La foto de la direcció (director-avatar-placeholder.svg) és un placeholder abstracte,
     no una fotografia real ni d'una persona concreta. Substituir per la foto real.
-  - La cita de la direcció és un text d'exemple: cal escriure la cita real.
+  - La cita de la direcció és un text d'exemple: cal escriure la cita real (el nom, Gemma
+    Gamarra, ja hi és).
   - L'àudio (directora-cita-placeholder.wav) és un fitxer silenciós d'un segon, només per
     no trencar el reproductor. Cal gravar l'àudio real i substituir el fitxer (es pot
     mantenir el mateix nom o actualitzar la ruta de l'etiqueta <audio>).
-  - miro-tribute.svg és una il·lustració original d'homenatge (no reprodueix cap obra ni
-    fotografia de Joan Miró, els drets de les quals encara estan vigents).
+  - joan-miro-retrat.jpg: retrat fotogràfic real de Joan Miró (Carl Van Vechten, Library of
+    Congress), de domini públic des de 1986. Substitueix la il·lustració miro-tribute.svg
+    (que es manté al repositori per si es vol tornar a fer servir). Es manté el crèdit al
+    peu de la imatge per cortesia, encara que ja no sigui obligatori legalment.
 -->
 <div class="page-title">
   <h1>Qui som</h1>
@@ -320,7 +342,10 @@ pageScript: |
   </div>
 
   <div class="qui-som-miro">
-    <img class="qui-som-miro__img" src="/assets/img/qui-som/miro-tribute.svg" alt="Il·lustració d'homenatge a Joan Miró">
+    <figure class="qui-som-miro__figure">
+      <img class="qui-som-miro__img" src="/assets/img/qui-som/joan-miro-retrat.jpg" alt="Retrat fotogràfic de Joan Miró">
+      <figcaption class="qui-som-miro__credit">Fotografia: Carl Van Vechten · Library of Congress (domini públic)</figcaption>
+    </figure>
     <div class="qui-som-miro__text">
       <h2>Joan Miró, el pintor</h2>
       <p>El nostre centre porta el nom d'un dels artistes més universals de Catalunya. Amb ell compartim la voluntat de mirar el món amb curiositat i de créixer sense deixar mai de ser fidels a les pròpies arrels.</p>
