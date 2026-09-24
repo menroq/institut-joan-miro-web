@@ -260,6 +260,33 @@ pageStyles: |
   @media (max-width: 520px){
     .contact-info-grid{ grid-template-columns: 1fr; }
   }
+    /* --- Mapa amb càrrega sota demanda (sense cookies de Google fins que es fa clic) --- */
+    .map-consent{
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 24px;
+      text-align: center;
+      background: #FAFAFD;
+      color: var(--color-blue);
+    }
+    .map-consent p{ margin: 0; font-size: 13px; line-height: 1.6; max-width: 420px; }
+    .map-consent a{ color: var(--color-blue); }
+    .map-consent__btn{
+      background: var(--color-blue);
+      color: #fff;
+      border: 0;
+      border-radius: 4px;
+      padding: 11px 22px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .map-consent__btn:hover,
+    .map-consent__btn:focus-visible{ background: var(--color-orange); }
 pageScript: |
 
   // ============ CAPÇALERA: petit moviment vertical de la caixa en fer scroll ============
@@ -355,13 +382,28 @@ pageScript: |
         });
     });
   })();
+
+    // ============ MAPA: Google Maps només es carrega quan l'usuari fa clic ============
+    (function(){
+      var btn = document.getElementById('mapConsentBtn');
+      if (!btn) return;
+      btn.addEventListener('click', function(){
+        var frame = btn.closest('.contact-map-frame');
+        var iframe = document.createElement('iframe');
+        iframe.src = btn.getAttribute('data-src');
+        iframe.title = btn.getAttribute('data-title');
+        iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+        frame.innerHTML = '';
+        frame.appendChild(iframe);
+      });
+    })();
 ---
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
   <!-- ============ CAPÇALERA AMB IMATGE ============ -->
   <div class="contact-hero" id="contactHero">
-    <img src="https://images.unsplash.com/photo-1556168308-629ef2891e9d?fm=jpg&q=80&w=2200&auto=format&fit=crop" alt="" role="presentation">
+    <img src="/assets/img/inici/inici-3-vestibul-2400.jpg" srcset="/assets/img/inici/inici-3-vestibul-1600.jpg 1600w, /assets/img/inici/inici-3-vestibul-2400.jpg 2400w" sizes="100vw" width="2400" height="900" fetchpriority="high" alt="" role="presentation">
     <div class="contact-hero__box" id="heroBox">
       <h1 class="hero-title">Contact</h1>
       <p class="hero-subtitle">Get in touch with us</p>
@@ -488,11 +530,13 @@ pageScript: |
     <section class="contact-map-section" id="mapa">
       <h2>How to find us</h2>
       <div class="contact-map-frame">
-        <iframe
-          src="https://www.google.com/maps?q=41.3485064,2.0704273&hl=en&z=16&output=embed"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Location of Institut Joan Miró"></iframe>
+        <div class="map-consent">
+          <button type="button" class="map-consent__btn" id="mapConsentBtn"
+            data-src="https://www.google.com/maps?q=41.3485064,2.0704273&hl=en&z=16&output=embed"
+            data-title="Location of Institut Joan Miró">Show map</button>
+          <p>Clicking will load Google Maps, which may set Google cookies. More information in the <a href="/en/politica-cookies.html">Cookie policy</a>.</p>
+          <p><a href="https://www.google.com/maps/search/?api=1&amp;query=41.3485064,2.0704273" target="_blank" rel="noopener">Open in Google Maps ↗</a></p>
+        </div>
       </div>
     </section>
 
