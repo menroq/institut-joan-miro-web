@@ -106,15 +106,25 @@ pageStyles: |
       transform: scale(1.25);
     }
 
-    /* --- Secció 2: Destacats --- */
-    .home-destacats{
+    /* --- Estructura comuna de les seccions (2 a 5) ---
+       Cada secció ocupa tota l'amplada amb el seu color de fons;
+       el contingut va dins .home-section__inner, centrat i amb amplada màxima. */
+    .home-section{
       padding: 64px clamp(16px, 4vw, 48px);
+    }
+    .home-section--bluegray{ background: #E6EBF2; }
+    .home-section--gray{ background: #FAFAFD; }
+    .home-section__inner{
       max-width: 1220px;
       margin: 0 auto;
     }
-    .home-destacats h2,
-    .home-noticies h2{
-      margin: 0 0 28px;
+
+    /* Títol de secció amb una línia horitzontal a cada costat */
+    .home-title{
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin: 0 0 36px;
       font-size: 22px;
       font-weight: 800;
       text-transform: uppercase;
@@ -122,6 +132,15 @@ pageStyles: |
       color: var(--color-blue);
       text-align: center;
     }
+    .home-title::before,
+    .home-title::after{
+      content: "";
+      flex: 1 1 0;
+      height: 1px;
+      background: rgba(28, 12, 188, 0.28);
+    }
+
+    /* --- Secció 2: Destacats --- */
     .destacats-grid{
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -170,12 +189,71 @@ pageStyles: |
       padding: 30px 0;
     }
 
-    /* --- Secció 3: Notícies --- */
-    .home-noticies{
-      padding: 0 clamp(16px, 4vw, 48px) 56px;
-      max-width: 1220px;
-      margin: 0 auto;
+    /* --- Secció 3: Estudis --- */
+    /* Dues caixes grans (ESO i Batxillerat) que ocupen tota l'amplada.
+       De moment no són enllaços. */
+    .home-estudis{
+      padding-left: 0;
+      padding-right: 0;
     }
+    .home-estudis .home-title{
+      max-width: 1220px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 clamp(16px, 4vw, 48px);
+      box-sizing: content-box;
+    }
+    .estudis-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .estudis-box{
+      position: relative;
+      min-height: clamp(280px, 34vw, 440px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 40px 24px;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .estudis-box img{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+    .estudis-box::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: rgba(28, 12, 188, 0.72);
+    }
+    .estudis-box--batx::after{ background: rgba(16, 8, 110, 0.78); }
+    .estudis-box__title{
+      margin: 0;
+      font-size: clamp(34px, 5vw, 60px);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+    .estudis-box__subtitle{
+      margin: 0;
+      font-size: clamp(14px, 1.4vw, 17px);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      opacity: 0.92;
+    }
+
+    /* --- Secció 4: Notícies --- */
     /* Distribuïdes sempre en una sola fila horitzontal (una al costat
        de l'altra) en pantalles normals; només passen a columna en
        mòbils molt estrets (vegeu media query més avall). */
@@ -193,6 +271,7 @@ pageStyles: |
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      background: #fff;
       transition: box-shadow 0.18s ease, transform 0.18s ease;
     }
     .noticia-card:hover{
@@ -262,20 +341,9 @@ pageStyles: |
       padding: 30px 0;
     }
 
-    /* --- Secció 4: Contacta amb el centre --- */
+    /* --- Secció 5: Contacta amb el centre --- */
     .home-cta{
-      background: #FAFAFD;
-      border-top: 1px solid var(--color-border);
-      padding: 56px clamp(16px, 4vw, 48px);
       text-align: center;
-    }
-    .home-cta h2{
-      margin: 0 0 22px;
-      font-size: 22px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      color: var(--color-blue);
     }
     .home-cta__button{
       display: inline-block;
@@ -306,7 +374,8 @@ pageStyles: |
       .hero-carousel{ height: 260px; }
       .hero-carousel__box{ padding: 18px 22px; max-width: calc(100% - 32px); bottom: 54px; }
       .hero-carousel__arrow{ width: 36px; height: 36px; }
-      .home-cta h2{ font-size: 18px; }
+      .home-title{ font-size: 18px; gap: 14px; }
+      .estudis-grid{ grid-template-columns: 1fr; }
       .destacats-grid{ grid-template-columns: 1fr; }
       .noticies-grid{ flex-direction: column; }
       .noticies-grid .noticia-card{ flex: 1 1 auto; }
@@ -390,7 +459,7 @@ pageScript: |
         });
     })();
 
-    // ============ NOTÍCIES (secció 3) — es carreguen des de Sanity ============
+    // ============ NOTÍCIES (secció 4) — es carreguen des de Sanity ============
     (function(){
       var grid = document.getElementById('homeNoticiesGrid');
       if (!grid) return;
@@ -480,25 +549,46 @@ pageScript: |
   </section>
 
   <!-- ============ SECCIÓ 2: DESTACATS ============ -->
-  <section class="home-destacats">
-    <h2>Destacats</h2>
-    <div class="destacats-grid" id="homeDestacatsGrid">
-      <p class="destacats-empty">Carregant...</p>
+  <section class="home-section home-section--bluegray home-destacats">
+    <div class="home-section__inner">
+      <h2 class="home-title">Destacats</h2>
+      <div class="destacats-grid" id="homeDestacatsGrid">
+        <p class="destacats-empty">Carregant...</p>
+      </div>
     </div>
   </section>
 
-  <!-- ============ SECCIÓ 3: NOTÍCIES ============ -->
-  <section class="home-noticies">
-    <h2>Notícies</h2>
-    <div class="noticies-grid" id="homeNoticiesGrid">
-      <p class="noticies-loading-home">Carregant notícies...</p>
+  <!-- ============ SECCIÓ 3: ESTUDIS ============ -->
+  <section class="home-section home-section--gray home-estudis">
+    <h2 class="home-title">Estudis</h2>
+    <div class="estudis-grid">
+      <div class="estudis-box estudis-box--eso">
+        <img src="/assets/img/inici/inici-2-passadis-1600.jpg" width="1600" height="600" loading="lazy" alt="" role="presentation">
+        <h3 class="estudis-box__title">ESO</h3>
+        <p class="estudis-box__subtitle">Educació Secundària Obligatòria · 1r a 4t</p>
+      </div>
+      <div class="estudis-box estudis-box--batx">
+        <img src="/assets/img/inici/inici-4-edifici-1600.jpg" width="1600" height="600" loading="lazy" alt="" role="presentation">
+        <h3 class="estudis-box__title">Batxillerat</h3>
+        <p class="estudis-box__subtitle">1r i 2n de Batxillerat</p>
+      </div>
     </div>
   </section>
 
-  <!-- ============ SECCIÓ 4: CONTACTA AMB EL CENTRE ============ -->
-  <section class="home-cta">
-    <h2>Contacta amb el centre</h2>
-    <a href="contacte.html" class="home-cta__button">Contacta</a>
+  <!-- ============ SECCIÓ 4: NOTÍCIES ============ -->
+  <section class="home-section home-section--bluegray home-noticies">
+    <div class="home-section__inner">
+      <h2 class="home-title">Notícies</h2>
+      <div class="noticies-grid" id="homeNoticiesGrid">
+        <p class="noticies-loading-home">Carregant notícies...</p>
+      </div>
+    </div>
   </section>
 
-
+  <!-- ============ SECCIÓ 5: CONTACTA AMB EL CENTRE ============ -->
+  <section class="home-section home-section--gray home-cta">
+    <div class="home-section__inner">
+      <h2 class="home-title">Contacta amb el centre</h2>
+      <a href="contacte.html" class="home-cta__button">Contacta</a>
+    </div>
+  </section>

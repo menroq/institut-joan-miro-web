@@ -6,432 +6,508 @@ lang: en
 slug: index.html
 pageStyles: |
 
-  /* ============ PÀGINA PRINCIPAL ============ */
+    /* ============ PÀGINA PRINCIPAL ============ */
 
-  /* --- Secció 1: Carrusel d'imatges --- */
-  .hero-carousel{
-    position: relative;
-    width: 100%;
-    height: 360px;
-    overflow: hidden;
-    background: var(--color-blue);
-  }
-  .hero-carousel__slide{
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.9s ease;
-    pointer-events: none;
-  }
-  .hero-carousel__slide.is-active{
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .hero-carousel__slide img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter: brightness(0.85);
-  }
+    /* --- Secció 1: Carrusel d'imatges --- */
+    .hero-carousel{
+      position: relative;
+      width: 100%;
+      height: 360px;
+      overflow: hidden;
+      background: var(--color-blue);
+    }
+    .hero-carousel__slide{
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+      pointer-events: none;
+    }
+    .hero-carousel__slide.is-active{
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .hero-carousel__slide img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+    }
 
-  .hero-carousel__box{
-    position: absolute;
-    left: clamp(16px, 5vw, 64px);
-    bottom: clamp(28px, 6vw, 52px);
-    background: rgba(255, 255, 255, 0.70);
-    backdrop-filter: blur(3px);
-    color: var(--color-blue);
-    padding: 22px 32px;
-    border-radius: 4px;
-    max-width: 560px;
-    box-shadow: 0 14px 34px rgba(15, 8, 90, 0.22);
-  }
-  .hero-carousel__box h1{
-    margin: 0;
-    font-size: clamp(22px, 3.4vw, 32px);
-    font-weight: 800;
-    line-height: 1.25;
-    color: var(--color-blue);
-    text-transform: uppercase;
-    letter-spacing: 0.01em;
-  }
+    .hero-carousel__box{
+      position: absolute;
+      left: clamp(16px, 5vw, 64px);
+      bottom: clamp(28px, 6vw, 52px);
+      background: rgba(255, 255, 255, 0.70);
+      backdrop-filter: blur(3px);
+      color: var(--color-blue);
+      padding: 22px 32px;
+      border-radius: 4px;
+      max-width: 560px;
+      box-shadow: 0 14px 34px rgba(15, 8, 90, 0.22);
+    }
+    .hero-carousel__box h1{
+      margin: 0;
+      font-size: clamp(22px, 3.4vw, 32px);
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--color-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+    }
 
-  .hero-carousel__arrow{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255,255,255,0.85);
-    color: var(--color-blue);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 5;
-    transition: background 0.18s ease, color 0.18s ease;
-  }
-  .hero-carousel__arrow:hover,
-  .hero-carousel__arrow:focus-visible{
-    background: var(--color-blue);
-    color: #fff;
-  }
-  .hero-carousel__arrow svg{ width: 20px; height: 20px; }
-  .hero-carousel__arrow--prev{ left: clamp(10px, 2vw, 24px); }
-  .hero-carousel__arrow--next{ right: clamp(10px, 2vw, 24px); }
+    .hero-carousel__arrow{
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.85);
+      color: var(--color-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 5;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+    .hero-carousel__arrow:hover,
+    .hero-carousel__arrow:focus-visible{
+      background: var(--color-blue);
+      color: #fff;
+    }
+    .hero-carousel__arrow svg{ width: 20px; height: 20px; }
+    .hero-carousel__arrow--prev{ left: clamp(10px, 2vw, 24px); }
+    .hero-carousel__arrow--next{ right: clamp(10px, 2vw, 24px); }
 
-  .hero-carousel__dots{
-    position: absolute;
-    right: clamp(16px, 5vw, 64px);
-    bottom: 18px;
-    display: flex;
-    gap: 9px;
-    z-index: 5;
-  }
-  .hero-carousel__dot{
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255,255,255,0.55);
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.18s ease, transform 0.18s ease;
-  }
-  .hero-carousel__dot.is-active{
-    background: #fff;
-    transform: scale(1.25);
-  }
+    .hero-carousel__dots{
+      position: absolute;
+      right: clamp(16px, 5vw, 64px);
+      bottom: 18px;
+      display: flex;
+      gap: 9px;
+      z-index: 5;
+    }
+    .hero-carousel__dot{
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.55);
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+    .hero-carousel__dot.is-active{
+      background: #fff;
+      transform: scale(1.25);
+    }
 
-  /* --- Secció 2: Destacats --- */
-  .home-destacats{
-    padding: 64px clamp(16px, 4vw, 48px);
-    max-width: 1220px;
-    margin: 0 auto;
-  }
-  .home-destacats h2,
-  .home-noticies h2{
-    margin: 0 0 28px;
-    font-size: 22px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    color: var(--color-blue);
-    text-align: center;
-  }
-  .destacats-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 28px;
-  }
-  .destacat-card{
-    border: 1px solid var(--color-border);
-    border-radius: 12px;
-    padding: 30px 32px;
-    background: #fff;
-    box-shadow: 0 4px 14px rgba(28,12,188,0.06);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-  }
-  .destacat-card:hover{
-    transform: translateY(-7px);
-    box-shadow: 0 20px 38px rgba(28,12,188,0.15);
-  }
-  .destacat-card__date{
-    display: block;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--color-orange);
-    margin-bottom: 10px;
-  }
-  .destacat-card__title{
-    margin: 0 0 14px;
-    font-size: 18px;
-    font-weight: 800;
-    color: var(--color-blue);
-    line-height: 1.35;
-  }
-  .destacat-card__text p{
-    margin: 0 0 12px;
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--color-blue);
-  }
-  .destacat-card__text p:last-child{ margin-bottom: 0; }
-  .destacats-empty{
-    grid-column: 1 / -1;
-    text-align: center;
-    color: var(--color-text-muted);
-    font-size: 14px;
-    padding: 30px 0;
-  }
+    /* --- Estructura comuna de les seccions (2 a 5) ---
+       Cada secció ocupa tota l'amplada amb el seu color de fons;
+       el contingut va dins .home-section__inner, centrat i amb amplada màxima. */
+    .home-section{
+      padding: 64px clamp(16px, 4vw, 48px);
+    }
+    .home-section--bluegray{ background: #E6EBF2; }
+    .home-section--gray{ background: #FAFAFD; }
+    .home-section__inner{
+      max-width: 1220px;
+      margin: 0 auto;
+    }
 
-  /* --- Secció 3: Notícies --- */
-  .home-noticies{
-    padding: 0 clamp(16px, 4vw, 48px) 56px;
-    max-width: 1220px;
-    margin: 0 auto;
-  }
-  .noticies-grid{
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 22px;
-    align-items: stretch;
-  }
-  .noticia-card{
-    flex: 1 1 0;
-    min-width: 0;
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    transition: box-shadow 0.18s ease, transform 0.18s ease;
-  }
-  .noticia-card:hover{
-    box-shadow: 0 10px 26px rgba(28,12,188,0.10);
-    transform: translateY(-2px);
-  }
-  .noticia-card__img{
-    width: 100%;
-    height: 190px;
-    object-fit: cover;
-    display: block;
-    background: rgba(28,12,188,0.05);
-  }
-  .noticia-card__body{
-    padding: 20px 22px 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex: 1;
-  }
-  .noticia-card__date{
-    display: block;
-    font-size: 11.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    color: var(--color-orange);
-  }
-  .noticia-card__body h3{
-    margin: 0;
-    font-size: 16px;
-    font-weight: 800;
-    color: var(--color-blue);
-    line-height: 1.35;
-  }
-  .noticia-card__body p{
-    margin: 0;
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: var(--color-text-muted);
-  }
-  .noticia-card__btn{
-    align-self: flex-start;
-    margin-top: auto;
-    display: inline-block;
-    font-size: 12.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    color: #fff;
-    background: var(--color-blue);
-    border: none;
-    border-radius: 6px;
-    padding: 10px 22px;
-    cursor: pointer;
-    transition: background 0.18s ease;
-  }
-  .noticia-card__btn:hover,
-  .noticia-card__btn:focus-visible{
-    background: var(--color-orange);
-  }
-  .noticies-loading-home{
-    grid-column: 1 / -1;
-    text-align: center;
-    color: var(--color-text-muted);
-    font-size: 14px;
-    padding: 30px 0;
-  }
+    /* Títol de secció amb una línia horitzontal a cada costat */
+    .home-title{
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin: 0 0 36px;
+      font-size: 22px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--color-blue);
+      text-align: center;
+    }
+    .home-title::before,
+    .home-title::after{
+      content: "";
+      flex: 1 1 0;
+      height: 1px;
+      background: rgba(28, 12, 188, 0.28);
+    }
 
-  /* --- Secció 4: Contacta amb el centre --- */
-  .home-cta{
-    background: #FAFAFD;
-    border-top: 1px solid var(--color-border);
-    padding: 56px clamp(16px, 4vw, 48px);
-    text-align: center;
-  }
-  .home-cta h2{
-    margin: 0 0 22px;
-    font-size: 22px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    color: var(--color-blue);
-  }
-  .home-cta__button{
-    display: inline-block;
-    font-size: 13.5px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
-    color: #fff;
-    background: var(--color-blue);
-    border: none;
-    border-radius: 6px;
-    padding: 14px 38px;
-    cursor: pointer;
-    transition: background 0.18s ease;
-  }
-  .home-cta__button:hover,
-  .home-cta__button:focus-visible{
-    background: var(--color-orange);
-  }
+    /* --- Secció 2: Destacats --- */
+    .destacats-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+    .destacat-card{
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 30px 32px;
+      background: #fff;
+      box-shadow: 0 4px 14px rgba(28,12,188,0.06);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .destacat-card:hover{
+      transform: translateY(-7px);
+      box-shadow: 0 20px 38px rgba(28,12,188,0.15);
+    }
+    .destacat-card__date{
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-orange);
+      margin-bottom: 10px;
+    }
+    .destacat-card__title{
+      margin: 0 0 14px;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--color-blue);
+      line-height: 1.35;
+    }
+    .destacat-card__text p{
+      margin: 0 0 12px;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--color-blue);
+    }
+    .destacat-card__text p:last-child{ margin-bottom: 0; }
+    .destacats-empty{
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: 14px;
+      padding: 30px 0;
+    }
 
-  @media (max-width: 900px){
-    .noticies-grid{ flex-wrap: wrap; }
-    .noticies-grid .noticia-card{ flex: 1 1 calc(50% - 11px); min-width: 240px; }
-  }
-  @media (max-width: 640px){
-    .hero-carousel{ height: 260px; }
-    .hero-carousel__box{ padding: 18px 22px; max-width: calc(100% - 32px); bottom: 54px; }
-    .hero-carousel__arrow{ width: 36px; height: 36px; }
-    .home-cta h2{ font-size: 18px; }
-    .destacats-grid{ grid-template-columns: 1fr; }
-    .noticies-grid{ flex-direction: column; }
-    .noticies-grid .noticia-card{ flex: 1 1 auto; }
-  }
+    /* --- Secció 3: Estudis --- */
+    /* Dues caixes grans (ESO i Batxillerat) que ocupen tota l'amplada.
+       De moment no són enllaços. */
+    .home-estudis{
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .home-estudis .home-title{
+      max-width: 1220px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 clamp(16px, 4vw, 48px);
+      box-sizing: content-box;
+    }
+    .estudis-grid{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .estudis-box{
+      position: relative;
+      min-height: clamp(280px, 34vw, 440px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 40px 24px;
+      text-align: center;
+      color: #fff;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .estudis-box img{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+    }
+    .estudis-box::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: rgba(28, 12, 188, 0.72);
+    }
+    .estudis-box--batx::after{ background: rgba(16, 8, 110, 0.78); }
+    .estudis-box__title{
+      margin: 0;
+      font-size: clamp(34px, 5vw, 60px);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+    .estudis-box__subtitle{
+      margin: 0;
+      font-size: clamp(14px, 1.4vw, 17px);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      opacity: 0.92;
+    }
+
+    /* --- Secció 4: Notícies --- */
+    /* Distribuïdes sempre en una sola fila horitzontal (una al costat
+       de l'altra) en pantalles normals; només passen a columna en
+       mòbils molt estrets (vegeu media query més avall). */
+    .noticies-grid{
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .noticia-card{
+      flex: 1 1 0;
+      min-width: 0;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      transition: box-shadow 0.18s ease, transform 0.18s ease;
+    }
+    .noticia-card:hover{
+      box-shadow: 0 10px 26px rgba(28,12,188,0.10);
+      transform: translateY(-2px);
+    }
+    .noticia-card__img{
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      display: block;
+      background: rgba(28,12,188,0.05);
+    }
+    .noticia-card__body{
+      padding: 20px 22px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+    .noticia-card__date{
+      display: block;
+      font-size: 11.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-orange);
+    }
+    .noticia-card__body h3{
+      margin: 0;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--color-blue);
+      line-height: 1.35;
+    }
+    .noticia-card__body p{
+      margin: 0;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--color-text-muted);
+    }
+    .noticia-card__btn{
+      align-self: flex-start;
+      margin-top: auto;
+      display: inline-block;
+      font-size: 12.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #fff;
+      background: var(--color-blue);
+      border: none;
+      border-radius: 6px;
+      padding: 10px 22px;
+      cursor: pointer;
+      transition: background 0.18s ease;
+    }
+    .noticia-card__btn:hover,
+    .noticia-card__btn:focus-visible{
+      background: var(--color-orange);
+    }
+    .noticies-loading-home{
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--color-text-muted);
+      font-size: 14px;
+      padding: 30px 0;
+    }
+
+    /* --- Secció 5: Contacta amb el centre --- */
+    .home-cta{
+      text-align: center;
+    }
+    .home-cta__button{
+      display: inline-block;
+      font-size: 13.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #fff;
+      background: var(--color-blue);
+      border: none;
+      border-radius: 6px;
+      padding: 14px 38px;
+      cursor: pointer;
+      transition: background 0.18s ease;
+    }
+    .home-cta__button:hover,
+    .home-cta__button:focus-visible{
+      background: var(--color-orange);
+    }
+
+    @media (max-width: 900px){
+      /* Entre mòbil i escriptori: 2+2 en lloc d'esprémer 4 targetes
+         massa estretes en una sola fila. */
+      .noticies-grid{ flex-wrap: wrap; }
+      .noticies-grid .noticia-card{ flex: 1 1 calc(50% - 11px); min-width: 240px; }
+    }
+    @media (max-width: 640px){
+      .hero-carousel{ height: 260px; }
+      .hero-carousel__box{ padding: 18px 22px; max-width: calc(100% - 32px); bottom: 54px; }
+      .hero-carousel__arrow{ width: 36px; height: 36px; }
+      .home-title{ font-size: 18px; gap: 14px; }
+      .estudis-grid{ grid-template-columns: 1fr; }
+      .destacats-grid{ grid-template-columns: 1fr; }
+      .noticies-grid{ flex-direction: column; }
+      .noticies-grid .noticia-card{ flex: 1 1 auto; }
+    }
 pageScript: |
 
-  // ============ CARRUSEL D'IMATGES (secció 1) ============
-  (function(){
-    var slides = document.querySelectorAll('#heroCarousel .hero-carousel__slide');
-    var dots = document.querySelectorAll('#carouselDots .hero-carousel__dot');
-    var prevBtn = document.getElementById('carouselPrev');
-    var nextBtn = document.getElementById('carouselNext');
-    var carousel = document.getElementById('heroCarousel');
-    if (!slides.length) return;
+    // ============ CARRUSEL D'IMATGES (secció 1) ============
+    (function(){
+      var slides = document.querySelectorAll('#heroCarousel .hero-carousel__slide');
+      var dots = document.querySelectorAll('#carouselDots .hero-carousel__dot');
+      var prevBtn = document.getElementById('carouselPrev');
+      var nextBtn = document.getElementById('carouselNext');
+      var carousel = document.getElementById('heroCarousel');
+      if (!slides.length) return;
 
-    var current = 0;
-    var intervalId = null;
-    var AUTOPLAY_MS = 5500;
+      var current = 0;
+      var intervalId = null;
+      var AUTOPLAY_MS = 5500;
 
-    function goTo(index){
-      slides[current].classList.remove('is-active');
-      dots[current].classList.remove('is-active');
-      current = (index + slides.length) % slides.length;
-      slides[current].classList.add('is-active');
-      dots[current].classList.add('is-active');
-    }
-    function next(){ goTo(current + 1); }
-    function prev(){ goTo(current - 1); }
+      function goTo(index){
+        slides[current].classList.remove('is-active');
+        dots[current].classList.remove('is-active');
+        current = (index + slides.length) % slides.length;
+        slides[current].classList.add('is-active');
+        dots[current].classList.add('is-active');
+      }
+      function next(){ goTo(current + 1); }
+      function prev(){ goTo(current - 1); }
 
-    function startAutoplay(){
-      stopAutoplay();
-      intervalId = setInterval(next, AUTOPLAY_MS);
-    }
-    function stopAutoplay(){
-      if (intervalId) clearInterval(intervalId);
-    }
+      function startAutoplay(){
+        stopAutoplay();
+        intervalId = setInterval(next, AUTOPLAY_MS);
+      }
+      function stopAutoplay(){
+        if (intervalId) clearInterval(intervalId);
+      }
 
-    nextBtn.addEventListener('click', function(){ next(); startAutoplay(); });
-    prevBtn.addEventListener('click', function(){ prev(); startAutoplay(); });
-    dots.forEach(function(dot, i){
-      dot.addEventListener('click', function(){ goTo(i); startAutoplay(); });
-    });
-
-    carousel.addEventListener('mouseenter', stopAutoplay);
-    carousel.addEventListener('mouseleave', startAutoplay);
-
-    startAutoplay();
-  })();
-
-  // ============ DESTACATS (secció 2) — fitxer local, sense imatge ============
-  (function(){
-    var grid = document.getElementById('homeDestacatsGrid');
-    if (!grid) return;
-    var currentLang = document.documentElement.lang || 'ca';
-
-    fetch('/destacats-data.json')
-      .then(function(r){ return r.json(); })
-      .then(function(destacats){
-        grid.innerHTML = '';
-        if (!destacats || destacats.length === 0){
-          grid.innerHTML = '<p class="destacats-empty">There are no highlights right now.</p>';
-          return;
-        }
-        destacats.slice(0, 2).forEach(function(entry){
-          var item = entry[currentLang] || entry.ca;
-          if (!item) return;
-          var article = document.createElement('article');
-          article.className = 'destacat-card';
-          article.innerHTML =
-            '<span class="destacat-card__date">' + item.date + '</span>' +
-            '<h3 class="destacat-card__title">' + item.title + '</h3>' +
-            '<div class="destacat-card__text">' + item.text + '</div>';
-          grid.appendChild(article);
-        });
-      })
-      .catch(function(err){
-        console.error('Error loading highlights:', err);
-        grid.innerHTML = '<p class="destacats-empty">The highlights could not be loaded right now.</p>';
+      nextBtn.addEventListener('click', function(){ next(); startAutoplay(); });
+      prevBtn.addEventListener('click', function(){ prev(); startAutoplay(); });
+      dots.forEach(function(dot, i){
+        dot.addEventListener('click', function(){ goTo(i); startAutoplay(); });
       });
-  })();
 
-  // ============ NOTÍCIES (secció 3) — es carreguen des de Sanity ============
-  (function(){
-    var grid = document.getElementById('homeNoticiesGrid');
-    if (!grid) return;
+      carousel.addEventListener('mouseenter', stopAutoplay);
+      carousel.addEventListener('mouseleave', startAutoplay);
 
-    function excerpt(html, maxLen){
-      var text = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-      if (text.length <= maxLen) return text;
-      return text.slice(0, maxLen).trim() + '…';
-    }
+      startAutoplay();
+    })();
 
-    function formatDate(iso){
-      if (!iso) return '';
-      try {
-        var d = new Date(iso);
-        return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-      } catch(e){ return ''; }
-    }
+    // ============ DESTACATS (secció 2) — fitxer local, sense imatge ============
+    (function(){
+      var grid = document.getElementById('homeDestacatsGrid');
+      if (!grid) return;
+      var currentLang = document.documentElement.lang || 'ca';
 
-    fetch('/noticies-data.json')
-      .then(function(r){ return r.json(); })
-      .then(function(noticies){
-        grid.innerHTML = '';
-        if (!noticies || noticies.length === 0){
-          grid.innerHTML = '<p class="noticies-loading-home">No notices have been published yet.</p>';
-          return;
-        }
-        noticies.slice(0, 4).forEach(function(n){
-          var article = document.createElement('article');
-          article.className = 'noticia-card';
-          var imgHtml = n.imageUrl
-            ? '<img class="noticia-card__img" src="' + n.imageUrl + '" alt="">'
-            : '';
-          article.innerHTML =
-            imgHtml +
-            '<div class="noticia-card__body">' +
-              '<span class="noticia-card__date">' + formatDate(n.publishedAt) + '</span>' +
-              '<h3>' + n.title + '</h3>' +
-              '<p>' + excerpt(n.bodyHtml || '', 100) + '</p>' +
-              '<a href="noticies.html#' + n.slug + '" class="noticia-card__btn">+INFO</a>' +
-            '</div>';
-          grid.appendChild(article);
+      fetch('/destacats-data.json')
+        .then(function(r){ return r.json(); })
+        .then(function(destacats){
+          grid.innerHTML = '';
+          if (!destacats || destacats.length === 0){
+            grid.innerHTML = '<p class="destacats-empty">There are no highlights right now.</p>';
+            return;
+          }
+          destacats.slice(0, 2).forEach(function(entry){
+            // Cada destacat porta els tres idiomes a dins; agafem el de la
+            // pàgina actual, i si falta la traducció, el català com a reserva.
+            var item = entry[currentLang] || entry.ca;
+            if (!item) return;
+            var article = document.createElement('article');
+            article.className = 'destacat-card';
+            article.innerHTML =
+              '<span class="destacat-card__date">' + item.date + '</span>' +
+              '<h3 class="destacat-card__title">' + item.title + '</h3>' +
+              '<div class="destacat-card__text">' + item.text + '</div>';
+            grid.appendChild(article);
+          });
+        })
+        .catch(function(err){
+          console.error('Error loading highlights:', err);
+          grid.innerHTML = '<p class="destacats-empty">The highlights could not be loaded right now.</p>';
         });
-      })
-      .catch(function(err){
-        console.error('Error loading notices:', err);
-        grid.innerHTML = '<p class="noticies-loading-home">The notices could not be loaded right now.</p>';
-      });
-  })();
+    })();
+
+    // ============ NOTÍCIES (secció 4) — es carreguen des de Sanity ============
+    (function(){
+      var grid = document.getElementById('homeNoticiesGrid');
+      if (!grid) return;
+
+      function excerpt(html, maxLen){
+        var text = html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+        if (text.length <= maxLen) return text;
+        return text.slice(0, maxLen).trim() + '…';
+      }
+
+      function formatDate(iso){
+        if (!iso) return '';
+        try {
+          var d = new Date(iso);
+          return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+        } catch(e){ return ''; }
+      }
+
+      fetch('/noticies-data.json')
+        .then(function(r){ return r.json(); })
+        .then(function(noticies){
+          grid.innerHTML = '';
+          if (!noticies || noticies.length === 0){
+            grid.innerHTML = '<p class="noticies-loading-home">No notices have been published yet.</p>';
+            return;
+          }
+          noticies.slice(0, 4).forEach(function(n){
+            var article = document.createElement('article');
+            article.className = 'noticia-card';
+            var imgHtml = n.imageUrl
+              ? '<img class="noticia-card__img" src="' + n.imageUrl + '" alt="">'
+              : '';
+            article.innerHTML =
+              imgHtml +
+              '<div class="noticia-card__body">' +
+                '<span class="noticia-card__date">' + formatDate(n.publishedAt) + '</span>' +
+                '<h3>' + n.title + '</h3>' +
+                '<p>' + excerpt(n.bodyHtml || '', 100) + '</p>' +
+                '<a href="noticies.html#' + n.slug + '" class="noticia-card__btn">+INFO</a>' +
+              '</div>';
+            grid.appendChild(article);
+          });
+        })
+        .catch(function(err){
+          console.error('Error loading notices:', err);
+          grid.innerHTML = '<p class="noticies-loading-home">The notices could not be loaded right now.</p>';
+        });
+    })();
 ---
 
 
@@ -473,25 +549,46 @@ pageScript: |
   </section>
 
   <!-- ============ SECCIÓ 2: DESTACATS ============ -->
-  <section class="home-destacats">
-    <h2>Highlights</h2>
-    <div class="destacats-grid" id="homeDestacatsGrid">
-      <p class="destacats-empty">Loading...</p>
+  <section class="home-section home-section--bluegray home-destacats">
+    <div class="home-section__inner">
+      <h2 class="home-title">Highlights</h2>
+      <div class="destacats-grid" id="homeDestacatsGrid">
+        <p class="destacats-empty">Loading...</p>
+      </div>
     </div>
   </section>
 
-  <!-- ============ SECCIÓ 3: NOTÍCIES ============ -->
-  <section class="home-noticies">
-    <h2>Notices</h2>
-    <div class="noticies-grid" id="homeNoticiesGrid">
-      <p class="noticies-loading-home">Loading notices...</p>
+  <!-- ============ SECCIÓ 3: ESTUDIS ============ -->
+  <section class="home-section home-section--gray home-estudis">
+    <h2 class="home-title">Programmes</h2>
+    <div class="estudis-grid">
+      <div class="estudis-box estudis-box--eso">
+        <img src="/assets/img/inici/inici-2-passadis-1600.jpg" width="1600" height="600" loading="lazy" alt="" role="presentation">
+        <h3 class="estudis-box__title">ESO</h3>
+        <p class="estudis-box__subtitle">Compulsory Secondary Education · Years 1–4</p>
+      </div>
+      <div class="estudis-box estudis-box--batx">
+        <img src="/assets/img/inici/inici-4-edifici-1600.jpg" width="1600" height="600" loading="lazy" alt="" role="presentation">
+        <h3 class="estudis-box__title">Batxillerat</h3>
+        <p class="estudis-box__subtitle">Upper secondary (Baccalaureate) · Years 1–2</p>
+      </div>
     </div>
   </section>
 
-  <!-- ============ SECCIÓ 4: CONTACTA AMB EL CENTRE ============ -->
-  <section class="home-cta">
-    <h2>Contact the school</h2>
-    <a href="/en/contacte.html" class="home-cta__button">Contact us</a>
+  <!-- ============ SECCIÓ 4: NOTÍCIES ============ -->
+  <section class="home-section home-section--bluegray home-noticies">
+    <div class="home-section__inner">
+      <h2 class="home-title">Notices</h2>
+      <div class="noticies-grid" id="homeNoticiesGrid">
+        <p class="noticies-loading-home">Loading notices...</p>
+      </div>
+    </div>
   </section>
 
-
+  <!-- ============ SECCIÓ 5: CONTACTA AMB EL CENTRE ============ -->
+  <section class="home-section home-section--gray home-cta">
+    <div class="home-section__inner">
+      <h2 class="home-title">Contact the school</h2>
+      <a href="/en/contacte.html" class="home-cta__button">Contact us</a>
+    </div>
+  </section>
