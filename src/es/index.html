@@ -190,26 +190,20 @@ pageStyles: |
     }
 
     /* --- Secció 3: Estudis --- */
-    /* Dues caixes grans (ESO i Batxillerat) que ocupen tota l'amplada.
+    /* Dues caixes grans (ESO i Batxillerat) separades, amb marge als costats.
        De moment no són enllaços. */
-    .home-estudis{
-      padding-left: 0;
-      padding-right: 0;
-    }
     .home-estudis .home-title{
       max-width: 1220px;
       margin-left: auto;
       margin-right: auto;
-      padding: 0 clamp(16px, 4vw, 48px);
-      box-sizing: content-box;
     }
     .estudis-grid{
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: clamp(16px, 2.5vw, 32px);
     }
     .estudis-box{
-      position: relative;
-      min-height: clamp(280px, 34vw, 440px);
+      min-height: clamp(260px, 30vw, 400px);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -218,25 +212,11 @@ pageStyles: |
       padding: 40px 24px;
       text-align: center;
       color: #fff;
-      overflow: hidden;
-      isolation: isolate;
+      border-radius: 12px;
     }
-    .estudis-box img{
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-    }
-    .estudis-box::after{
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: rgba(28, 12, 188, 0.72);
-    }
-    .estudis-box--batx::after{ background: rgba(16, 8, 110, 0.78); }
+    /* Colors sòlids, una mica més apagats que el blau i el taronja dels textos */
+    .estudis-box--eso{ background: #4A44A8; }
+    .estudis-box--batx{ background: #D27A45; }
     .estudis-box__title{
       margin: 0;
       font-size: clamp(34px, 5vw, 60px);
@@ -563,12 +543,10 @@ pageScript: |
     <h2 class="home-title">Estudios</h2>
     <div class="estudis-grid">
       <div class="estudis-box estudis-box--eso">
-        <img src="/assets/img/inici/inici-2-passadis-1600.jpg" width="1600" height="600" loading="lazy" alt="" role="presentation">
         <h3 class="estudis-box__title">ESO</h3>
         <p class="estudis-box__subtitle">Educación Secundaria Obligatoria · 1.º a 4.º</p>
       </div>
       <div class="estudis-box estudis-box--batx">
-        <img src="/assets/img/inici/inici-4-edifici-1600.jpg" width="1600" height="600" loading="lazy" alt="" role="presentation">
         <h3 class="estudis-box__title">Bachillerato</h3>
         <p class="estudis-box__subtitle">1.º y 2.º de Bachillerato</p>
       </div>
