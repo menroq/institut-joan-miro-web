@@ -207,9 +207,9 @@ pageStyles: |
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       gap: 12px;
-      padding: 40px 24px;
+      padding: clamp(44px, 6vw, 80px) 24px 40px;
       text-align: center;
       color: #fff;
       border-radius: 12px;
@@ -217,20 +217,49 @@ pageStyles: |
     /* Colors sòlids, una mica més apagats que el blau i el taronja dels textos */
     .estudis-box--eso{ background: #4A44A8; }
     .estudis-box--batx{ background: #D27A45; }
+    /* Tipografia prima per als títols ESO / Batxillerat (Montserrat, allotjada al propi web) */
+    @font-face{
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 200;
+      font-display: swap;
+      src: url('/assets/fonts/montserrat-latin-200-normal.woff2') format('woff2');
+    }
+    @font-face{
+      font-family: 'Montserrat';
+      font-style: normal;
+      font-weight: 300;
+      font-display: swap;
+      src: url('/assets/fonts/montserrat-latin-300-normal.woff2') format('woff2');
+    }
     .estudis-box__title{
-      margin: 0;
-      font-size: clamp(34px, 5vw, 60px);
-      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.35em;
+      margin: 0 0 10px;
+      font-family: 'Montserrat', var(--font-main);
+      font-size: clamp(34px, 4.6vw, 58px);
+      font-weight: 200;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.06em;
       line-height: 1.1;
     }
-    .estudis-box__subtitle{
+    .estudis-box__icon{
+      width: 0.8em;
+      height: 0.8em;
+      flex: none;
+    }
+    .estudis-box__list{
+      list-style: none;
       margin: 0;
-      font-size: clamp(14px, 1.4vw, 17px);
-      font-weight: 600;
-      letter-spacing: 0.02em;
-      opacity: 0.92;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-family: 'Montserrat', var(--font-main);
+      font-size: clamp(15px, 1.4vw, 18px);
+      font-weight: 300;
+      letter-spacing: 0.03em;
     }
 
     /* --- Secció 4: Notícies --- */
@@ -356,6 +385,8 @@ pageStyles: |
       .hero-carousel__arrow{ width: 36px; height: 36px; }
       .home-title{ font-size: 18px; gap: 14px; }
       .estudis-grid{ grid-template-columns: 1fr; }
+      .estudis-box{ min-width: 0; }
+      .estudis-box__title{ font-size: clamp(26px, 8vw, 34px); letter-spacing: 0.03em; }
       .destacats-grid{ grid-template-columns: 1fr; }
       .noticies-grid{ flex-direction: column; }
       .noticies-grid .noticia-card{ flex: 1 1 auto; }
@@ -543,12 +574,20 @@ pageScript: |
     <h2 class="home-title">Estudios</h2>
     <div class="estudis-grid">
       <div class="estudis-box estudis-box--eso">
-        <h3 class="estudis-box__title">ESO</h3>
-        <p class="estudis-box__subtitle">Educación Secundaria Obligatoria · 1.º a 4.º</p>
+        <h3 class="estudis-box__title">ESO<svg class="estudis-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></h3>
+        <ul class="estudis-box__list">
+          <li>1.º de ESO</li>
+          <li>2.º de ESO</li>
+          <li>3.º de ESO</li>
+          <li>4.º de ESO</li>
+        </ul>
       </div>
       <div class="estudis-box estudis-box--batx">
-        <h3 class="estudis-box__title">Bachillerato</h3>
-        <p class="estudis-box__subtitle">1.º y 2.º de Bachillerato</p>
+        <h3 class="estudis-box__title">Bachillerato<svg class="estudis-box__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></h3>
+        <ul class="estudis-box__list">
+          <li>1.º de Bachillerato</li>
+          <li>2.º de Bachillerato</li>
+        </ul>
       </div>
     </div>
   </section>
