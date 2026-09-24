@@ -217,28 +217,13 @@ pageStyles: |
     /* Colors sòlids, una mica més apagats que el blau i el taronja dels textos */
     .estudis-box--eso{ background: #4A44A8; }
     .estudis-box--batx{ background: #D27A45; }
-    /* Tipografia prima per als títols ESO / Batxillerat (Montserrat, allotjada al propi web) */
-    @font-face{
-      font-family: 'Montserrat';
-      font-style: normal;
-      font-weight: 200;
-      font-display: swap;
-      src: url('/assets/fonts/montserrat-latin-200-normal.woff2') format('woff2');
-    }
-    @font-face{
-      font-family: 'Montserrat';
-      font-style: normal;
-      font-weight: 300;
-      font-display: swap;
-      src: url('/assets/fonts/montserrat-latin-300-normal.woff2') format('woff2');
-    }
+    /* Tipografia prima per als títols ESO / Batxillerat */
     .estudis-box__title{
       display: flex;
       align-items: center;
       gap: 0.35em;
       margin: 0 0 10px;
-      font-family: 'Montserrat', var(--font-main);
-      font-size: clamp(34px, 4.6vw, 58px);
+            font-size: clamp(34px, 4.6vw, 58px);
       font-weight: 200;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -256,8 +241,7 @@ pageStyles: |
       display: flex;
       flex-direction: column;
       gap: 6px;
-      font-family: 'Montserrat', var(--font-main);
-      font-size: clamp(15px, 1.4vw, 18px);
+            font-size: clamp(15px, 1.4vw, 18px);
       font-weight: 300;
       letter-spacing: 0.03em;
     }
