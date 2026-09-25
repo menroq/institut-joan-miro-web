@@ -214,9 +214,17 @@ pageStyles: |
       color: #fff;
       border-radius: 12px;
     }
-    /* Colors sòlids, una mica més apagats que el blau i el taronja dels textos */
-    .estudis-box--eso{ background: #4A44A8; }
-    .estudis-box--batx{ background: #D27A45; }
+    /* Gris per defecte (com les caixes de Documents); amb el hover passen en 1 s
+       al blau (ESO) o al taronja (Batxillerat), una mica més apagats que els dels textos */
+    .estudis-box{
+      background: #A8ACB3;
+      box-shadow: 0 12px 24px rgba(20, 20, 40, 0.14);
+      transition: background-color 1s ease;
+    }
+    .estudis-box--eso:hover,
+    .estudis-box--eso:focus-within{ background: #4A44A8; }
+    .estudis-box--batx:hover,
+    .estudis-box--batx:focus-within{ background: #D27A45; }
     /* Tipografia prima per als títols ESO / Batxillerat */
     .estudis-box__title{
       display: flex;
