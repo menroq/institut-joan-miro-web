@@ -1,0 +1,314 @@
+---
+layout: base.njk
+title: Facilities — Institut Joan Miró
+permalink: "en/installacions.html"
+lang: en
+slug: installacions.html
+pageStyles: |
+
+  /* ============ PÀGINA INSTAL·LACIONS ============ */
+  /* --- Capçalera amb la foto de la biblioteca i caixa semitransparent a baix a la dreta --- */
+  .qs-hero{
+    position: relative;
+    width: 100%;
+    height: clamp(260px, 34vw, 500px);
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+  .qs-hero img{
+    will-change: transform, opacity;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+    display: block;
+  }
+  .qs-hero__box{
+    position: absolute;
+    right: clamp(16px, 5vw, 64px);
+    bottom: clamp(24px, 5vw, 56px);
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(3px);
+    padding: clamp(18px, 2.6vw, 34px) clamp(22px, 3.4vw, 48px);
+    border-radius: 4px;
+    max-width: calc(100% - 32px);
+    box-shadow: 0 14px 34px rgba(15, 8, 90, 0.18);
+    will-change: transform;
+  }
+  .qs-hero__box h1{
+    margin: 0;
+    color: var(--color-blue);
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+  .qs-hero__title{
+    display: block;
+    font-size: clamp(28px, 4.4vw, 60px);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+  .qs-hero__subtitle{
+    display: block;
+    margin-top: 0.45em;
+    font-size: clamp(15px, 1.9vw, 26px);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  .inst-wrap{
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 1220px;
+    margin: 0 auto;
+    padding: 56px clamp(16px, 4vw, 48px) 80px;
+  }
+  .inst-section + .inst-section{ margin-top: 64px; }
+  /* Títol de secció amb una línia horitzontal a cada costat (com a la pàgina d'inici) */
+  .inst-title{
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    margin: 0 0 40px;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--color-blue);
+    text-align: center;
+  }
+  .inst-title::before,
+  .inst-title::after{
+    content: "";
+    flex: 1 1 0;
+    height: 1px;
+    background: rgba(28, 12, 188, 0.28);
+  }
+
+  /* --- Carrusels (Exterior i Interior) --- */
+  .inst-carousel{
+    position: relative;
+    height: clamp(240px, 40vw, 540px);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #E6EBF2;
+    box-shadow: 0 12px 24px rgba(20, 20, 40, 0.14);
+  }
+  .inst-carousel__slide{
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+    pointer-events: none;
+  }
+  .inst-carousel__slide.is-active{
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .inst-carousel__slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .inst-carousel__arrow{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.85);
+    color: var(--color-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 5;
+    transition: background 0.18s ease, color 0.18s ease;
+  }
+  .inst-carousel__arrow:hover,
+  .inst-carousel__arrow:focus-visible{
+    background: var(--color-blue);
+    color: #fff;
+  }
+  .inst-carousel__arrow svg{ width: 20px; height: 20px; }
+  .inst-carousel__arrow--prev{ left: clamp(10px, 2vw, 20px); }
+  .inst-carousel__arrow--next{ right: clamp(10px, 2vw, 20px); }
+  .inst-carousel__dots{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 16px;
+    display: flex;
+    justify-content: center;
+    gap: 9px;
+    z-index: 5;
+  }
+  .inst-carousel__dot{
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.55);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.18s ease, transform 0.18s ease;
+  }
+  .inst-carousel__dot.is-active{
+    background: #fff;
+    transform: scale(1.25);
+  }
+  @media (max-width: 640px){
+    .inst-carousel__arrow{ width: 36px; height: 36px; }
+  }
+  @media (max-width: 520px){
+    .inst-title{ font-size: 18px; gap: 14px; }
+  }
+
+pageScript: |
+  // ============ CAPÇALERA: efecte en fer scroll ============
+  // La foto es desplaça més a poc a poc que la pàgina i es va esvaint; la caixa
+  // puja més de pressa que la pàgina i perd el fons blanc i l'ombra, de manera
+  // que al final només en queda el text (títol i subtítol) sobre el fons blanc.
+  (function(){
+    var hero = document.getElementById('qsHero');
+    if (!hero) return;
+    var img = hero.querySelector('img');
+    var box = hero.querySelector('.qs-hero__box');
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var ticking = false;
+
+    function update(){
+      ticking = false;
+      var h = hero.offsetHeight;
+      var y = Math.max(0, window.scrollY);
+      var p = Math.min(1, y / (h * 0.7));
+      img.style.transform = 'translate3d(0,' + (y * 0.35).toFixed(1) + 'px,0)';
+      img.style.opacity = (1 - p).toFixed(3);
+      box.style.transform = 'translate3d(0,' + (-y * 0.15).toFixed(1) + 'px,0)';
+      box.style.backgroundColor = 'rgba(255,255,255,' + (0.72 * (1 - p)).toFixed(3) + ')';
+      box.style.boxShadow = '0 14px 34px rgba(15,8,90,' + (0.18 * (1 - p)).toFixed(3) + ')';
+      box.style.backdropFilter = p > 0.02 ? 'none' : '';
+    }
+    function onScroll(){
+      if (!ticking){ ticking = true; requestAnimationFrame(update); }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  })();
+
+  // ============ CARRUSELS (Exterior i Interior) ============
+  // Mateix comportament que el carrusel de la pàgina d'inici, però funciona
+  // per a qualsevol element .inst-carousel de la pàgina.
+  document.querySelectorAll('.inst-carousel').forEach(function(carousel){
+    var slides = carousel.querySelectorAll('.inst-carousel__slide');
+    var dots = carousel.querySelectorAll('.inst-carousel__dot');
+    if (!slides.length) return;
+    var current = 0;
+    var intervalId = null;
+    var AUTOPLAY_MS = 5500;
+
+    function goTo(index){
+      slides[current].classList.remove('is-active');
+      dots[current].classList.remove('is-active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('is-active');
+      dots[current].classList.add('is-active');
+    }
+    function startAutoplay(){
+      stopAutoplay();
+      intervalId = setInterval(function(){ goTo(current + 1); }, AUTOPLAY_MS);
+    }
+    function stopAutoplay(){ if (intervalId) clearInterval(intervalId); }
+
+    carousel.querySelector('.inst-carousel__arrow--next').addEventListener('click', function(){ goTo(current + 1); startAutoplay(); });
+    carousel.querySelector('.inst-carousel__arrow--prev').addEventListener('click', function(){ goTo(current - 1); startAutoplay(); });
+    dots.forEach(function(dot, i){
+      dot.addEventListener('click', function(){ goTo(i); startAutoplay(); });
+    });
+    carousel.addEventListener('mouseenter', stopAutoplay);
+    carousel.addEventListener('mouseleave', startAutoplay);
+    startAutoplay();
+  });
+---
+
+<div class="qs-hero" id="qsHero">
+  <img src="/assets/img/inici/inici-4-edifici-2400.jpg" srcset="/assets/img/inici/inici-4-edifici-1600.jpg 1600w, /assets/img/inici/inici-4-edifici-2400.jpg 2400w" sizes="100vw" width="2400" height="900" fetchpriority="high" alt="" role="presentation">
+  <div class="qs-hero__box">
+    <h1><span class="qs-hero__title">Our school</span><span class="qs-hero__subtitle">Facilities</span></h1>
+  </div>
+</div>
+
+<!-- De moment els dos carrusels mostren les mateixes fotos provisionals
+     (façana, passadís, vestíbul, edifici i biblioteca). -->
+<div class="inst-wrap">
+  <section class="inst-section">
+    <h2 class="inst-title">Outdoors</h2>
+    <div class="inst-carousel" aria-label="Image carousel: Outdoors">
+      <div class="inst-carousel__slide is-active">
+        <img src="/assets/img/inici/inici-1-facana-1600.jpg" srcset="/assets/img/inici/inici-1-facana-1600.jpg 1600w, /assets/img/inici/inici-1-facana-2400.jpg 2400w" sizes="(max-width: 1220px) 100vw, 1220px" loading="lazy" alt="" role="presentation">
+      </div>
+      <div class="inst-carousel__slide">
+        <img src="/assets/img/inici/inici-2-passadis-1600.jpg" srcset="/assets/img/inici/inici-2-passadis-1600.jpg 1600w, /assets/img/inici/inici-2-passadis-2400.jpg 2400w" sizes="(max-width: 1220px) 100vw, 1220px" loading="lazy" alt="" role="presentation">
+      </div>
+      <div class="inst-carousel__slide">
+        <img src="/assets/img/inici/inici-3-vestibul-1600.jpg" srcset="/assets/img/inici/inici-3-vestibul-1600.jpg 1600w, /assets/img/inici/inici-3-vestibul-2400.jpg 2400w" sizes="(max-width: 1220px) 100vw, 1220px" loading="lazy" alt="" role="presentation">
+      </div>
+      <div class="inst-carousel__slide">
+        <img src="/assets/img/inici/inici-4-edifici-1600.jpg" srcset="/assets/img/inici/inici-4-edifici-1600.jpg 1600w, /assets/img/inici/inici-4-edifici-2400.jpg 2400w" sizes="(max-width: 1220px) 100vw, 1220px" loading="lazy" alt="" role="presentation">
+      </div>
+      <div class="inst-carousel__slide">
+        <img src="/assets/img/qui-som/qui-som-biblioteca-1600.jpg" srcset="/assets/img/qui-som/qui-som-biblioteca-1600.jpg 1600w, /assets/img/qui-som/qui-som-biblioteca-2400.jpg 2400w" sizes="(max-width: 1220px) 100vw, 1220px" loading="lazy" alt="" role="presentation">
+      </div>
+      <button class="inst-carousel__arrow inst-carousel__arrow--prev" aria-label="Previous image">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="inst-carousel__arrow inst-carousel__arrow--next" aria-label="Next image">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="inst-carousel__dots">
+        <button class="inst-carousel__dot is-active" aria-label="Image 1"></button>
+        <button class="inst-carousel__dot" aria-label="Image 2"></button>
+        <button class="inst-carousel__dot" aria-label="Image 3"></button>
+        <button class="inst-carousel__dot" aria-label="Image 4"></button>
+        <button class="inst-carousel__dot" aria-label="Image 5"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="inst-section">
+    <h2 class="inst-title">Indoors</h2>
+    <div class="inst-carousel" aria-label="Image carousel: Indoors">
+      <div class="inst-carousel__slide is-active">
+        <img src="/assets/img/inici/inici-1-facana-1600.jpg" srcset="/assets/img/inici/inici-1-facana-1600.jpg 1600w, /assets/img/inici/inici-1-facana-2400.jpg 2400w" sizes="(max-width: 1220px) 100vw, 1220px" loading="lazy" alt="" role="presentation">
+      </div>
+      <div class="inst-carousel__slide">
+        <img src="/assets/img/inici/inici-2-passadis-1600.jpg" srcset="/assets/img/inici/inici-2-passadis-1600.jpg 1600w, /assets/img/inici/inici-2-passadis-2400.jpg 2400w" sizes="(max-width: 1220px) 100vw, 1220px" loading="lazy" alt="" role="presentation">
+      </div>
+      <div class="inst-carousel__slide">
+        <img src="/assets/img/inici/inici-3-vestibul-1600.jpg" srcset="/assets/img/inici/inici-3-vestibul-1600.jpg 1600w, /assets/img/inici/inici-3-vestibul-2400.jpg 2400w" sizes="(max-width: 1220px) 100vw, 1220px" loading="lazy" alt="" role="presentation">
+      </div>
+      <div class="inst-carousel__slide">
+        <img src="/assets/img/inici/inici-4-edifici-1600.jpg" srcset="/assets/img/inici/inici-4-edifici-1600.jpg 1600w, /assets/img/inici/inici-4-edifici-2400.jpg 2400w" sizes="(max-width: 1220px) 100vw, 1220px" loading="lazy" alt="" role="presentation">
+      </div>
+      <div class="inst-carousel__slide">
+        <img src="/assets/img/qui-som/qui-som-biblioteca-1600.jpg" srcset="/assets/img/qui-som/qui-som-biblioteca-1600.jpg 1600w, /assets/img/qui-som/qui-som-biblioteca-2400.jpg 2400w" sizes="(max-width: 1220px) 100vw, 1220px" loading="lazy" alt="" role="presentation">
+      </div>
+      <button class="inst-carousel__arrow inst-carousel__arrow--prev" aria-label="Previous image">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button class="inst-carousel__arrow inst-carousel__arrow--next" aria-label="Next image">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+      <div class="inst-carousel__dots">
+        <button class="inst-carousel__dot is-active" aria-label="Image 1"></button>
+        <button class="inst-carousel__dot" aria-label="Image 2"></button>
+        <button class="inst-carousel__dot" aria-label="Image 3"></button>
+        <button class="inst-carousel__dot" aria-label="Image 4"></button>
+        <button class="inst-carousel__dot" aria-label="Image 5"></button>
+      </div>
+    </div>
+  </section>
+</div>
